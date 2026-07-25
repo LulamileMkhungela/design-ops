@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>DesignOps — One design, every framework · Lulamile Mkhungela</title>
+<meta name="description" content="DesignOps by Lulamile Mkhungela: Figma tokens and components shipped to React, Vue, Angular, Svelte, Next, Nuxt, Remix, Astro, Ionic, MUI, Tailwind and more. One source of truth, zero design drift."/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23e8ff5a'/%3E%3Cpath d='M8 8h6v6H8zM18 8h6v6h-6zM8 18h6v6H8zM18 18h6v6h-6z' fill='%230d0d0b'/%3E%3C/svg%3E"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/styles.css"/>
+</head>
+<body>
+<div class="app">
+
+  <!-- ══════════════════════════ SIDEBAR ══════════════════════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-brand">
+      <div class="sb-logo">
+        <div class="sb-logo-mark" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 3h4v4H3zM9 3h4v4H9zM3 9h4v4H3zM9 9h4v4H9z" fill="#0d0d0b"/></svg>
+        </div>
+        DesignOps
+      </div>
+      <div class="sb-sub">Design → every framework · Lulamile Mkhungela</div>
+    </div>
+
+    <!-- Global search: components, tokens, frameworks, requests -->
+    <div class="sb-search">
+      <div class="search-wrap">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.3"/><path d="M9.5 9.5L12 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <input class="search-input" id="globalSearch" placeholder="Search components, tokens…" autocomplete="off"/>
+        <div class="search-results" id="searchResults"></div>
+      </div>
+    </div>
+
+    <nav id="sbNav"><!-- rendered by app.js --></nav>
+
+    <div class="sb-pipeline">
+      <div class="sb-pipeline-label">The Pipeline</div>
+      <div class="pipe-legend">
+        <div class="pipe-leg-item"><span class="pipe-leg-dot" style="background:var(--figma)"></span>Figma Variables</div>
+        <div class="pipe-leg-item"><span class="pipe-leg-dot" style="background:var(--token)"></span>Tokens JSON (source of truth)</div>
+        <div class="pipe-leg-item"><span class="pipe-leg-dot" style="background:var(--stdict)"></span>Transform · Style Dictionary</div>
+        <div class="pipe-leg-item"><span class="pipe-leg-dot" style="background:var(--accent)"></span>Every framework build</div>
+        <div class="pipe-leg-item"><span class="pipe-leg-dot" style="background:var(--storybook)"></span>Storybook docs</div>
+      </div>
+      <div class="sb-version">tokens v3.0.0 · components v2.4.0</div>
+    </div>
+  </aside>
+
+  <!-- ══════════════════════════ MAIN ══════════════════════════ -->
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        <span class="topbar-title" id="topbarTitle">Overview</span>
+        <div class="topbar-divider"></div>
+        <span class="topbar-sub">one design → 14 targets</span>
+      </div>
+      <div class="topbar-right">
+        <button class="tb-chip demo-chip" id="watchDemoBtn">▶ Watch demo</button>
+        <button class="tb-chip" id="exportBtn">⤓ Export tokens</button>
+      </div>
+    </div>
+
+    <!-- Views are rendered into here by app.js (hash router) -->
+    <div id="view"></div>
+
+    <footer class="app-footer">
+      <span>DesignOps · designed &amp; built by <strong>Lulamile Mkhungela</strong></span>
+      <span class="foot-dim">Design once. Build everywhere.</span>
+    </footer>
+  </main>
+</div>
+
+<!-- Demo mode (auto-playing guided tour) root -->
+<div id="demoRoot"></div>
+
+<!-- Toast root (ship notifications etc.) -->
+<div id="toastRoot"></div>
+
+<script src="assets/data.js"></script>
+<script src="assets/codegen.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

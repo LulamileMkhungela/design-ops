@@ -1,0 +1,35 @@
+{
+  "name": "design-ops",
+  "version": "1.0.0",
+  "description": "DesignOps — one design in Figma, shipped to every framework. Token pipeline, multi-framework component delivery, request workflow and living documentation. By Lulamile Mkhungela.",
+  "author": "Lulamile Mkhungela <mkhungela.l@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "design-ops",
+    "design-system",
+    "design-tokens",
+    "figma",
+    "style-dictionary",
+    "react",
+    "vue",
+    "angular",
+    "svelte",
+    "astro",
+    "nextjs",
+    "nuxt",
+    "remix",
+    "ionic",
+    "mui",
+    "tailwind"
+  ],
+  "scripts": {
+    "build:tokens": "node tools/ship.mjs",
+    "start": "python3 -m http.server 4173",
+    "verify": "node tools/ship.mjs --check",
+    "test": "node tools/smoke.test.cjs"
+  },
+  "devDependencies": {
+    "jsdom": "^24.0.0"
+  }
+}
