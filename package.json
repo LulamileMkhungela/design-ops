@@ -1,35 +1,35 @@
 {
-  "name": "design-ops",
-  "version": "1.0.0",
-  "description": "DesignOps — one design in Figma, shipped to every framework. Token pipeline, multi-framework component delivery, request workflow and living documentation. By Lulamile Mkhungela.",
-  "author": "Lulamile Mkhungela <mkhungela.l@gmail.com>",
-  "license": "MIT",
+  "name": "design-ops-workspace",
+  "private": true,
+  "description": "DesignOps — an agent-first linter for Tailwind design systems. Write design system rules that agents can verify.",
   "type": "module",
-  "keywords": [
-    "design-ops",
-    "design-system",
-    "design-tokens",
-    "figma",
-    "style-dictionary",
-    "react",
-    "vue",
-    "angular",
-    "svelte",
-    "astro",
-    "nextjs",
-    "nuxt",
-    "remix",
-    "ionic",
-    "mui",
-    "tailwind"
-  ],
+  "packageManager": "pnpm@10.28.2",
   "scripts": {
-    "build:tokens": "node tools/ship.mjs",
-    "start": "python3 -m http.server 4173",
-    "verify": "node tools/ship.mjs --check",
-    "test": "node tools/smoke.test.cjs"
+    "build": "pnpm --filter @designops/lint run build",
+    "test": "pnpm --filter @designops/lint run build && pnpm --filter @designops/lint run test",
+    "typecheck": "pnpm --filter @designops/lint exec tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format:write": "prettier --write . --cache",
+    "format:check": "prettier --check . --cache",
+    "corpus": "pnpm --filter @designops/lint run build && pnpm --filter evals run corpus",
+    "corpus:check": "pnpm --filter @designops/lint run build && pnpm --filter evals run corpus:check",
+    "evals": "pnpm --filter @designops/lint run build && pnpm --filter evals run run",
+    "changeset": "changeset",
+    "release": "pnpm run typecheck && pnpm run test && pnpm run corpus:check && changeset publish"
+  },
+  "engines": {
+    "node": ">=20.19"
   },
   "devDependencies": {
-    "jsdom": "^24.0.0"
+    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/cli": "^3.0.1",
+    "@eslint/js": "^9.33.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
+    "eslint": "^9.33.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.3.0",
+    "prettier": "^3.6.2",
+    "typescript-eslint": "^8.40.0"
   }
 }
