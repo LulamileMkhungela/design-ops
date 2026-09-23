@@ -42,5 +42,12 @@ export default tseslint.config(
       "@typescript-eslint/no-explicit-any": "off",
     },
   },
+  {
+    // The showcase page script runs in browsers, not Node.
+    files: ["site/app.js"],
+    languageOptions: {
+      globals: globals.browser,
+    },
+  },
   prettier
 )
