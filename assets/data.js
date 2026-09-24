@@ -638,6 +638,13 @@ const GUIDE = [
       <li><strong>API + webhooks</strong> — <code>GET /v1/tokens?target=react</code>, plus ship events to Slack/Teams for custom tooling.</li>
     </ul>
     <p>Recommendation: adopt <strong>packages + CLI</strong> for apps, keep this dashboard for design review, requests and sign-off. The two sync over the API, so neither side waits on the other.</p>` },
+  { id: 'connections', label: 'Live connections', html: `
+    <p>Three panels read <strong>real data</strong> — manage them under <strong>Integrations → Live connections</strong>. Everything degrades to seed content offline, and secrets stay in your browser (<code>localStorage</code>).</p>
+    <ul>
+      <li><strong>GitHub (no setup)</strong> — Overview activity shows the latest commits on the configured repo (default <code>LulamileMkhungela/design-ops</code>), cached 5 minutes. The request board's <em>File as GitHub issue</em> button opens a prefilled issue.</li>
+      <li><strong>Figma (token + file key)</strong> — connect a file and every Components card shows whether it matches a real Figma component; the banner reports the match rate and sync time. Create a read-only token at Figma → Settings → Security, then paste the file key or the full file URL.</li>
+      <li><strong>Storybook (published URL)</strong> — set the URL of a published Storybook and story cards deep-link to their real <code>?path=/story/…</code> pages.</li>
+    </ul>` },
   { id: 'governance', label: 'Governance & versioning', html: `
     <ul>
       <li><strong>Semver everywhere.</strong> Tokens and each framework adapter version independently; the manifest hash (see <code>dist/manifest.json</code>) lets apps fail fast on mismatch.</li>
@@ -671,6 +678,27 @@ const PEOPLE = [
    `message` texts are verbatim diagnostics from the real lint build;
    refresh with `pnpm lint:capture` (tools/lint-capture.mjs) and paste.
    Presets run live in the Lint view playground via POST /api/lint. */
+const CONNECTIONS_DEFAULTS = {
+  githubRepo: 'LulamileMkhungela/design-ops',
+  githubCommits: null,   // live commits fetched on the last overview visit
+  githubCheckedAt: null, // ISO timestamp of that fetch
+  figmaToken: '',        // personal access token (read-only) — browser only
+  figmaFileKey: '',
+  figma: null,           // { name, lastModified, components:[names], checkedAt }
+  storybookUrl: '',      // published Storybook base URL for deep links
+};
+
+/* Fallback feed for Overview when GitHub is unreachable (offline,
+   rate-limited, or file://). Same [dot, text, time] shape the live
+   commit mapper returns, minus the link. */
+const ACTIVITY_SEED = [
+  ['var(--green)', 'Button v2.1.0 shipped to all 14 targets', '2d ago'],
+  ['var(--figma)', 'Data Table design attached to request', '2d ago'],
+  ['var(--token)', 'tokens v3.0.0 — 41 tokens rebuilt to dist/', '4d ago'],
+  ['var(--storybook)', 'Card stories PR #52 opened', '5d ago'],
+  ['var(--amber)', 'Badge warning token corrected → warning-600', '1w ago'],
+];
+
 const LINT_RULES = [
   {
     id: 'designops/no-restyle', short: 'no-restyle',

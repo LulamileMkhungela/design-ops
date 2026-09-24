@@ -162,6 +162,23 @@ itself with a fix drawn from your own components, variants and theme.
   `tools/lint-server.mjs` serves the dashboard plus the playground API,
   and `packages/evals` holds the agent evals and registry corpus tooling.
 
+## Live connections (GitHub · Figma · Storybook)
+
+The dashboard reads real data where it can, with seed fallbacks offline.
+Manage everything under **Integrations → Live connections**:
+
+- **GitHub (zero setup):** Overview's activity feed loads live commits
+  from the configured repo (default `LulamileMkhungela/design-ops`),
+  cached 5 minutes; any request can be filed as a prefilled GitHub
+  issue in one click — no token needed for public repos.
+- **Figma (your token):** paste a read-only personal access token plus
+  the file key or URL and Components shows which cards match the real
+  file, with a match-rate banner. Fetched directly, or via the
+  same-origin `/api/figma` proxy under `npm start`. The token never
+  leaves the browser except to api.figma.com.
+- **Storybook (your URL):** paste a published Storybook URL and every
+  story card deep-links to its real `?path=/story/…` page.
+
 ## For real adoption
 
 This repo is the reference implementation of the system described in

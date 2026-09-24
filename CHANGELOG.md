@@ -28,6 +28,10 @@ view backed by a real lint engine.
   `tools/lint-capture.mjs` refreshes the verbatim diagnostics in the app.
 - **Agent evals + registry corpus tooling** (`packages/evals`, private) —
   the measurement suite behind the linter, ratcheted in CI.
+- **Live connections** (GitHub · Figma · Storybook) — Overview
+  activity reads real commits, requests file as GitHub issues, Figma
+  sync matches components against a real file, and story cards
+  deep-link to a published Storybook. Seeds render offline.
 
 ## [1.0.0] — 2026-07-25
 

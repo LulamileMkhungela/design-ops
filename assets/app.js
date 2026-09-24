@@ -198,6 +198,170 @@ function progressHTML(c) {
 }
 
 /* ── 5 · VIEW: overview ─────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   LIVE CONNECTIONS · github · figma · storybook
+   Real-data layer. GitHub works with zero setup (public API, cached);
+   Figma and Storybook light up once a token / URL is saved in the
+   Integrations view. Secrets stay in this browser (localStorage).
+   ═══════════════════════════════════════════════════════════════ */
+const CONN_KEY = 'designops-connections-v1';
+
+function loadConn() {
+  let c = {};
+  try { c = JSON.parse(localStorage.getItem(CONN_KEY) || '{}'); } catch (e) { /* fresh start */ }
+  return Object.assign({}, CONNECTIONS_DEFAULTS, c);
+}
+let conn = loadConn();
+const saveConn = () => { try { localStorage.setItem(CONN_KEY, JSON.stringify(conn)); } catch (e) {} };
+
+/* pure helpers (covered by smoke tests) -------------------------- */
+function timeAgo(iso, nowMs) {
+  const t = Date.parse(iso);
+  if (isNaN(t)) return '';
+  const s = Math.max(0, Math.floor(((nowMs || Date.now()) - t) / 1000));
+  if (s < 60) return 'just now';
+  const m = Math.floor(s / 60);
+  if (m < 60) return m + 'm ago';
+  const h = Math.floor(m / 60);
+  if (h < 24) return h + 'h ago';
+  const d = Math.floor(h / 24);
+  if (d < 7) return d + 'd ago';
+  const w = Math.floor(d / 7);
+  if (w < 5) return w + 'w ago';
+  const mo = Math.floor(d / 30);
+  if (mo < 12) return mo + 'mo ago';
+  return Math.floor(d / 365) + 'y ago';
+}
+
+function githubIssueURL(repo, title, body) {
+  return 'https://github.com/' + repo + '/issues/new?title=' + encodeURIComponent(title || '') + '&body=' + encodeURIComponent(body || '');
+}
+
+/* GitHub commits API payload → activity items [dot, text, time, url]. */
+function githubCommitActivity(commits) {
+  return (commits || []).slice(0, 5).map((c) => {
+    const msg = ((c.commit && c.commit.message) || 'commit').split('\n')[0].slice(0, 100);
+    const who = (c.author && c.author.login) || (c.commit && c.commit.author && c.commit.author.name) || '';
+    return ['var(--github)', msg + (who ? ' — ' + who : ''), timeAgo(c.commit && c.commit.author && c.commit.author.date), c.html_url || ''];
+  });
+}
+
+/* Dashboard components ↔ Figma file component names. Figma names often
+   carry variant suffixes ("Button / Primary") — match on the head. */
+function matchFigmaComponents(components, figmaNames) {
+  const norm = (s) => String(s || '').toLowerCase().split(/[/:\-|–—]/)[0].trim();
+  const have = {};
+  (figmaNames || []).forEach((n) => { have[norm(n)] = true; });
+  const matched = [], missing = [];
+  (components || []).forEach((c) => { (have[norm(c.name)] ? matched : missing).push(c.id); });
+  return { matched, missing };
+}
+
+function storybookStoryURL(base, path, story) {
+  const slug = (x) => String(x || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  return String(base || '').replace(/\/+$/, '') + '/?path=/story/' + slug(path) + '--' + slug(story || 'docs');
+}
+
+/* live activity --------------------------------------------------- */
+let liveActivityCache = { at: 0, items: null };
+
+function activityHTML(items) {
+  return (items || []).map((it) => {
+    const open = it[3] ? 'a href="' + esc(it[3]) + '" target="_blank" rel="noreferrer"' : 'div';
+    return '<' + open + ' class="req-item" style="cursor:' + (it[3] ? 'pointer' : 'default') + ';text-decoration:none;color:inherit">' +
+      '<div class="req-item-top"><div class="sb-nav-left"><span class="sb-dot" style="background:' + it[0] + '"></span><span style="font-size:.84rem">' + esc(it[1]) + '</span></div><span class="req-item-meta">' + esc(it[2]) + '</span></div>' +
+      '</' + (it[3] ? 'a' : 'div') + '>';
+  }).join('');
+}
+
+function paintLiveActivity() {
+  const box = $('#liveActivityItems');
+  if (!box || !liveActivityCache.items) return;
+  box.innerHTML = activityHTML(liveActivityCache.items);
+  const badge = $('#liveActivityBadge');
+  if (badge) badge.innerHTML = '<span class="live-dot"></span>live · github.com/' + esc(conn.githubRepo);
+}
+
+function refreshLiveActivity() {
+  if (!$('#liveActivityItems') || typeof fetch !== 'function' || !conn.githubRepo) return;
+  if (liveActivityCache.items && Date.now() - liveActivityCache.at < 5 * 60 * 1000) { paintLiveActivity(); return; }
+  fetch('https://api.github.com/repos/' + conn.githubRepo + '/commits?per_page=5', { headers: { accept: 'application/vnd.github+json' } })
+    .then((r) => { if (!r.ok) throw new Error('github ' + r.status); return r.json(); })
+    .then((commits) => {
+      const items = githubCommitActivity(commits);
+      if (!items.length) return;
+      liveActivityCache = { at: Date.now(), items };
+      conn.githubCommits = items.length;
+      conn.githubCheckedAt = new Date().toISOString();
+      saveConn();
+      paintLiveActivity();
+    })
+    .catch(() => { /* offline or rate-limited — the seed feed stays put */ });
+}
+
+/* figma ------------------------------------------------------------ */
+function figmaFetchMeta(key, token) {
+  if (typeof fetch !== 'function') return Promise.resolve(null);
+  return fetch('https://api.figma.com/v1/files/' + key + '?depth=1', { headers: { 'X-Figma-Token': token } })
+    .then((r) => { if (!r.ok) throw new Error('figma ' + r.status); return r.json(); })
+    .catch(() => fetch('/api/figma/files/' + key, { headers: { 'x-figma-token': token } })
+      .then((r) => { if (!r.ok) throw new Error('proxy ' + r.status); return r.json(); })
+      .catch(() => null));
+}
+
+function figmaConnect() {
+  const token = $('#connFigmaToken').value.trim();
+  const keyHit = $('#connFigmaFileKey').value.trim().match(/([A-Za-z0-9]{10,})/);
+  const key = keyHit ? keyHit[1] : '';
+  if (!token || !key) { toast('Figma needs a token + file key', 'paste both, then Connect', '◈'); return; }
+  conn.figmaToken = token;
+  conn.figmaFileKey = key;
+  saveConn();
+  toast('Connecting to Figma…', key, '◈');
+  figmaFetchMeta(key, token).then((meta) => {
+    if (!meta || !meta.name) { toast('Figma connection failed', 'check the token + key (Guide → Live connections)', '◈'); return; }
+    const names = Object.values(meta.components || {}).map((c) => c.name).slice(0, 200);
+    conn.figma = { name: meta.name, lastModified: meta.lastModified, components: names, checkedAt: new Date().toISOString() };
+    saveConn();
+    const m = matchFigmaComponents(COMPONENTS, names);
+    toast('Figma connected: ' + meta.name, m.matched.length + ' of ' + COMPONENTS.length + ' components matched', '✓');
+    if ((location.hash || '').replace('#/', '') === 'integrations') renderIntegrations();
+  });
+}
+
+/* connections section for the integrations view ------------------- */
+function connSectionHTML() {
+  const gh = conn.githubCheckedAt
+    ? '<span class="conn-pill live"><span class="live-dot"></span>live</span> ' + (conn.githubCommits || 0) + ' commits · checked ' + esc(timeAgo(conn.githubCheckedAt))
+    : '<span class="conn-pill demo">demo</span> overview shows the seed feed until the first fetch succeeds';
+  const fg = conn.figma
+    ? '<span class="conn-pill live"><span class="live-dot"></span>connected</span> ' + esc(conn.figma.name) + ' · ' + conn.figma.components.length + ' file components · ' + matchFigmaComponents(COMPONENTS, conn.figma.components).matched.length + '/' + COMPONENTS.length + ' matched · synced ' + esc(timeAgo(conn.figma.checkedAt))
+    : '<span class="conn-pill demo">not connected</span> paste a token + file key to light up Figma sync';
+  const sb = conn.storybookUrl
+    ? '<span class="conn-pill live"><span class="live-dot"></span>linked</span> <a href="' + esc(conn.storybookUrl) + '" target="_blank" rel="noreferrer">' + esc(conn.storybookUrl) + ' ↗</a>'
+    : '<span class="conn-pill demo">not linked</span> story cards open in-app until a published URL is set';
+  return '<div class="section-hdr"><h2>Live connections</h2><span class="conn-note">secrets stay in your browser — nothing is sent anywhere except the API you connect</span></div>' +
+  '<div class="gateway-grid conn-grid">' +
+    '<div class="gateway-card"><div class="gateway-name">◉ GitHub — live activity</div>' +
+      '<div class="gateway-desc">The Overview feed reads real commits. Public repos need no token; cached 5 min with a seed fallback.</div>' +
+      '<div class="req-form" style="margin:0"><label>Repository</label><input type="text" id="connGithubRepo" value="' + esc(conn.githubRepo) + '" placeholder="owner/repo"/>' +
+      '<div><button class="btn btn-primary btn-sm" data-conn-github-save>Save repo</button></div></div>' +
+      '<div class="conn-status">' + gh + '</div></div>' +
+    '<div class="gateway-card"><div class="gateway-name">◈ Figma — component sync</div>' +
+      '<div class="gateway-desc">Match dashboard components against a real Figma file. Needs a personal access token (read-only file content scope).</div>' +
+      '<div class="req-form" style="margin:0"><label>Personal access token</label><input type="password" id="connFigmaToken" value="' + esc(conn.figmaToken) + '" placeholder="figd_…"/>' +
+      '<label>File key or URL</label><input type="text" id="connFigmaFileKey" value="' + esc(conn.figmaFileKey) + '" placeholder="https://figma.com/design/…"/>' +
+      '<div><button class="btn btn-primary btn-sm" data-conn-figma-test>Connect</button> ' +
+      '<button class="btn btn-ghost btn-sm" data-conn-figma-clear>Clear</button></div></div>' +
+      '<div class="conn-status">' + fg + '</div></div>' +
+    '<div class="gateway-card"><div class="gateway-name">⬢ Storybook — published docs</div>' +
+      '<div class="gateway-desc">Point at a published Storybook and every story card deep-links to its real page.</div>' +
+      '<div class="req-form" style="margin:0"><label>Published URL</label><input type="text" id="connStorybookUrl" value="' + esc(conn.storybookUrl) + '" placeholder="https://main--xyz.chromatic.com"/>' +
+      '<div><button class="btn btn-primary btn-sm" data-conn-sb-save>Save URL</button></div></div>' +
+      '<div class="conn-status">' + sb + '</div></div>' +
+  '</div>';
+}
+
 function renderOverview() {
   const shippedN = COMPONENTS.filter((c) => overallStatus(c) === 'ready').length;
   const stats = '<div class="hero-stats">' +
@@ -206,17 +370,7 @@ function renderOverview() {
     '<div class="h-stat"><div class="h-stat-n"><span>' + FRAMEWORKS.length + '</span></div><div class="h-stat-l">framework targets</div></div>' +
     '<div class="h-stat"><div class="h-stat-n"><span>0</span>%</div><div class="h-stat-l">design drift tolerated</div></div></div>';
 
-  const activity = [
-    ['var(--green)', 'Button v2.1.0 shipped to all 14 targets', '2d ago'],
-    ['var(--figma)', 'Data Table design attached to request', '2d ago'],
-    ['var(--token)', 'tokens v3.0.0 — 41 tokens rebuilt to dist/', '4d ago'],
-    ['var(--storybook)', 'Card stories PR #52 opened', '5d ago'],
-    ['var(--amber)', 'Badge warning token corrected → warning-600', '1w ago'],
-  ];
-  const recentCard = '<div class="sub-hdr">Recent pipeline activity</div><div class="comp-grid">' +
-    activity.map(([dot, txt, time]) =>
-      '<div class="req-item" style="cursor:default"><div class="req-item-top"><div class="sb-nav-left"><span class="sb-dot" style="background:' + dot + '"></span><span style="font-size:.84rem">' + txt + '</span></div><span class="req-item-meta">' + time + '</span></div></div>'
-    ).join('') + '</div>';
+  const recentCard = '<div class="sub-hdr">Recent pipeline activity <span class="conn-src" id="liveActivityBadge">demo data</span></div><div class="comp-grid" id="liveActivityItems">' + activityHTML(ACTIVITY_SEED) + '</div>';
 
   const why = '<div class="sub-hdr">The misalignment this kills</div><div class="usage-col">' +
     '<div class="usage-box dont"><div class="ps-title" style="color:var(--red)">Without DesignOps</div><ul>' +
@@ -250,6 +404,7 @@ function renderOverview() {
     ].join('\n')) +
     '<div style="height:26px"></div>' +
     why + recentCard + '</div>';
+  setTimeout(refreshLiveActivity, 60);
 }
 
 /* ── 6 · VIEW: tokens ───────────────────────────────────────── */
@@ -321,12 +476,14 @@ function renderComponents() {
     return compFilter === 'all' || (compFilter === 'ready' && o === 'ready') || (compFilter === 'partial' && o === 'partial') || (compFilter === 'missing' && o === 'missing');
   });
 
+  const figmaMatched = {};
+  matchFigmaComponents(COMPONENTS, conn.figma ? conn.figma.components : []).matched.forEach((id) => { figmaMatched[id] = true; });
   const cards = visible.map((c) =>
     '<div class="comp-card" id="comp-' + c.id + '" data-comp="' + c.id + '">' +
       '<div class="comp-card-header">' +
         '<div class="comp-card-left">' +
           '<div class="comp-card-icon" style="background:' + COMP_ICON_BG[c.id] + '"><svg width="20" height="20" viewBox="0 0 20 20" fill="none">' + (COMP_ICONS[c.id] || COMP_ICONS.badge) + '</svg></div>' +
-          '<div><div class="comp-card-name">' + c.name + (state.shipped.includes(c.id) ? ' <span class="sb-badge green" style="vertical-align:2px">just shipped</span>' : '') + '</div>' +
+          '<div><div class="comp-card-name">' + c.name + (state.shipped.includes(c.id) ? ' <span class="sb-badge green" style="vertical-align:2px">just shipped</span>' : '') + (figmaMatched[c.id] ? ' <span class="figma-chip" title="Matched in the connected Figma file">◈ figma</span>' : '') + '</div>' +
           '<div class="comp-card-tag">&lt;' + c.tag + '&gt; · .' + c.cls + ' · ' + c.figmaPath + '</div></div>' +
         '</div>' +
         '<div class="comp-card-right"><div class="pipeline-status-row">' + stageChips(c) + '</div>' + statusPill(c) +
@@ -343,6 +500,9 @@ function renderComponents() {
     '<div class="comp-card-right"><button class="btn btn-ghost btn-sm" data-goto-req="' + r.name + '">Request it →</button></div></div></div>'
   ).join('');
 
+  const figmaBanner = conn.figma
+    ? '<div class="status-banner ready"><span class="status-icon">◈</span><div><strong>Figma: ' + esc(conn.figma.name) + '.</strong> ' + matchFigmaComponents(COMPONENTS, conn.figma.components).matched.length + ' of ' + COMPONENTS.length + ' components matched · synced ' + esc(timeAgo(conn.figma.checkedAt)) + ' — manage in <a href="#/integrations">Live connections</a>.</div></div>'
+    : '';
   $('#view').innerHTML =
     heroHTML('Component library', 'Specified once.<br/><em>Generated everywhere.</em>',
       'Expand any component to preview the Figma design, inspect its tokens, copy working code for your stack, read usage guidelines, and discuss it. Every snippet is generated from the same schema that ships the packages.') +
@@ -353,7 +513,7 @@ function renderComponents() {
     '<span class="filter-chip' + (compFilter === 'ready' ? ' on' : '') + '" data-compfilter="ready">✓ Ready</span>' +
     '<span class="filter-chip' + (compFilter === 'partial' ? ' on' : '') + '" data-compfilter="partial">⚠ Partial</span>' +
     '<span class="filter-chip' + (compFilter === 'missing' ? ' on' : '') + '" data-compfilter="missing">✕ Not started</span></div></div>' +
-    '<div class="comp-grid">' + cards + roadmap + '</div></div>';
+    figmaBanner + '<div class="comp-grid">' + cards + roadmap + '</div></div>';
 }
 
 /* version-history timeline entry */
@@ -535,6 +695,7 @@ function renderRequests() {
         '<label>Component name</label><input type="text" id="reqTitle" placeholder="e.g. Date Picker"/>' +
         '<label>What do you need it to do?</label><textarea id="reqDesc" placeholder="Context, variants, which team is blocked…"></textarea>' +
         '<button class="btn btn-primary btn-sm" id="reqSubmit">Submit request</button>' +
+        '<button class="btn btn-ghost btn-sm" id="reqFileIssue" style="margin-left:8px" title="Open a prefilled issue — no token needed">File as GitHub issue ↗</button>' +
       '</div>' +
       '<div class="req-list">' + list + '</div>' +
     '</div>' +
@@ -632,18 +793,19 @@ function renderStorybook() {
   const live = COMPONENTS.filter((c) => compStatus(c).storybook !== 'missing');
   const cards = COMPONENTS.map((c) => {
     const st = compStatus(c).storybook; const m = STATUS_META[st];
-    return '<div class="sb-story-card" data-open-comp="' + c.id + '" title="Open ' + c.name + ' component">' +
+    const sbURL = conn.storybookUrl ? storybookStoryURL(conn.storybookUrl, c.figmaPath, 'docs') : '';
+    return '<' + (sbURL ? 'a href="' + esc(sbURL) + '" target="_blank" rel="noreferrer"' : 'div data-open-comp="' + c.id + '"') + ' class="sb-story-card" title="' + (sbURL ? 'Open ' + c.name + ' in the published Storybook' : 'Open ' + c.name + ' component') + '">' +
       '<div class="sb-story-path">' + c.figmaPath + '</div>' +
       '<div class="sb-story-name">' + c.name + '</div>' +
-      '<div class="sb-story-meta">' + (st === 'ready' ? c.stories + ' stories · controls mirror props' : 'not synced yet') + '</div>' +
-      '<span class="ps-chip ' + m.cls + '"><span class="ps-dot"></span>' + m.label + '</span></div>';
+      '<div class="sb-story-meta">' + (st === 'ready' ? c.stories + ' stories · controls mirror props' : 'not synced yet') + (sbURL ? ' ↗' : '') + '</div>' +
+      '<span class="ps-chip ' + m.cls + '"><span class="ps-dot"></span>' + m.label + '</span></' + (sbURL ? 'a' : 'div') + '>';
   }).join('');
 
   $('#view').innerHTML =
     heroHTML('Storybook · stage 05', 'Living docs,<br/><em>always in sync</em>',
       'Story paths mirror Figma paths. Controls mirror component props. A component only counts as stable when its stories match the Figma spec — design sign-off happens here, not in meetings.') +
     '<div class="content">' +
-    '<div class="section-hdr"><h2>Story sync status</h2></div>' +
+    '<div class="section-hdr"><h2>Story sync status</h2>' + (conn.storybookUrl ? '<a class="btn btn-ghost btn-sm" href="' + esc(conn.storybookUrl) + '" target="_blank" rel="noreferrer">Open published Storybook ↗</a>' : '') + '</div>' +
     '<div class="sb-story-grid">' + cards + '</div>' +
     '<div class="sub-hdr">Same story, every framework — generated scaffold</div>' +
     codeBlock('Button.stories.tsx · auto-scaffolded on ship', 'tsx', [
@@ -678,6 +840,8 @@ function renderIntegrations() {
     heroHTML('The gateway question', 'Do devs live in this dashboard?<br/><em>No — design comes to them.</em>',
       'This dashboard is the governance surface: review, inspect, request, approve. Daily consumption happens inside each team’s own tools. Pick your gateway below — the CLI is the easiest way in, packages are the way to stay in sync.') +
     '<div class="content">' +
+    connSectionHTML() +
+    '<div class="section-hdr"><h2>Consumption gateways</h2></div>' +
     '<div class="gateway-grid">' +
       '<div class="gateway-card recommended"><div class="gateway-rec-badge">Recommended</div>' +
       '<div class="gateway-name">1 · CLI bootstrap</div>' +
@@ -1207,6 +1371,13 @@ document.addEventListener('click', (e) => {
     toast('Request filed: ' + title, 'designer notified · status: requested', '✉');
     return;
   }
+  if (t.closest('#reqFileIssue')) {
+    const title = $('#reqTitle').value.trim();
+    const desc = $('#reqDesc').value.trim();
+    const body = (desc ? desc + '\n\n' : '') + '— filed from the DesignOps request board';
+    window.open(githubIssueURL(conn.githubRepo, '[request] ' + (title || 'Untitled component request'), body), '_blank', 'noopener');
+    return;
+  }
   const vote = t.closest('[data-vote]');
   if (vote) {
     const r = state.requests.find((x) => x.id === vote.dataset.vote);
@@ -1233,6 +1404,28 @@ document.addEventListener('click', (e) => {
     return;
   }
 
+  /* live connections */
+  if (t.closest('[data-conn-github-save]')) {
+    const v = $('#connGithubRepo').value.trim() || CONNECTIONS_DEFAULTS.githubRepo;
+    conn.githubRepo = v; conn.githubCommits = null; conn.githubCheckedAt = null; saveConn();
+    liveActivityCache = { at: 0, items: null };
+    toast('GitHub repo set: ' + v, 'overview activity loads live commits from here', '◉');
+    renderIntegrations();
+    return;
+  }
+  if (t.closest('[data-conn-figma-test]')) { figmaConnect(); return; }
+  if (t.closest('[data-conn-figma-clear]')) {
+    conn.figmaToken = ''; conn.figmaFileKey = ''; conn.figma = null; saveConn();
+    toast('Figma disconnected', 'token cleared from this browser', '◈');
+    renderIntegrations();
+    return;
+  }
+  if (t.closest('[data-conn-sb-save]')) {
+    conn.storybookUrl = $('#connStorybookUrl').value.trim().replace(/\/+$/, ''); saveConn();
+    toast(conn.storybookUrl ? 'Storybook linked' : 'Storybook link cleared', conn.storybookUrl ? 'story cards now deep-link to it' : 'cards open in-app again', '⬢');
+    renderIntegrations();
+    return;
+  }
   /* guide nav scroll */
   const gn = t.closest('[data-guide]');
   if (gn) {

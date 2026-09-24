@@ -5,6 +5,8 @@
 //   scratch copy of the demo design system and returns its diagnostics,
 //   powering the interactive playground in the dashboard's Lint view.
 // - GET /api/health reports the lint package version.
+// - GET /api/figma/files/:key proxies the Figma API (x-figma-token header)
+//   for the Integrations view when a direct browser call is blocked.
 //
 // Local preview tool only: it lints arbitrary code you paste and is not
 // hardened for production hosting. Run with `npm start`.
@@ -191,6 +193,32 @@ const server = http.createServer(async (req, res) => {
       const result = await lintCode(code)
       res.writeHead(200, { "content-type": MIME[".json"] })
       res.end(JSON.stringify(result))
+      return
+    }
+    if (req.method === "GET" && req.url.startsWith("/api/figma/")) {
+      const token = req.headers["x-figma-token"]
+      if (!token) {
+        res.writeHead(401, { "content-type": MIME[".json"] })
+        res.end(JSON.stringify({ error: "missing x-figma-token header" }))
+        return
+      }
+      const figmaPath = new URL(req.url, "http://localhost").pathname.slice(
+        "/api/figma/".length
+      )
+      if (!/^files\/[A-Za-z0-9]+$/.test(figmaPath)) {
+        res.writeHead(400, { "content-type": MIME[".json"] })
+        res.end(
+          JSON.stringify({ error: "only /api/figma/files/:key is proxied" })
+        )
+        return
+      }
+      const upstream = await fetch(
+        `https://api.figma.com/v1/${figmaPath}?depth=1`,
+        { headers: { "X-Figma-Token": token } }
+      )
+      const text = await upstream.text()
+      res.writeHead(upstream.status, { "content-type": MIME[".json"] })
+      res.end(text)
       return
     }
     if (req.method === "GET") {
