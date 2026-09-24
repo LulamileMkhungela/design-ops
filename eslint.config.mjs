@@ -15,6 +15,13 @@ export default tseslint.config(
       "packages/lint/test/fixtures/",
       "**/dist-next/",
       ".claude/",
+      // Original dashboard sources keep their own style; only the new
+      // tools/lint-*.mjs server files are linted.
+      "assets/",
+      "tokens/",
+      "demo/",
+      "tools/ship.mjs",
+      "tools/smoke.test.cjs",
     ],
   },
   js.configs.recommended,
@@ -40,13 +47,6 @@ export default tseslint.config(
     files: ["packages/lint/src/**", "packages/lint/test/**"],
     rules: {
       "@typescript-eslint/no-explicit-any": "off",
-    },
-  },
-  {
-    // The showcase page script runs in browsers, not Node.
-    files: ["site/app.js"],
-    languageOptions: {
-      globals: globals.browser,
     },
   },
   prettier

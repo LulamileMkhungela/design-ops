@@ -1,655 +1,177 @@
-# @designops/lint
+# DesignOps
 
-**Write design system rules that agents can verify.**
+**One design in Figma. Shipped to every framework.**
+Built by **Lulamile Mkhungela** — a design-engineering system that ends the
+“design says 16px, code says 15px” era.
 
-<img src="./docs/assets/cover.png" width="2000" height="832" alt="A lint diagnostic explains why padding is not allowed on Button and suggests using an existing size." />
+> Tokens and components are defined once, then shipped — mechanically — to
+> React, Vue, Angular, Svelte, Next.js, Nuxt, Remix, Astro, Ionic, MUI,
+> Tailwind, React Native, Web Components and plain CSS. Developers reference
+> the system and reuse; new components are requested, designed and shipped
+> without ever leaving it.
 
-`@designops/lint` is an [agent-first linter](#built-for-agents) for Tailwind design systems.
+---
 
-You define what’s allowed. When an agent breaks a rule, the error explains what’s wrong and suggests a fix based on your components, variants, and theme.
+## Why this exists
 
-**Works with your existing design system. No rewrite required.**
+Design and development drift apart for boring, mechanical reasons:
 
-`@designops/lint` works with Tailwind v4 projects (**shadcn/ui not required**). Available for both **ESLint and Oxlint**. Works with **React, Svelte, and Vue**.
+| Problem | DesignOps answer |
+| --- | --- |
+| Designer specs `16px`, dev types `15px` | Values ship as **tokens** — nobody re-types a pixel |
+| A framework can’t express a style | The pipeline **adapts per target** (e.g. tokens → `StyleSheet` values in React Native), devs never improvise |
+| The same component rebuilt per stack, all slightly different | One schema **generates every framework** from a single source |
+| Requests lost in Slack threads | In-app **request board**: dev asks → designer designs → one approval ships to all 14 targets |
+| Docs rot the day they’re written | **Storybook syncs** from the pipeline; paths mirror Figma paths |
+| Shipped code drifts from the system anyway | **@designops/lint** verifies every change — violations explain themselves with fixes from your own theme |
 
-## Table of contents
+## Quick start
 
-- [Quickstart](#quickstart)
-- [TypeScript vs @designops/lint](#typescript-vs-designopslint)
-- [Built for agents](#built-for-agents)
-- [Get started](#get-started)
-- [Rules](#rules)
-- [Frameworks](#frameworks)
-- [Configuration](#settings)
-
-## Quickstart
-
-Give your coding agent this prompt:
-
-```text
-Read https://github.com/LulamileMkhungela/design-ops/blob/main/SETUP.md
-and set up @designops/lint in this project.
-```
-
-Once installed, [choose your rules](#rules) and configure what’s allowed
-in your design system.
-
-Prefer to configure it yourself? See [Get started](#get-started).
-
-## TypeScript vs @designops/lint
-
-Take a Button that allows margin and width, but controls its own padding.
-You can enforce that with types by limiting its `style` prop to
-`Pick<React.CSSProperties, "margin" | "width">`.
-
-```tsx
-<Button style={{ padding: 16 }}>Submit</Button>
-```
-
-```text
-TS2353: Object literal may only specify known properties, and 'padding' does not exist in type 'Pick<CSSProperties, "margin" | "width">'.
-```
-
-The rule works. But this error only tells the agent that padding is not
-allowed. It doesn’t tell it how to size the Button.
-
-With `@designops/lint`, the same rule comes with **guidance from your design
-system**:
-
-```tsx
-<Button className="p-4">Submit</Button>
-```
-
-```text
-"p-4" is not allowed on <Button>: <Button> owns its spacing.
-Use a size (sm, lg), or margin here or gap on the parent for space around it.
-Add a size in components/ui/button.tsx only if the design explicitly calls for one.
-```
-
-### You decide what can change
-
-Expressing these policies in TypeScript can take complex types. With
-`@designops/lint`, you configure them without changing your component API.
-
-Here are some examples.
-
-**Allow spacing with margin. Allow full width. Keep size and shape in the Button.**
-
-```js
-"designops/no-restyle": ["error", {
-  allow: ["layout"],
-  contracts: [
-    { pattern: "^Button$", allow: ["w-full", "mt-*", "mb-*"] },
-  ],
-}]
-```
-
-```tsx
-// Allowed: use a size and let the page control placement and full width.
-<Button size="lg" className="mt-4 md:w-full" />
-
-// Error: you are not allowed to change padding and shape.
-<Button className="p-4 hover:rounded-full" />
-
-// Error: you are not allowed to set a custom height or fixed width.
-<Button className="md:h-12 w-48" />
-```
-
-**Give each part of a component its own rules.**
-
-Let Card titles change typography, but keep their font family and weight.
-Let Card content change spacing, but keep its typography.
-
-```js
-"designops/no-restyle": ["error", {
-  allow: ["layout"],
-  contracts: [
-    {
-      pattern: "^CardTitle$",
-      allow: ["layout", "typography"],
-      deny: ["font-*"],
-    },
-    { pattern: "^CardContent$", allow: ["layout", "spacing"] },
-  ],
-}]
-```
-
-```tsx
-// Allowed: titles can change text size; content can change padding.
-<CardTitle className="text-lg" />
-<CardContent className="p-6" />
-
-// Error: you are not allowed to change the title’s font weight.
-<CardTitle className="md:font-bold" />
-
-// Error: you are not allowed to change the content’s typography.
-<CardContent className="text-lg" />
-```
-
-**Allow spacing changes. Require theme values.**
-
-Opening up spacing doesn’t have to mean allowing arbitrary values.
-Combine rules to let Card content change padding while keeping it on your
-theme’s spacing scale.
-
-```js
-"designops/no-restyle": ["error", {
-  allow: ["layout"],
-  contracts: [
-    { pattern: "^CardContent$", allow: ["layout", "spacing"] },
-  ],
-}],
-"designops/no-arbitrary-values": "error",
-```
-
-```tsx
-// Allowed: padding uses the theme’s spacing scale.
-<CardContent className="p-6 md:p-8" />
-
-// Error: you are not allowed to use an arbitrary padding value.
-<CardContent className="md:p-[13px]" />
-```
-
-Both approaches enforce the rule. With `@designops/lint`, the agent also sees
-how to fix the code using what’s already in your design system.
-
-## Built for agents
-
-We built `@designops/lint` for agents that write UI. The errors tell them
-what broke, what to use instead, and where to find it. Suggestions come from your components, variants, and theme.
-
-You can add
-[custom messages](#custom-messages) and [contracts](#contracts) so agents
-get your design system’s instructions with the error.
-
-### It works
-
-We tested these rules with coding agents across more than 150 task runs. Almost every task reached zero violations in one correction round.
-
-Here are the errors before and after lint feedback in one run per model:
-
-| Model         | Completed tasks | Errors before | Errors after |
-| ------------- | --------------: | ------------: | -----------: |
-| Sonnet 5      |             8/8 |            69 |            0 |
-| Haiku 4.5     |             8/8 |            66 |            0 |
-| Opus 5        |             8/8 |            42 |            0 |
-| GPT 5.6 Terra |             8/8 |           117 |            0 |
-| GPT 5.6 Sol   |             6/8 |            98 |            0 |
-
-### It is cheaper
-
-In the Claude control runs, fixing violations with lint feedback cost
-**10% to 48% less** than with rules alone.
-
-See the [evals](https://github.com/LulamileMkhungela/design-ops/blob/main/docs/evals.md) for results and methodology.
-
-## Why a linter?
-
-A linter is [programmable](#programmable). You can write rules for your design system
-without changing your components.
-
-You define what’s allowed and what to use instead. Agents run your lint
-command to check their work.
-
-- **Ship the same components with different rules.** Each project can
-  define its own contracts without changing the component code.
-- **Use components you don’t own.** Apply rules to components from
-  third-party packages. No forks. No wrappers.
-- **Share rules across projects.** Keep a shared configuration for your
-  design system and let projects add their own rules.
-
-Your components stay flexible. You decide how they should be used.
-
-## Programmable
-
-### Custom messages
-
-You can write custom error messages that tell agents what to do.
-
-```js
-"designops/no-restyle": ["error", {
-  allow: ["layout"],
-  message: {
-    spacing: "Use the size prop instead of padding.",
-  },
-}]
-```
-
-When an agent writes:
-
-```tsx
-<Button className="p-4">Save changes</Button>
-```
-
-It sees:
-
-```text
-Use the size prop instead of padding.
-```
-
-### Placeholders
-
-Use your component’s sizes, variants, and file paths in error messages.
-For spacing errors, `{{sizes}}` lists the available sizes:
-
-```js
-"designops/no-restyle": ["error", {
-  allow: ["layout"],
-  message: {
-    spacing: "Use a {{component}} size: {{sizes}}.",
-  },
-}]
-```
-
-For a Button with `sm` and `lg` sizes, the error becomes:
-
-```text
-Use a Button size: sm, lg.
-```
-
-You can also tell agents where to find theme colors. For example, in
-`no-raw-colors`:
-
-```js
-message: "Use a theme color from {{file}}."
-```
-
-If your theme is in `src/index.css`, the error becomes:
-
-```text
-Use a theme color from src/index.css.
-```
-
-See all [message placeholders](https://github.com/LulamileMkhungela/design-ops/blob/main/docs/rules.md#your-own-words).
-
-### Contracts
-
-Give each component its own rules. For example, let pages change a card
-title's typography:
-
-```js
-"designops/no-restyle": ["error", {
-  allow: ["layout"],
-  contracts: [
-    { pattern: "^CardTitle$", allow: ["layout", "typography"] },
-  ],
-}]
-```
-
-```tsx
-// Allowed by the contract.
-<CardTitle className="text-sm">Account settings</CardTitle>
-
-// Reported: the contract does not allow color overrides.
-<CardTitle className="text-pink-500">Account settings</CardTitle>
-```
-
-See [contracts and custom messages](https://github.com/LulamileMkhungela/design-ops/blob/main/docs/design-systems.md).
-
-## Get started
-
-Requires Node.js 20.19 or later and a version supported by your linter.
-
-### React
-
-#### ESLint
-
-Requires ESLint 9.30 or later.
+The dashboard is a zero-build static app.
 
 ```bash
-npm install -D @designops/lint eslint @typescript-eslint/parser
+# clone, then either:
+open index.html                 # double-click works
+# …or serve it (recommended: demo audio + the Lint playground API):
+npm start                       # http://localhost:4173
 ```
 
-Create `eslint.config.mjs`. If your framework already configures ESLint,
-keep its parser setup and add the plugin, rule, and component override.
+Then click **▶ Watch demo** in the top bar for a narrated, guided tour
+(~90 seconds, voiceover included — captions-only fallback if audio is blocked).
 
-```js
-import { plugin as designops } from "@designops/lint"
-import tsParser from "@typescript-eslint/parser"
-import { defineConfig } from "eslint/config"
-
-export default defineConfig([
-  {
-    files: ["**/*.{js,jsx,ts,tsx}"],
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: { ecmaFeatures: { jsx: true } },
-    },
-    plugins: { designops },
-    rules: {
-      "designops/no-arbitrary-values": "error",
-    },
-  },
-])
-```
+Rebuild the token artifacts exactly the way CI does:
 
 ```bash
-npx eslint .
+npm run build:tokens            # tokens/tokens.json → dist/
+npm run verify                  # fail if dist/ is stale (CI gate)
 ```
 
-#### Oxlint
-
-Requires Oxlint 1.80 or later.
+Run the verification engine (needs dependencies + a build first):
 
 ```bash
-npm install -D @designops/lint oxlint
+pnpm install && pnpm build      # install workspaces, build @designops/lint
+npm start                       # dashboard + live Lint playground API
+npm test                        # dashboard smoke tests + lint test suite
 ```
 
-Create `.oxlintrc.json`:
+## The pipeline
 
-```json
-{
-  "jsPlugins": ["@designops/lint"],
-  "rules": {
-    "designops/no-arbitrary-values": "error"
-  }
-}
+```
+01 Figma Variables ─ 02 Tokens JSON ─ 03 Transform ─ 04 Framework build ─ 05 Storybook
+   source of design    versioned truth   Style Dict      14 targets at once   living docs
 ```
 
-```bash
-npx oxlint
+**The one rule that powers everything:** names never change.
+
+```
+color/primary/900  →  "color.primary.900"  →  --color-primary-900  →  colorPrimary900
+   (Figma)               (tokens.json)            (CSS)                   (TypeScript)
 ```
 
-### Vue
+## What’s in the repo
 
-#### ESLint
-
-Requires ESLint 9.30 or later.
-
-```bash
-npm install -D @designops/lint eslint @typescript-eslint/parser vue-eslint-parser
+```
+design-ops/
+├── index.html               The dashboard (SPA, zero build step)
+├── assets/
+│   ├── styles.css           Dashboard design system
+│   ├── data.js              Tokens, component schemas, frameworks, guide content
+│   ├── codegen.js           Schema → React/Vue/Angular/Svelte/Astro/MUI/RN/… generators
+│   └── app.js               Router, rendering, request pipeline, demo mode
+├── tokens/tokens.json       W3C design tokens — the Figma Variables export (edit here or in Figma)
+├── tools/ship.mjs           Node CLI: tokens.json → dist/ (same transform the packages use)
+├── tools/lint-server.mjs    `npm start`: serves the dashboard + the live lint API
+├── tools/lint-capture.mjs   Refresh the verbatim lint diagnostics in the app
+├── packages/lint/           @designops/lint — the agent-first linter (ESLint + Oxlint)
+├── packages/evals/          Agent evals + registry corpus tooling (private, never published)
+├── dist/                    Generated artifacts: tokens.css / .scss / .ts / tailwind preset / manifest
+├── demo/audio/              Narrated voiceover for the in-app guided demo
+├── docs/GUIDE.md            The DesignOps handbook (also readable in-app under “Guide & docs”)
+├── docs/ci-deploy.yml.example  Verify + GitHub Pages workflow — copy to .github/workflows to enable
+└── CHANGELOG.md             System release notes (per-component version history lives in the app)
 ```
 
-Create `eslint.config.mjs`. If you already use `eslint-plugin-vue`, keep
-its parser setup and add the plugin and rule to that block.
+## Inside the dashboard
 
-```js
-import { plugin as designops } from "@designops/lint"
-import tsParser from "@typescript-eslint/parser"
-import { defineConfig } from "eslint/config"
-import vueParser from "vue-eslint-parser"
+| View | What you do there |
+| --- | --- |
+| **Overview** | Pipeline health, recent activity, gateway quick-start |
+| **Tokens** | Every token in every format — click to copy Figma name / CSS var / TS const; export files identical to CI output |
+| **Components** | Expand a card: **Preview** (Figma mocks), **Inspect** (token-annotated values, click-to-copy), **Code** (14 framework tabs with generated, copy-ready snippets), **Usage & a11y**, **History** (full semantic version log per component — request-shipped components auto-append v1.0.0), plus comments & change requests |
+| **Frameworks (ship)** | 14 targets with live ship status and per-stack install commands |
+| **Requests** | The human gate: request a component, discuss in-thread with the designer, **Approve & ship** → it appears, coded, in every framework |
+| **Storybook** | Story sync status + generated story scaffolds |
+| **Integrations** | The 6 gateways (below) and when to use each |
+| **Guide & docs** | The full handbook |
 
-export default defineConfig([
-  {
-    files: ["**/*.vue"],
-    languageOptions: {
-      parser: vueParser,
-      parserOptions: { parser: tsParser },
-    },
-    plugins: { designops },
-    rules: {
-      "designops/no-arbitrary-values": "error",
-    },
-  },
-])
-```
+## The gateway answer: do devs keep this open?
 
-```bash
-npx eslint .
-```
+**No.** The dashboard is the *governance surface* (review, inspect, request,
+approve). Daily consumption happens in the team’s own tools:
 
-#### Oxlint
+1. **CLI (easiest start)** — `npx designops init` detects your framework and wires
+   tokens, Tailwind preset or MUI theme automatically.
+2. **Packages (stay in sync)** — `npm i @designops/tokens @designops/react`
+   (or vue / angular / svelte / mui / ionic / native). Design arrives as dependency
+   updates, reviewed in PRs.
+3. **CDN (zero install)** — one `<link>` for prototypes and legacy stacks.
+4. **In-tool addons** — Storybook addon (spec per story), VS Code extension
+   (var autocomplete + hover swatches), Figma plugin (two-way token sync).
+5. **REST API + webhooks** — `GET /v1/tokens?target=react`, ship events to Slack/CI.
+6. **The dashboard** — for design review, requests and sign-off.
 
-Requires Oxlint 1.80 or later. Oxlint reads the `<script>` blocks of
-`.vue` files, not the template. See [the Oxlint limitation](https://github.com/LulamileMkhungela/design-ops/blob/main/docs/vue.md#oxlint).
+**Recommendation:** CLI to start, packages to stay in sync, dashboard to govern.
+Nobody is forced into a second tool.
 
-```bash
-npm install -D @designops/lint oxlint
-```
+## The request workflow (try it)
 
-Create `.oxlintrc.json`:
+1. Go to **Requests** — the Data Table is sitting there with its Figma design attached.
+2. Click **✓ Approve & ship to all 14 targets**.
+3. Watch the pipeline run (~2s), then find Data Table in **Components** —
+   with generated code for all 14 frameworks, inspect tables, and a Storybook scaffold.
 
-```json
-{
-  "jsPlugins": ["@designops/lint"],
-  "rules": {
-    "designops/no-arbitrary-values": "error"
-  }
-}
-```
+Everything persists to `localStorage`, so your ships, comments and requests
+survive a reload. Clear site data to reset the demo.
 
-```bash
-npx oxlint
-```
+## Verify with @designops/lint
 
-### Svelte
+DesignOps now verifies, not just ships. **@designops/lint** is an
+agent-first linter for Tailwind design systems (fork of
+[shadcn-ui/lint](https://github.com/shadcn-ui/lint), MIT — same purpose,
+same rule engine): you define what’s allowed, and every violation explains
+itself with a fix drawn from your own components, variants and theme.
 
-#### ESLint
+| Rule | What it catches |
+| --- | --- |
+| `designops/no-restyle` | Restyling a component with `className` |
+| `designops/no-raw-colors` | Raw colors such as `bg-pink-500` |
+| `designops/no-arbitrary-values` | Arbitrary values such as `p-[13px]` |
+| `designops/no-inline-styles` | Inline styles and `<style>` elements |
+| `designops/no-unknown-classes` | Classes Tailwind cannot generate |
+| `designops/require-static-classes` | Component classes the linter cannot read |
 
-Requires ESLint 9.30 or later.
+- **In the dashboard:** open the **Lint** view — rule cards with verbatim
+  diagnostics, a **live playground** (type TSX, get real diagnostics from
+  the build), per-linter/per-framework setup snippets and programmable
+  config (contracts, custom messages, shared settings).
+- **In your project:** `npm install -D @designops/lint`, register the
+  plugin in ESLint or Oxlint, enable the rules. Works with Tailwind v4
+  projects (shadcn/ui not required) across React, Vue and Svelte — see
+  [SETUP.md](SETUP.md) and [docs/](docs/README.md).
+- **Under the hood:** `packages/lint` is the engine,
+  `tools/lint-server.mjs` serves the dashboard plus the playground API,
+  and `packages/evals` holds the agent evals and registry corpus tooling.
 
-```bash
-npm install -D @designops/lint eslint @typescript-eslint/parser svelte-eslint-parser
-```
+## For real adoption
 
-Create `eslint.config.mjs`. If you already use `eslint-plugin-svelte`,
-keep its parser setup and add the plugin and rule to that block.
+This repo is the reference implementation of the system described in
+[`docs/GUIDE.md`](docs/GUIDE.md): swap the sample packages for real npm
+packages, point `tokens/tokens.json` at your Figma export, and keep
+`tools/ship.mjs` as your CI transform. The dashboard reads the same schema
+your packages build from — dashboard-reviewed code is byte-identical to
+shipped code.
 
-```js
-import { plugin as designops } from "@designops/lint"
-import tsParser from "@typescript-eslint/parser"
-import { defineConfig } from "eslint/config"
-import svelteParser from "svelte-eslint-parser"
+---
 
-export default defineConfig([
-  {
-    files: ["**/*.svelte"],
-    languageOptions: {
-      parser: svelteParser,
-      parserOptions: { parser: tsParser },
-    },
-    plugins: { designops },
-    rules: {
-      "designops/no-arbitrary-values": "error",
-    },
-  },
-])
-```
-
-```bash
-npx eslint .
-```
-
-#### Oxlint
-
-Requires Oxlint 1.80 or later. Oxlint reads the `<script>` blocks of
-`.svelte` files, not the markup. See [the Oxlint limitation](https://github.com/LulamileMkhungela/design-ops/blob/main/docs/svelte.md#oxlint).
-
-```bash
-npm install -D @designops/lint oxlint
-```
-
-Create `.oxlintrc.json`:
-
-```json
-{
-  "jsPlugins": ["@designops/lint"],
-  "rules": {
-    "designops/no-arbitrary-values": "error"
-  }
-}
-```
-
-```bash
-npx oxlint
-```
-
-### After setup
-
-Add your chosen command (`eslint .` or `oxlint`) as the `lint` script in
-`package.json`. Then put this in `AGENTS.md`:
-
-```md
-After making changes, run `npm run lint` and fix all errors.
-```
-
-Each framework has its own page with the full setup and what is read:
-[React](https://github.com/LulamileMkhungela/design-ops/blob/main/docs/react.md),
-[Vue](https://github.com/LulamileMkhungela/design-ops/blob/main/docs/vue.md),
-[Svelte](https://github.com/LulamileMkhungela/design-ops/blob/main/docs/svelte.md).
-
-## Rules
-
-We developed these rules by studying production design systems and testing
-them with coding agents. They’re built for Tailwind, with errors that help
-agents follow your design system.
-
-| Rule                                                                                                                       | What it catches                                                        |
-| -------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`no-restyle`](https://github.com/LulamileMkhungela/design-ops/blob/main/docs/rules/no-restyle.md)                         | Restyling a component with `className`.                                |
-| [`no-raw-colors`](https://github.com/LulamileMkhungela/design-ops/blob/main/docs/rules/no-raw-colors.md)                   | Raw colors such as `bg-pink-500`.                                      |
-| [`no-arbitrary-values`](https://github.com/LulamileMkhungela/design-ops/blob/main/docs/rules/no-arbitrary-values.md)       | Arbitrary values such as `p-[13px]`.                                   |
-| [`no-inline-styles`](https://github.com/LulamileMkhungela/design-ops/blob/main/docs/rules/no-inline-styles.md)             | Inline styles and `<style>` elements.                                  |
-| [`no-unknown-classes`](https://github.com/LulamileMkhungela/design-ops/blob/main/docs/rules/no-unknown-classes.md)         | Classes Tailwind cannot generate, such as `rounded-huge`.              |
-| [`require-static-classes`](https://github.com/LulamileMkhungela/design-ops/blob/main/docs/rules/require-static-classes.md) | Component classes the linter cannot read, such as `` `bg-${color}` ``. |
-
-See [rule options](https://github.com/LulamileMkhungela/design-ops/blob/main/docs/rules.md) and [how to add more rules](https://github.com/LulamileMkhungela/design-ops/blob/main/docs/adoption.md#add-more-rules).
-
-## Frameworks
-
-The same rules, options, contracts, and messages run on React, Vue, and Svelte. See also [Vue](#vue) and [Svelte](#svelte) docs.
-
-| Feature                               | React (JSX)                 | Vue                                                       | Svelte                                  |
-| ------------------------------------- | --------------------------- | --------------------------------------------------------- | --------------------------------------- |
-| Static class string                   | `className="p-4"`           | `class="p-4"`                                             | `class="p-4"`                           |
-| Expression class                      | `className={...}`           | `:class="..."`                                            | `class={...}`                           |
-| Text and expression mixed             | template literal            | `class` + `:class` on one element                         | `class="p-4 {expr}"`                    |
-| Arrays and objects (`clsx` shape)     | yes                         | `:class="[...]"`, `:class="{...}"`                        | `class={[...]}`, `class={{...}}`        |
-| Helper calls (`cn`, `cva`, `tv`, ...) | yes                         | yes, in script and template                               | yes, in script and template             |
-| One-hop variable resolution           | yes                         | yes, template to `<script setup>`                         | yes                                     |
-| Spread with a class                   | `{...{ className }}`        | `v-bind="{ class }"`                                      | `{...{ class }}`                        |
-| Class directive                       | n/a                         | n/a                                                       | `class:name={cond}`                     |
-| Style as CSS text                     | no, JSX has no string style | `style="color: red"`                                      | `style="color: red"`                    |
-| Style object                          | `style={{ ... }}`           | `:style="{ ... }"`                                        | n/a                                     |
-| Style directive                       | n/a                         | n/a                                                       | `style:prop={value}`                    |
-| `<style>` element or block            | reported                    | not read                                                  | not read                                |
-| SVG color attributes                  | `fill`, `stroke`, ...       | same                                                      | same                                    |
-| Component identity                    | export name                 | file name, `<CardTitle>` or `<card-title>`                | file name, `<Card.Title>` or `<Title>`  |
-| Contracts                             | by component name           | same names as React                                       | same names as React                     |
-| Variants from `cva` / `tv`            | component file              | component file, or the barrel beside it                   | component file, incl. `<script module>` |
-| Variants from typed props             | yes                         | no                                                        | no                                      |
-| Received class prop accepted          | `className` param           | `props.class` from `defineProps()`                        | `class` from `$props()`                 |
-| Wrappers across files                 | `className` forwarding      | `props.class`, `v-bind="$attrs"`, single-root fallthrough | `className` and `{...rest}` forwarding  |
-| Base UI `render` prop                 | yes                         | n/a                                                       | n/a                                     |
-| Dynamic element                       | `<Comp>` from a variable    | `<component :is>`                                         | `<svelte:element>`                      |
-| Suggestions rewrite source            | yes                         | yes                                                       | yes                                     |
-| `require-static-classes`              | yes                         | yes                                                       | yes                                     |
-| `no-unknown-classes`                  | yes                         | yes                                                       | yes                                     |
-| Project without `components.json`     | yes, `componentImports`     | yes, `componentImports`                                   | yes, `componentImports`                 |
-| ESLint                                | yes                         | yes, `vue-eslint-parser`                                  | yes, `svelte-eslint-parser`             |
-| Oxlint                                | yes                         | script blocks only, warns once                            | script blocks only, warns once          |
-
-Dynamic elements get the token rules but not `no-restyle`. `<style>` blocks in `.vue` and `.svelte` files are plain CSS; use a CSS linter for them.
-
-## Settings
-
-Use `settings.designops` to configure component imports, class functions,
-and guidance shared across rules.
-
-**You don’t need shadcn/ui to use `@designops/lint`. It works with your own
-Tailwind components and theme.**
-
-shadcn/ui projects get automatic component and theme discovery via
-`components.json`.
-
-For a custom setup, add `settings` at the root of `.oxlintrc.json`.
-Include only the settings you need:
-
-```json
-{
-  "settings": {
-    "designops": {
-      "ui": "@/ds",
-      "componentImports": ["^@acme/ui(/|$)"],
-      "ignoreImports": ["^@acme/ui/internal(/|$)"],
-      "mergeFunctions": ["customMerge"],
-      "variantFunctions": ["variants"],
-      "note": "See DESIGN.md for design rules and approved exceptions."
-    }
-  }
-}
-```
-
-For ESLint, add the same `settings` object to the config object containing
-your rules.
-
-| Setting            | What it does                                                                                              |
-| ------------------ | --------------------------------------------------------------------------------------------------------- |
-| `ui`               | Recognizes component imports by prefix. `@/ds` matches `@/ds` and `@/ds/button`, but not `@/dsx`.         |
-| `componentImports` | Recognizes component imports using regex patterns. Use it for additional directories or packages.         |
-| `ignoreImports`    | Skips component recognition for imports matching these regex patterns. Takes precedence over recognition. |
-| `mergeFunctions`   | Adds functions whose arguments contain classes, such as `customMerge("mt-4", "w-full")`.                  |
-| `variantFunctions` | Adds functions whose object values contain classes.                                                       |
-| `note`             | Appends your text to every rule's error or warning.                                                       |
-
-All settings except `note` accept a string or an array of strings.
-`note` accepts a string.
-
-The built-in class functions are `cn`, `cx`, `clsx`, `cva`, `tv`,
-`twMerge`, `twJoin`, and `classNames`. The built-in variant functions
-are `cva` and `tv`. Your function lists add to these defaults.
-
-A recognition option set on a rule overrides its shared setting.
-`ui` prefixes always apply alongside `componentImports`. Recognition
-settings do not apply to `no-inline-styles`; `note` applies to every rule.
-
-When you change the component directory, update the setup's directory
-override too, for example `src/ds/**`.
-See [rule options](https://github.com/LulamileMkhungela/design-ops/blob/main/docs/rules.md#recognition) for more examples.
-
-### Monorepos
-
-Use your workspace package's import prefix for shared components.
-For a UI package in `packages/ui`, add this to the root `.oxlintrc.json`:
-
-```json
-{
-  "jsPlugins": ["@designops/lint"],
-  "settings": {
-    "designops": {
-      "ui": "@workspace/ui/components"
-    }
-  },
-  "rules": {
-    "designops/no-restyle": ["error", { "allow": ["layout"] }]
-  },
-  "overrides": [
-    {
-      "files": ["packages/ui/src/components/**"],
-      "rules": { "designops/no-restyle": "off" }
-    }
-  ]
-}
-```
-
-Apps can use the shared components:
-
-```tsx
-import { Button } from "@workspace/ui/components/button"
-
-export function SaveButton() {
-  return <Button className="w-full">Save changes</Button>
-}
-```
-
-For ESLint, use the same `settings` and `rules` in the setup above, and
-change the component-directory override to `packages/ui/src/components/**`.
-These paths assume your lint config is at the workspace root.
-
-The linter resolves components through your apps' TypeScript paths and
-package exports. If each app's `components.json` already points to the
-shared UI package, you can omit `settings.designops.ui`. Each app keeps its
-own theme configuration.
-
-## Documentation
-
-See the [documentation](https://github.com/LulamileMkhungela/design-ops/blob/main/docs/README.md) for rule examples, configuration,
-troubleshooting, and evals.
-
-## Contributing
-
-Please read the [contributing guide](https://github.com/LulamileMkhungela/design-ops/blob/main/CONTRIBUTING.md).
-
-## License
-
-Licensed under the [MIT license](https://github.com/LulamileMkhungela/design-ops/blob/main/LICENSE).
+**DesignOps is a conversation with a pipeline attached — by Lulamile Mkhungela.**
+MIT licensed.

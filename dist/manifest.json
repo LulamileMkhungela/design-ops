@@ -1,0 +1,13 @@
+{
+  "name": "designops-tokens",
+  "version": "3.0.0",
+  "tokenCount": 41,
+  "hash": "ee89fd0bda",
+  "targets": [
+    "css",
+    "scss",
+    "typescript",
+    "tailwind-preset",
+    "manifest"
+  ]
+}

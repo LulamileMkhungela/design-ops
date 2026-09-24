@@ -1,15 +1,16 @@
-// DesignOps showcase + playground server. Zero dependencies.
+// DesignOps dashboard server with a live lint API. Zero dependencies.
 //
-// - Serves the static site (index.html, styles.css, app.js).
+// - Serves the dashboard (index.html, assets/, demo/, dist/, tokens/).
 // - POST /api/lint { code } runs the REAL @designops/lint build against a
-//   scratch copy of the demo design system and returns its diagnostics.
+//   scratch copy of the demo design system and returns its diagnostics,
+//   powering the interactive playground in the dashboard's Lint view.
 // - GET /api/health reports the lint package version.
 //
 // Local preview tool only: it lints arbitrary code you paste and is not
-// hardened for production hosting. Run with `npm run site`.
+// hardened for production hosting. Run with `npm start`.
 //
-// The lint engine is exported so site/capture.mjs can reuse it to refresh
-// the verbatim diagnostics embedded in app.js.
+// The lint engine is exported so tools/lint-capture.mjs can reuse it to
+// refresh the verbatim diagnostics in assets/data.js (LINT_RULES).
 
 import * as fs from "node:fs"
 import * as http from "node:http"
@@ -22,12 +23,14 @@ const HERE = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(HERE, "..")
 const PORT = Number(process.env.PORT || 4173)
 const MAX_CODE_BYTES = 32 * 1024
+const STATIC_ROOT = ROOT // the dashboard lives at the repo root
 
 const MIME = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",
   ".json": "application/json; charset=utf-8",
+  ".mp3": "audio/mpeg",
   ".png": "image/png",
   ".svg": "image/svg+xml",
 }
@@ -54,7 +57,7 @@ async function getEngine() {
   )
   if (!fs.existsSync(path.join(ROOT, "packages/lint/dist/index.js"))) {
     throw new Error(
-      "packages/lint/dist is missing: run `pnpm build` before `npm run site`."
+      "packages/lint/dist is missing: run `pnpm build` before `npm start`."
     )
   }
 
@@ -136,8 +139,8 @@ export async function lintCode(code) {
 function serveStatic(req, res) {
   const pathname = new URL(req.url, "http://localhost").pathname
   const rel = pathname === "/" ? "index.html" : pathname.slice(1)
-  const file = path.normalize(path.join(HERE, rel))
-  if (!file.startsWith(HERE + path.sep) && file !== HERE) {
+  const file = path.normalize(path.join(STATIC_ROOT, rel))
+  if (!file.startsWith(STATIC_ROOT + path.sep) && file !== STATIC_ROOT) {
     res.writeHead(403, { "content-type": "text/plain" })
     res.end("forbidden")
     return
@@ -207,8 +210,9 @@ const invokedDirectly =
 
 if (invokedDirectly) {
   server.listen(PORT, "0.0.0.0", () => {
-    console.log(`DesignOps site: http://localhost:${PORT}`)
-    console.log(`API health:   http://localhost:${PORT}/api/health`)
+    console.log(`DesignOps dashboard: http://localhost:${PORT}`)
+    console.log(`Lint playground:   http://localhost:${PORT}/#/lint`)
+    console.log(`API health:        http://localhost:${PORT}/api/health`)
   })
   process.on("SIGINT", () => process.exit(0))
   process.on("exit", () => {

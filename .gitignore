@@ -1,5 +1,12 @@
 node_modules/
-dist/
+# dist/ is ignored except the committed token artifacts at the root
+# (tools/ship.mjs output, checked by `npm run verify`).
+**/dist/*
+!dist/manifest.json
+!dist/tokens.css
+!dist/tokens.scss
+!dist/tokens.tailwind.js
+!dist/tokens.ts
 .DS_Store
 *.tsbuildinfo
 .registry/

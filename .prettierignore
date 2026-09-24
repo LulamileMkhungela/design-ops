@@ -14,6 +14,17 @@ packages/evals/fixture/
 # written by changesets during release PRs, without prettier
 CHANGELOG.md
 
+# original dashboard sources keep their own formatting
+index.html
+README.md
+assets/
+tokens/
+demo/
+docs/GUIDE.md
+docs/ci-deploy.yml.example
+tools/ship.mjs
+tools/smoke.test.cjs
+
 # session/tooling state and private planning
 .claude/
 

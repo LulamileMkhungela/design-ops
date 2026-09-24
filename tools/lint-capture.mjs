@@ -1,9 +1,9 @@
-// Regenerates the verbatim diagnostics embedded in site/app.js.
-// Run: pnpm site:capture
+// Regenerates the verbatim diagnostics in assets/data.js (LINT_RULES).
+// Run: pnpm lint:capture
 // Each snippet triggers exactly one rule of the real @designops/lint
-// build; paste the printed messages into the RULES table in app.js.
+// build; paste the printed messages into the LINT_RULES table.
 
-import { lintCode } from "./server.mjs"
+import { lintCode } from "./lint-server.mjs"
 
 const SNIPPETS = {
   "designops/no-restyle": `import { Button } from "@/components/ui/button"

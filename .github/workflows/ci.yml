@@ -29,6 +29,8 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      # Token artifacts must match tokens/tokens.json (tools/ship.mjs).
+      - run: pnpm run verify
       - run: pnpm run lint
       - run: pnpm run format:check
       - run: pnpm run typecheck

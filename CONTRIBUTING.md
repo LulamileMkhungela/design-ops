@@ -5,8 +5,12 @@ Run the checks below before submitting a change. For publishing, see the
 
 ## Layout
 
-This pnpm workspace has two packages:
+This pnpm workspace has two packages, plus the dashboard at the root:
 
+- `index.html` + `assets/`: the DesignOps dashboard (zero-build SPA).
+  `tokens/tokens.json` is the Figma Variables export, `tools/ship.mjs`
+  builds `dist/`, `tools/smoke.test.cjs` is the dashboard test suite,
+  and `tools/lint-server.mjs` serves the dashboard with the live lint API.
 - `packages/lint`: the publishable `@designops/lint` package, with rules,
   class classification, project analysis, and tests.
 - `packages/evals`: tools for agent evals, visual comparison,
@@ -19,13 +23,17 @@ Run the commands below from the repository root.
 ```bash
 pnpm install
 pnpm build          # ESM and types in packages/lint/dist
-pnpm test           # Build, then run rule and Oxlint integration tests
+pnpm test           # Dashboard smoke tests, then rule and Oxlint integration tests
 pnpm typecheck
 pnpm lint
 pnpm format:write
 pnpm corpus         # Report findings in the pinned registry
 pnpm corpus:check   # Check that per-rule counts have not increased
 pnpm evals          # Run agent evals; requires the Claude CLI
+npm start           # Dashboard at http://localhost:4173, with the lint playground API
+npm run verify      # Fail if dist/ token artifacts are stale
+npm run build:tokens # Rebuild dist/ from tokens/tokens.json
+pnpm lint:capture   # Refresh the verbatim diagnostics in assets/data.js
 ```
 
 See [Evals](./docs/evals.md) for methodology, results, and commands.
