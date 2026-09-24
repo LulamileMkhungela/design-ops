@@ -70,6 +70,7 @@ async function getEngine() {
   })
   const tw = path.join(ROOT, "packages/lint/node_modules/tailwindcss")
   if (fs.existsSync(tw)) {
+    fs.mkdirSync(path.join(root, "node_modules"), { recursive: true })
     fs.symlinkSync(tw, path.join(root, "node_modules/tailwindcss"))
   }
 
