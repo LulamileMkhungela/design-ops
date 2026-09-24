@@ -1,0 +1,32 @@
+node_modules/
+# dist/ is ignored except the committed token artifacts at the root
+# (tools/ship.mjs output, checked by `npm run verify`).
+**/dist/*
+!dist/manifest.json
+!dist/tokens.css
+!dist/tokens.scss
+!dist/tokens.tailwind.js
+!dist/tokens.ts
+.DS_Store
+*.tsbuildinfo
+.registry/
+
+packages/evals/results/
+
+packages/lint/README.md
+packages/lint/LICENSE
+
+.claude/
+.local/
+plans/
+
+!packages/lint/test/fixtures/monorepo/apps/admin/node_modules/
+!packages/lint/test/fixtures/monorepo/apps/web/node_modules/
+!packages/lint/test/fixtures/bad-cn/node_modules/
+
+dist-next/
+!packages/lint/test/fixtures/project/node_modules/
+!packages/lint/test/fixtures/pnpm-linked/node_modules/
+!packages/lint/test/fixtures/pnpm-linked/node_modules/.pnpm/*/node_modules/
+!packages/lint/test/fixtures/exports-pattern/node_modules/
+!packages/lint/test/fixtures/exports-pattern/node_modules/demo-widgets/dist/

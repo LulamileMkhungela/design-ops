@@ -9,6 +9,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 > (**Components → 🕘 History** on any card). This file tracks the system
 > as a whole.
 
+## [Unreleased]
+
+DesignOps now verifies, not just ships — the dashboard gains a ninth
+view backed by a real lint engine.
+
+### Added
+
+- **Lint view** in the dashboard: the six `@designops/lint` rules with
+  verbatim diagnostics, a **live playground** (type TSX, get real
+  diagnostics from the build), per-linter/per-framework setup snippets
+  and programmable config (contracts, custom messages, shared settings).
+- **@designops/lint** (`packages/lint`) — agent-first linter for Tailwind
+  design systems (ESLint + Oxlint; React, Vue, Svelte), forked from
+  shadcn-ui/lint with the `designops/` rule namespace.
+- **Dashboard server with lint API** (`tools/lint-server.mjs`, `npm start`)
+  — serves the dashboard plus `POST /api/lint` for the playground;
+  `tools/lint-capture.mjs` refreshes the verbatim diagnostics in the app.
+- **Agent evals + registry corpus tooling** (`packages/evals`, private) —
+  the measurement suite behind the linter, ratcheted in CI.
+- **Live connections** (GitHub · Figma · Storybook) — Overview
+  activity reads real commits, requests file as GitHub issues, Figma
+  sync matches components against a real file, and story cards
+  deep-link to a published Storybook. Seeds render offline.
+
 ## [1.0.0] — 2026-07-25
 
 First release — one design in Figma, shipped to every framework.

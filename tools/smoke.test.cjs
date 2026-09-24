@@ -44,7 +44,7 @@ window.document.dispatchEvent(new window.Event('DOMContentLoaded', { bubbles: tr
 
 ok($('#view').innerHTML.includes('One design in Figma'), 'overview renders');
 
-const routes = ['tokens','components','frameworks','requests','storybook','integrations','guide'];
+const routes = ['tokens','components','frameworks','lint','requests','storybook','integrations','guide'];
 for (const r of routes) {
   window.location.hash = '#/' + r;
   window.dispatchEvent(new window.Event('hashchange'));
@@ -124,6 +124,29 @@ window.location.hash = '#/integrations';
 window.dispatchEvent(new window.Event('hashchange'));
 ok($('#view').textContent.includes('Which gateway when?'), 'integrations renders decision table');
 
+// lint view: six rule cards with verbatim diagnostics
+window.location.hash = '#/lint';
+window.dispatchEvent(new window.Event('hashchange'));
+ok($$('#view .lt-rule').length === 6, 'lint renders six rule cards');
+ok($('#view').textContent.includes('designops/no-restyle'), 'lint shows verbatim rule ids');
+ok($('#view').textContent.includes('Use "p-3.25" instead'), 'lint shows a verbatim diagnostic');
+
+// lint playground: presets fill the editor, offline note without a server
+ok($$('#view [data-lint-preset]').length === 8, 'playground presets render');
+ok($('#lintEditor').value.includes('rounded-huge'), 'playground defaults to the all-six preset');
+window.document.querySelector('[data-lint-preset="2"]').click();
+ok($('#lintEditor').value.includes('bg-pink-500') && !$('#lintEditor').value.includes('rounded-huge'), 'preset switch fills the editor');
+ok($('#lintEngine').textContent.includes('local server'), 'engine banner degrades gracefully offline');
+
+// lint setup tabs switch linter × framework snippets
+window.document.querySelector('[data-lint-linter="oxlint"]').click();
+ok($('#lintSetupPanel').textContent.includes('jsPlugins'), 'oxlint setup renders');
+window.document.querySelector('[data-lint-fw="vue"]').click();
+ok($('#lintSetupPanel').textContent.includes('Vue'), 'vue setup label switches');
+window.document.querySelector('[data-lint-linter="eslint"]').click();
+window.document.querySelector('[data-lint-fw="react"]').click();
+ok($('#lintSetupPanel').textContent.includes('defineConfig'), 'eslint react setup restores');
+
 // search
 const input = $('#globalSearch');
 input.value = 'button';
@@ -164,6 +187,38 @@ window.location.hash = '#/storybook';
 window.dispatchEvent(new window.Event('hashchange'));
 window.document.querySelector('.sb-story-card[data-open-comp]').click();
 ok(window.location.hash.replace('#/','') === 'components', 'storybook card routes to component');
+
+// live connections: pure helpers
+ok(window.eval("timeAgo('2026-09-24T10:00:00.000Z', Date.parse('2026-09-24T12:30:00.000Z'))") === '2h ago', 'timeAgo hours');
+ok(window.eval("timeAgo('2026-09-24T11:59:30.000Z', Date.parse('2026-09-24T12:00:00.000Z'))") === 'just now', 'timeAgo just now');
+ok(window.eval("timeAgo('not-a-date')") === '', 'timeAgo bad input');
+ok(window.eval("githubIssueURL('o/r', 'A & B', 'x')") === 'https://github.com/o/r/issues/new?title=A%20%26%20B&body=x', 'issue URL encodes');
+ok(window.eval("githubCommitActivity([{commit:{message:'fix it\\nmore',author:{date:'2026-09-24T11:00:00.000Z',name:'N'}},author:{login:'octo'},html_url:'https://x/y'}])[0][1]") === 'fix it \u2014 octo', 'commit activity maps');
+ok(window.eval("githubCommitActivity([])") + '' === '', 'commit activity empty');
+ok(window.eval("matchFigmaComponents([{id:'a',name:'Button'},{id:'b',name:'Table'}], ['button / primary']).matched.join()") === 'a', 'figma matcher matches head');
+ok(window.eval("storybookStoryURL('https://sb.test/', 'Components / Button', 'docs')") === 'https://sb.test/?path=/story/components-button--docs', 'story URL slugs');
+ok(window.eval("figmaKeyFromInput('https://www.figma.com/design/z28iI0zJV1u1cL1wQ4HMrx/Lula-Fig-Studio?node-id=0-1&t=oqJux37ElDvne9xu-1')") === 'z28iI0zJV1u1cL1wQ4HMrx', 'figma key extracted from URL');
+ok(window.eval("figmaKeyFromInput('z28iI0zJV1u1cL1wQ4HMrx')") === 'z28iI0zJV1u1cL1wQ4HMrx', 'figma key passes through');
+ok(window.eval("matchFigmaComponents([{id:'a',name:'Button'}], ['Lula / Button']).matched.join()") === 'a', 'figma matcher library prefix');
+ok(window.eval("matchFigmaComponents([{id:'a',name:'Button'}], ['IconButton']).matched.join()") === '', 'figma matcher no substring false-positive');
+// overview falls back to the seed feed (jsdom has no fetch)
+window.location.hash = '#/overview';
+window.dispatchEvent(new window.Event('hashchange'));
+ok($('#liveActivityBadge').textContent.includes('demo'), 'activity badge says demo offline');
+ok($$('#liveActivityItems .req-item').length === 5, 'seed activity renders 5 items');
+// requests view offers github filing
+window.location.hash = '#/requests';
+window.dispatchEvent(new window.Event('hashchange'));
+ok(!!$('#reqFileIssue'), 'file-as-issue button present');
+// integrations connections form persists
+window.location.hash = '#/integrations';
+window.dispatchEvent(new window.Event('hashchange'));
+ok(!!($('#connGithubRepo') && $('#connFigmaToken') && $('#connStorybookUrl')), 'connections inputs render');
+ok($('#connFigmaFileKey').value === 'z28iI0zJV1u1cL1wQ4HMrx', 'figma file key prefilled');
+$('#connGithubRepo').value = 'octo/hello';
+$('[data-conn-github-save]').click();
+ok(window.eval("localStorage.getItem('designops-connections-v1')").includes('octo/hello'), 'github repo saves to connections');
+ok($('#connGithubRepo').value === 'octo/hello', 'saved repo survives re-render');
 
 console.log('\n' + (errors.length ? 'ERRORS:\n' + errors.join('\n') : 'ALL DOM TESTS PASSED'));
 process.exit(errors.length ? 1 : 0);

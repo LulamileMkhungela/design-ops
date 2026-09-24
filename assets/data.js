@@ -638,6 +638,13 @@ const GUIDE = [
       <li><strong>API + webhooks</strong> — <code>GET /v1/tokens?target=react</code>, plus ship events to Slack/Teams for custom tooling.</li>
     </ul>
     <p>Recommendation: adopt <strong>packages + CLI</strong> for apps, keep this dashboard for design review, requests and sign-off. The two sync over the API, so neither side waits on the other.</p>` },
+  { id: 'connections', label: 'Live connections', html: `
+    <p>Three panels read <strong>real data</strong> — manage them under <strong>Integrations → Live connections</strong>. Everything degrades to seed content offline, and secrets stay in your browser (<code>localStorage</code>).</p>
+    <ul>
+      <li><strong>GitHub (no setup)</strong> — Overview activity shows the latest commits on the configured repo (default <code>LulamileMkhungela/design-ops</code>), cached 5 minutes. The request board's <em>File as GitHub issue</em> button opens a prefilled issue.</li>
+      <li><strong>Figma (token + file key)</strong> — connect a file and every Components card shows whether it matches a real Figma component; the banner reports the match rate and sync time. Create a read-only token at Figma → Settings → Security — the Lula-Fig-Studio file key ships prefilled, so only the token is needed.</li>
+      <li><strong>Storybook (published URL)</strong> — set the URL of a published Storybook and story cards deep-link to their real <code>?path=/story/…</code> pages.</li>
+    </ul>` },
   { id: 'governance', label: 'Governance & versioning', html: `
     <ul>
       <li><strong>Semver everywhere.</strong> Tokens and each framework adapter version independently; the manifest hash (see <code>dist/manifest.json</code>) lets apps fail fast on mismatch.</li>
@@ -666,3 +673,282 @@ const PEOPLE = [
   { name: 'Thabo M. (Engineer — all targets)', ini: 'TM', role: 'dev', col: 'var(--stdict)', bg: 'var(--stdict-dim)' },
   { name: 'Lulamile M. (Design system owner)', ini: 'LM', role: 'designer', col: 'var(--figma)', bg: 'var(--figma-dim)' },
 ];
+
+/* ── 8 · LINT (@designops/lint — verification gate) ───────────────
+   `message` texts are verbatim diagnostics from the real lint build;
+   refresh with `pnpm lint:capture` (tools/lint-capture.mjs) and paste.
+   Presets run live in the Lint view playground via POST /api/lint. */
+const CONNECTIONS_DEFAULTS = {
+  githubRepo: 'LulamileMkhungela/design-ops',
+  githubCommits: null,   // live commits fetched on the last overview visit
+  githubCheckedAt: null, // ISO timestamp of that fetch
+  figmaToken: '',        // personal access token (read-only) — browser only
+  figmaFileKey: 'z28iI0zJV1u1cL1wQ4HMrx', // Lula-Fig-Studio — only the token is left to paste
+  figma: null,           // { name, lastModified, components:[names], checkedAt }
+  storybookUrl: '',      // published Storybook base URL for deep links
+};
+
+/* Fallback feed for Overview when GitHub is unreachable (offline,
+   rate-limited, or file://). Same [dot, text, time] shape the live
+   commit mapper returns, minus the link. */
+const ACTIVITY_SEED = [
+  ['var(--green)', 'Button v2.1.0 shipped to all 14 targets', '2d ago'],
+  ['var(--figma)', 'Data Table design attached to request', '2d ago'],
+  ['var(--token)', 'tokens v3.0.0 — 41 tokens rebuilt to dist/', '4d ago'],
+  ['var(--storybook)', 'Card stories PR #52 opened', '5d ago'],
+  ['var(--amber)', 'Badge warning token corrected → warning-600', '1w ago'],
+];
+
+const LINT_RULES = [
+  {
+    id: 'designops/no-restyle', short: 'no-restyle',
+    blurb: 'Restyling a component with className. The component owns its look; pages own layout.',
+    bad: '<Button className="p-4">Submit</Button>',
+    message: '"p-4" is not allowed on <Button>: <Button> owns its spacing. Use a size (default, xs, sm, lg, icon, icon-xs, icon-sm, icon-lg), or margin here or gap on the parent for space around it. Add a size in components/ui/button.tsx only if the design explicitly calls for one.',
+    fix: '<Button size="lg" className="mt-4">Submit</Button>',
+  },
+  {
+    id: 'designops/no-raw-colors', short: 'no-raw-colors',
+    blurb: 'Raw palette colors such as bg-pink-500. Theme colors only.',
+    bad: '<div className="bg-pink-500">…</div>',
+    message: '"bg-pink-500" uses the raw Tailwind palette and no declared theme color is close to it. Use one of: accent, background, border, card, destructive, foreground, input, muted, popover, primary, ring, secondary (+6 more), or declare --color-<name> in app/globals.css for a new color.',
+    fix: '<div className="bg-primary">…</div>',
+  },
+  {
+    id: 'designops/no-arbitrary-values', short: 'no-arbitrary-values',
+    blurb: 'Arbitrary values such as p-[13px]. Stay on the theme scale.',
+    bad: '<div className="p-[13px]">…</div>',
+    message: '"p-[13px]" hardcodes an off-token value. Use "p-3.25" instead (same value, on the scale).',
+    fix: '<div className="p-3.25">…</div>',
+  },
+  {
+    id: 'designops/no-inline-styles', short: 'no-inline-styles',
+    blurb: 'Inline styles and <style> elements. Style through classes.',
+    bad: '<div style={{ color: "red" }}>…</div>',
+    message: 'Inline style sets color. Style through classes; use CSS custom properties for dynamic values.',
+    fix: '<div className="text-destructive">…</div>',
+  },
+  {
+    id: 'designops/require-static-classes', short: 'require-static-classes',
+    blurb: 'Component classes the linter cannot read. Dynamic classNames stay unchecked.',
+    bad: '<Button className={`mt-${n}`}>…</Button>',
+    message: 'Dynamically built className on <Button> cannot be checked. Use static class strings.',
+    fix: '<Button className={n ? "mt-4" : "mt-2"}>…</Button>',
+  },
+  {
+    id: 'designops/no-unknown-classes', short: 'no-unknown-classes',
+    blurb: 'Classes Tailwind cannot generate, such as rounded-huge.',
+    bad: '<div className="rounded-huge">…</div>',
+    message: '"rounded-huge" is not a class this project\'s Tailwind knows, so no CSS is generated for it. Fix the spelling, or declare it with @utility in app/globals.css.',
+    fix: '<div className="rounded-3xl">…</div>',
+  },
+];
+
+/* Playground presets — each is a complete TSX module for the demo system. */
+const LINT_PRESETS = [
+  { name: 'All six', code:
+`import { Button } from "@/components/ui/button"
+
+export function Demo({ color }: { color: string }) {
+  return (
+    <main className="mx-auto max-w-2xl">
+      <Button className="p-4">Submit</Button>
+      <div className="bg-pink-500">Raw color</div>
+      <div className="p-[13px]">Arbitrary value</div>
+      <div style={{ color: "red" }}>Inline style</div>
+      <Button className={\`mt-\${color}\`}>Dynamic</Button>
+      <div className="rounded-huge">Unknown class</div>
+      <Button size="lg" className="mt-4 w-full">
+        Save changes
+      </Button>
+    </main>
+  )
+}` },
+  { name: 'Restyle', code:
+`import { Button } from "@/components/ui/button"
+
+export const A = () => <Button className="p-4">Submit</Button>` },
+  { name: 'Raw color', code:
+`export const A = () => <div className="bg-pink-500">Raw color</div>` },
+  { name: 'Arbitrary', code:
+`export const A = () => <div className="p-[13px]">Arbitrary</div>` },
+  { name: 'Inline style', code:
+`export const A = () => <div style={{ color: "red" }}>Inline</div>` },
+  { name: 'Dynamic', code:
+`import { Button } from "@/components/ui/button"
+
+export const A = ({ n }: { n: string }) => (
+  <Button className={\`mt-\${n}\`}>Dynamic</Button>
+)` },
+  { name: 'Unknown', code:
+`export const A = () => <div className="rounded-huge">Unknown</div>` },
+  { name: 'Clean ✓', code:
+`import { Button } from "@/components/ui/button"
+
+export function Save() {
+  return (
+    <main className="mx-auto max-w-2xl">
+      <div className="bg-primary p-3.25">On-theme, on-scale</div>
+      <Button size="lg" className="mt-4 w-full">
+        Save changes
+      </Button>
+    </main>
+  )
+}` },
+];
+
+/* Copy-paste setup per linter × framework (also in the README). */
+const LINT_SETUPS = {
+  eslint: {
+    label: 'eslint.config.mjs',
+    react: { label: 'eslint.config.mjs · React', code:
+`// npm install -D @designops/lint eslint @typescript-eslint/parser
+import { plugin as designops } from "@designops/lint"
+import tsParser from "@typescript-eslint/parser"
+import { defineConfig } from "eslint/config"
+
+export default defineConfig([
+  {
+    files: ["**/*.{js,jsx,ts,tsx}"],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: { ecmaFeatures: { jsx: true } },
+    },
+    plugins: { designops },
+    rules: {
+      "designops/no-restyle": ["error", { allow: ["layout"] }],
+      "designops/no-raw-colors": "error",
+      "designops/no-arbitrary-values": "error",
+      "designops/no-inline-styles": "error",
+      "designops/require-static-classes": "error",
+      "designops/no-unknown-classes": "error",
+    },
+  },
+  {
+    files: ["components/ui/**"],
+    rules: { "designops/no-restyle": "off" },
+  },
+])
+// npx eslint .` },
+    vue: { label: 'eslint.config.mjs · Vue', code:
+`// npm install -D @designops/lint eslint @typescript-eslint/parser vue-eslint-parser
+import { plugin as designops } from "@designops/lint"
+import tsParser from "@typescript-eslint/parser"
+import { defineConfig } from "eslint/config"
+import vueParser from "vue-eslint-parser"
+
+export default defineConfig([
+  {
+    files: ["**/*.vue"],
+    languageOptions: { parser: vueParser, parserOptions: { parser: tsParser } },
+    plugins: { designops },
+    rules: {
+      "designops/no-restyle": ["error", { allow: ["layout"] }],
+      "designops/no-raw-colors": "error",
+      "designops/no-arbitrary-values": "error",
+      "designops/no-inline-styles": "error",
+      "designops/require-static-classes": "error",
+      "designops/no-unknown-classes": "error",
+    },
+  },
+])
+// npx eslint .` },
+    svelte: { label: 'eslint.config.mjs · Svelte', code:
+`// npm install -D @designops/lint eslint @typescript-eslint/parser svelte-eslint-parser
+import { plugin as designops } from "@designops/lint"
+import tsParser from "@typescript-eslint/parser"
+import { defineConfig } from "eslint/config"
+import svelteParser from "svelte-eslint-parser"
+
+export default defineConfig([
+  {
+    files: ["**/*.svelte"],
+    languageOptions: { parser: svelteParser, parserOptions: { parser: tsParser } },
+    plugins: { designops },
+    rules: {
+      "designops/no-restyle": ["error", { allow: ["layout"] }],
+      "designops/no-raw-colors": "error",
+      "designops/no-arbitrary-values": "error",
+      "designops/no-inline-styles": "error",
+      "designops/require-static-classes": "error",
+      "designops/no-unknown-classes": "error",
+    },
+  },
+])
+// npx eslint .` },
+  },
+  oxlint: {
+    label: '.oxlintrc.json',
+    react: { label: '.oxlintrc.json · React', code:
+`// npm install -D @designops/lint oxlint
+{
+  "jsPlugins": ["@designops/lint"],
+  "rules": {
+    "designops/no-restyle": ["error", { "allow": ["layout"] }],
+    "designops/no-raw-colors": "error",
+    "designops/no-arbitrary-values": "error",
+    "designops/no-inline-styles": "error",
+    "designops/require-static-classes": "error",
+    "designops/no-unknown-classes": "error"
+  },
+  "overrides": [
+    { "files": ["components/ui/**"], "rules": { "designops/no-restyle": "off" } }
+  ]
+}
+// npx oxlint` },
+    vue: { label: '.oxlintrc.json · Vue (script blocks; templates need ESLint)', code:
+`// npm install -D @designops/lint oxlint
+{
+  "jsPlugins": ["@designops/lint"],
+  "rules": {
+    "designops/no-restyle": ["error", { "allow": ["layout"] }],
+    "designops/no-raw-colors": "error",
+    "designops/no-arbitrary-values": "error",
+    "designops/no-inline-styles": "error",
+    "designops/require-static-classes": "error",
+    "designops/no-unknown-classes": "error"
+  }
+}
+// npx oxlint` },
+    svelte: { label: '.oxlintrc.json · Svelte (script blocks; markup needs ESLint)', code:
+`// npm install -D @designops/lint oxlint
+{
+  "jsPlugins": ["@designops/lint"],
+  "rules": {
+    "designops/no-restyle": ["error", { "allow": ["layout"] }],
+    "designops/no-raw-colors": "error",
+    "designops/no-arbitrary-values": "error",
+    "designops/no-inline-styles": "error",
+    "designops/require-static-classes": "error",
+    "designops/no-unknown-classes": "error"
+  }
+}
+// npx oxlint` },
+  },
+};
+
+/* Programmable config: contracts, custom messages, shared settings. */
+const LINT_CONFIG =
+`// Per-component contracts: each part of the system gets its own rules.
+"designops/no-restyle": ["error", {
+  allow: ["layout"],
+  // Custom messages, with {{placeholders}} filled from your system.
+  message: { spacing: "Use a {{component}} size: {{sizes}}." },
+  contracts: [
+    { pattern: "^CardTitle$", allow: ["layout", "typography"] },
+    { pattern: "^CardContent$", allow: ["layout", "spacing"] },
+  ],
+}],
+"designops/no-raw-colors": ["error", {
+  message: "Use a theme color from {{file}}.",
+}],
+
+// Shared recognition + guidance (oxlint: root "settings";
+// ESLint: the same object in your config).
+"settings": {
+  "designops": {
+    "ui": "@/ds",
+    "componentImports": ["^@acme/ui(/|$)"],
+    "note": "See DESIGN.md for approved exceptions."
+  }
+}`;

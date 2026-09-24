@@ -1,10 +1,11 @@
 {
   "name": "design-ops",
   "version": "1.0.0",
-  "description": "DesignOps — one design in Figma, shipped to every framework. Token pipeline, multi-framework component delivery, request workflow and living documentation. By Lulamile Mkhungela.",
+  "description": "DesignOps — one design in Figma, shipped to every framework and verified by @designops/lint. Token pipeline, multi-framework components, request workflow, living docs and an agent-first linter. By Lulamile Mkhungela.",
   "author": "Lulamile Mkhungela <mkhungela.l@gmail.com>",
   "license": "MIT",
   "type": "module",
+  "packageManager": "pnpm@10.28.2",
   "keywords": [
     "design-ops",
     "design-system",
@@ -21,15 +22,45 @@
     "remix",
     "ionic",
     "mui",
-    "tailwind"
+    "tailwind",
+    "lint",
+    "eslint",
+    "oxlint"
   ],
   "scripts": {
     "build:tokens": "node tools/ship.mjs",
-    "start": "python3 -m http.server 4173",
+    "start": "node tools/lint-server.mjs",
+    "start:static": "python3 -m http.server 4173",
     "verify": "node tools/ship.mjs --check",
-    "test": "node tools/smoke.test.cjs"
+    "test": "node tools/smoke.test.cjs && pnpm run test:lint",
+    "test:dashboard": "node tools/smoke.test.cjs",
+    "test:lint": "pnpm --filter @designops/lint run build && pnpm --filter @designops/lint run test",
+    "build": "pnpm --filter @designops/lint run build",
+    "typecheck": "pnpm --filter @designops/lint exec tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format:write": "prettier --write . --cache",
+    "format:check": "prettier --check . --cache",
+    "corpus": "pnpm --filter @designops/lint run build && pnpm --filter evals run corpus",
+    "corpus:check": "pnpm --filter @designops/lint run build && pnpm --filter evals run corpus:check",
+    "evals": "pnpm --filter @designops/lint run build && pnpm --filter evals run run",
+    "lint:capture": "node tools/lint-capture.mjs",
+    "changeset": "changeset",
+    "release": "pnpm run typecheck && pnpm run test && pnpm run corpus:check && changeset publish"
+  },
+  "engines": {
+    "node": ">=20.19"
   },
   "devDependencies": {
-    "jsdom": "^24.0.0"
+    "jsdom": "^24.0.0",
+    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/cli": "^3.0.1",
+    "@eslint/js": "^9.33.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
+    "eslint": "^9.33.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.3.0",
+    "prettier": "^3.6.2",
+    "typescript-eslint": "^8.40.0"
   }
 }
