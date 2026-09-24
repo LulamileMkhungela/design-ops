@@ -197,6 +197,10 @@ ok(window.eval("githubCommitActivity([{commit:{message:'fix it\\nmore',author:{d
 ok(window.eval("githubCommitActivity([])") + '' === '', 'commit activity empty');
 ok(window.eval("matchFigmaComponents([{id:'a',name:'Button'},{id:'b',name:'Table'}], ['button / primary']).matched.join()") === 'a', 'figma matcher matches head');
 ok(window.eval("storybookStoryURL('https://sb.test/', 'Components / Button', 'docs')") === 'https://sb.test/?path=/story/components-button--docs', 'story URL slugs');
+ok(window.eval("figmaKeyFromInput('https://www.figma.com/design/z28iI0zJV1u1cL1wQ4HMrx/Lula-Fig-Studio?node-id=0-1&t=oqJux37ElDvne9xu-1')") === 'z28iI0zJV1u1cL1wQ4HMrx', 'figma key extracted from URL');
+ok(window.eval("figmaKeyFromInput('z28iI0zJV1u1cL1wQ4HMrx')") === 'z28iI0zJV1u1cL1wQ4HMrx', 'figma key passes through');
+ok(window.eval("matchFigmaComponents([{id:'a',name:'Button'}], ['Lula / Button']).matched.join()") === 'a', 'figma matcher library prefix');
+ok(window.eval("matchFigmaComponents([{id:'a',name:'Button'}], ['IconButton']).matched.join()") === '', 'figma matcher no substring false-positive');
 // overview falls back to the seed feed (jsdom has no fetch)
 window.location.hash = '#/overview';
 window.dispatchEvent(new window.Event('hashchange'));
@@ -210,6 +214,7 @@ ok(!!$('#reqFileIssue'), 'file-as-issue button present');
 window.location.hash = '#/integrations';
 window.dispatchEvent(new window.Event('hashchange'));
 ok(!!($('#connGithubRepo') && $('#connFigmaToken') && $('#connStorybookUrl')), 'connections inputs render');
+ok($('#connFigmaFileKey').value === 'z28iI0zJV1u1cL1wQ4HMrx', 'figma file key prefilled');
 $('#connGithubRepo').value = 'octo/hello';
 $('[data-conn-github-save]').click();
 ok(window.eval("localStorage.getItem('designops-connections-v1')").includes('octo/hello'), 'github repo saves to connections');

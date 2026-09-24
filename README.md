@@ -171,8 +171,9 @@ Manage everything under **Integrations → Live connections**:
   from the configured repo (default `LulamileMkhungela/design-ops`),
   cached 5 minutes; any request can be filed as a prefilled GitHub
   issue in one click — no token needed for public repos.
-- **Figma (your token):** paste a read-only personal access token plus
-  the file key or URL and Components shows which cards match the real
+- **Figma (your token):** the Lula-Fig-Studio file key ships prefilled —
+  just add a read-only personal access token and Components shows which
+  cards match the real
   file, with a match-rate banner. Fetched directly, or via the
   same-origin `/api/figma` proxy under `npm start`. The token never
   leaves the browser except to api.figma.com.

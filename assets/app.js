@@ -247,11 +247,16 @@ function githubCommitActivity(commits) {
 }
 
 /* Dashboard components ↔ Figma file component names. Figma names often
-   carry variant suffixes ("Button / Primary") — match on the head. */
+   carry library prefixes or variant suffixes ("Lula / Button",
+   "Button / Primary") — a component matches when its name equals the
+   full name or any / -separated segment (case-insensitive). */
 function matchFigmaComponents(components, figmaNames) {
-  const norm = (s) => String(s || '').toLowerCase().split(/[/:\-|–—]/)[0].trim();
+  const norm = (s) => String(s || '').toLowerCase().trim();
   const have = {};
-  (figmaNames || []).forEach((n) => { have[norm(n)] = true; });
+  (figmaNames || []).forEach((n) => {
+    have[norm(n)] = true;
+    norm(n).split(/[/:]/).forEach((seg) => { have[seg.trim()] = true; });
+  });
   const matched = [], missing = [];
   (components || []).forEach((c) => { (have[norm(c.name)] ? matched : missing).push(c.id); });
   return { matched, missing };
@@ -300,6 +305,12 @@ function refreshLiveActivity() {
 }
 
 /* figma ------------------------------------------------------------ */
+/* Accepts a bare file key or a full figma.com URL (query params ignored). */
+function figmaKeyFromInput(s) {
+  const m = String(s || '').match(/([A-Za-z0-9]{10,})/);
+  return m ? m[1] : '';
+}
+
 function figmaFetchMeta(key, token) {
   if (typeof fetch !== 'function') return Promise.resolve(null);
   return fetch('https://api.figma.com/v1/files/' + key + '?depth=1', { headers: { 'X-Figma-Token': token } })
@@ -311,8 +322,7 @@ function figmaFetchMeta(key, token) {
 
 function figmaConnect() {
   const token = $('#connFigmaToken').value.trim();
-  const keyHit = $('#connFigmaFileKey').value.trim().match(/([A-Za-z0-9]{10,})/);
-  const key = keyHit ? keyHit[1] : '';
+  const key = figmaKeyFromInput($('#connFigmaFileKey').value);
   if (!token || !key) { toast('Figma needs a token + file key', 'paste both, then Connect', '◈'); return; }
   conn.figmaToken = token;
   conn.figmaFileKey = key;
@@ -331,12 +341,13 @@ function figmaConnect() {
 
 /* connections section for the integrations view ------------------- */
 function connSectionHTML() {
+  const figmaURL = conn.figmaFileKey ? 'https://www.figma.com/design/' + conn.figmaFileKey : '';
   const gh = conn.githubCheckedAt
     ? '<span class="conn-pill live"><span class="live-dot"></span>live</span> ' + (conn.githubCommits || 0) + ' commits · checked ' + esc(timeAgo(conn.githubCheckedAt))
     : '<span class="conn-pill demo">demo</span> overview shows the seed feed until the first fetch succeeds';
   const fg = conn.figma
     ? '<span class="conn-pill live"><span class="live-dot"></span>connected</span> ' + esc(conn.figma.name) + ' · ' + conn.figma.components.length + ' file components · ' + matchFigmaComponents(COMPONENTS, conn.figma.components).matched.length + '/' + COMPONENTS.length + ' matched · synced ' + esc(timeAgo(conn.figma.checkedAt))
-    : '<span class="conn-pill demo">not connected</span> paste a token + file key to light up Figma sync';
+    : '<span class="conn-pill demo">not connected</span> file key prefilled — paste a token to light up Figma sync' + (figmaURL ? ' · <a href="' + esc(figmaURL) + '" target="_blank" rel="noreferrer">open file ↗</a>' : '');
   const sb = conn.storybookUrl
     ? '<span class="conn-pill live"><span class="live-dot"></span>linked</span> <a href="' + esc(conn.storybookUrl) + '" target="_blank" rel="noreferrer">' + esc(conn.storybookUrl) + ' ↗</a>'
     : '<span class="conn-pill demo">not linked</span> story cards open in-app until a published URL is set';

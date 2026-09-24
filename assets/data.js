@@ -642,7 +642,7 @@ const GUIDE = [
     <p>Three panels read <strong>real data</strong> — manage them under <strong>Integrations → Live connections</strong>. Everything degrades to seed content offline, and secrets stay in your browser (<code>localStorage</code>).</p>
     <ul>
       <li><strong>GitHub (no setup)</strong> — Overview activity shows the latest commits on the configured repo (default <code>LulamileMkhungela/design-ops</code>), cached 5 minutes. The request board's <em>File as GitHub issue</em> button opens a prefilled issue.</li>
-      <li><strong>Figma (token + file key)</strong> — connect a file and every Components card shows whether it matches a real Figma component; the banner reports the match rate and sync time. Create a read-only token at Figma → Settings → Security, then paste the file key or the full file URL.</li>
+      <li><strong>Figma (token + file key)</strong> — connect a file and every Components card shows whether it matches a real Figma component; the banner reports the match rate and sync time. Create a read-only token at Figma → Settings → Security — the Lula-Fig-Studio file key ships prefilled, so only the token is needed.</li>
       <li><strong>Storybook (published URL)</strong> — set the URL of a published Storybook and story cards deep-link to their real <code>?path=/story/…</code> pages.</li>
     </ul>` },
   { id: 'governance', label: 'Governance & versioning', html: `
@@ -683,7 +683,7 @@ const CONNECTIONS_DEFAULTS = {
   githubCommits: null,   // live commits fetched on the last overview visit
   githubCheckedAt: null, // ISO timestamp of that fetch
   figmaToken: '',        // personal access token (read-only) — browser only
-  figmaFileKey: '',
+  figmaFileKey: 'z28iI0zJV1u1cL1wQ4HMrx', // Lula-Fig-Studio — only the token is left to paste
   figma: null,           // { name, lastModified, components:[names], checkedAt }
   storybookUrl: '',      // published Storybook base URL for deep links
 };
