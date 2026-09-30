@@ -1,0 +1,8 @@
+{
+  "designops/no-restyle": 534,
+  "designops/no-raw-colors": 34,
+  "designops/no-arbitrary-values": 20,
+  "designops/no-inline-styles": 8,
+  "designops/require-static-classes": 3,
+  "designops/no-unknown-classes": 3
+}

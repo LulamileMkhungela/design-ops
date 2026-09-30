@@ -1,0 +1,38 @@
+# DesignOps CI — reference workflow
+#
+# HOW TO ENABLE: copy this file to .github/workflows/deploy.yml in your own
+# fork (the copy needs to come from an identity with the "workflows"
+# permission — e.g. your personal GitHub account, not an app integration token).
+#
+# What it does on every push / PR:
+#   1 · verify dist/ is fresh relative to tokens/tokens.json
+#       (the "no silent token drift" gate)
+#   2 · deploy the dashboard to GitHub Pages (on main only)
+name: designops-ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  verify-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm run verify
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        if: github.ref == 'refs/heads/main'
+        uses: actions/deploy-pages@v4
