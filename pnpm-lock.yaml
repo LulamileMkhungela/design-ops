@@ -39,6 +39,8 @@ importers:
         specifier: ^8.40.0
         version: 8.69.0(eslint@9.39.5(jiti@2.7.0))(typescript@5.9.3)
 
+  packages/advisory: {}
+
   packages/evals:
     dependencies:
       '@designops/lint':

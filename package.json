@@ -1,7 +1,7 @@
 {
   "name": "design-ops",
   "version": "1.0.0",
-  "description": "DesignOps — one design in Figma, shipped to every framework and verified by @designops/lint. Token pipeline, multi-framework components, request workflow, living docs and an agent-first linter. By Lulamile Mkhungela.",
+  "description": "DesignOps \u2014 one design in Figma, shipped to every framework and verified by @designops/lint. Token pipeline, multi-framework components, request workflow, living docs and an agent-first linter. By Lulamile Mkhungela.",
   "author": "Lulamile Mkhungela <mkhungela.l@gmail.com>",
   "license": "MIT",
   "type": "module",
@@ -32,9 +32,10 @@
     "start": "node tools/lint-server.mjs",
     "start:static": "python3 -m http.server 4173",
     "verify": "node tools/ship.mjs --check",
-    "test": "node tools/smoke.test.cjs && pnpm run test:lint",
+    "test": "node tools/smoke.test.cjs && node --test tools/advisory.test.mjs && node --test tools/demo-build.test.mjs && pnpm run test:lint",
     "test:dashboard": "node tools/smoke.test.cjs",
     "test:lint": "pnpm --filter @designops/lint run build && pnpm --filter @designops/lint run test",
+    "test:advisory": "node --test tools/advisory.test.mjs",
     "build": "pnpm --filter @designops/lint run build",
     "typecheck": "pnpm --filter @designops/lint exec tsc --noEmit",
     "lint": "eslint .",
@@ -46,7 +47,14 @@
     "evals": "pnpm --filter @designops/lint run build && pnpm --filter evals run run",
     "lint:capture": "node tools/lint-capture.mjs",
     "changeset": "changeset",
-    "release": "pnpm run typecheck && pnpm run test && pnpm run corpus:check && changeset publish"
+    "release": "pnpm run typecheck && pnpm run test && pnpm run corpus:check && changeset publish",
+    "advisory": "node tools/advisory.mjs",
+    "advisory:check": "node tools/advisory.mjs check",
+    "advisory:propose": "node tools/advisory.mjs propose",
+    "test:demos": "node --test tools/demo-build.test.mjs",
+    "test:e2e": "node --test tools/advisory-e2e.test.mjs",
+    "demos": "node tools/demo-build.mjs",
+    "demos:all": "node tools/demo-build.mjs --all"
   },
   "engines": {
     "node": ">=20.19"

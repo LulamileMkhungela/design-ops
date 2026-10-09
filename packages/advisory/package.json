@@ -1,0 +1,15 @@
+{
+  "name": "@designops/advisory",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Vendored design-intelligence catalogue (styles, palettes, typography, UX guidelines, stacks) with an offline BM25 search. Advisory only — @designops/lint stays authoritative.",
+  "license": "MIT",
+  "scripts": {
+    "search": "python3 scripts/search.py",
+    "verify:data": "python3 scripts/validate_data.py",
+    "test": "python3 -m unittest discover -s scripts/tests -q"
+  },
+  "engines": {
+    "node": ">=20.19"
+  }
+}

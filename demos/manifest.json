@@ -1,0 +1,1165 @@
+{
+  "generated": "2026-10-09T07:23:37.571Z",
+  "demos": [
+    {
+      "slug": "datapulse",
+      "query": "SaaS glassmorphism undefined",
+      "category": "SaaS",
+      "mode": "Light",
+      "brand": "DataPulse",
+      "tagline": "Real-time analytics",
+      "style": "glassmorphism",
+      "styleName": "Glassmorphism",
+      "product": "SaaS (General)",
+      "typography": "Plus Jakarta Sans",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#F8FAFC",
+        "surface": "#FFFFFF",
+        "accent": "#2563EB",
+        "ink": "#1E293B"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/datapulse/index.html"
+    },
+    {
+      "slug": "flowdeck",
+      "query": "SaaS data-dense-dashboard undefined",
+      "category": "SaaS",
+      "mode": "Light",
+      "brand": "Flowdeck",
+      "tagline": "Workflow automation",
+      "style": "data-dense-dashboard",
+      "styleName": "Data-Dense Dashboard",
+      "product": "Analytics Dashboard",
+      "typography": "Fira Code + Fira Sans",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#F8FAFC",
+        "surface": "#FFFFFF",
+        "accent": "#1E40AF",
+        "ink": "#1E3A8A"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/flowdeck/index.html"
+    },
+    {
+      "slug": "lumen-academy",
+      "query": "Education claymorphism undefined",
+      "category": "Education",
+      "mode": "Light",
+      "brand": "Lumen Academy",
+      "tagline": "Learn at your pace",
+      "style": "claymorphism",
+      "styleName": "Claymorphism",
+      "product": "Educational App",
+      "typography": "Baloo 2 + Comic Neue",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#EEF2FF",
+        "surface": "#FFFFFF",
+        "accent": "#4F46E5",
+        "ink": "#1E1B4B"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/lumen-academy/index.html"
+    },
+    {
+      "slug": "skillbridge",
+      "query": "Education editorial-grid-magazine undefined",
+      "category": "Education",
+      "mode": "Light",
+      "brand": "Skillbridge",
+      "tagline": "Bootcamp, reimagined",
+      "style": "swiss-modernism-2-0",
+      "styleName": "Swiss Modernism 2.0",
+      "product": "Magazine/Blog",
+      "typography": "Libre Bodoni + Public Sans",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#FAFAFA",
+        "surface": "#FFFFFF",
+        "accent": "#18181B",
+        "ink": "#09090B"
+      },
+      "contrast": {
+        "pass": 7,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/skillbridge/index.html"
+    },
+    {
+      "slug": "pawsome-care",
+      "query": "Pet Services soft-ui-evolution undefined",
+      "category": "Pet Services",
+      "mode": "Light",
+      "brand": "Pawsome Care",
+      "tagline": "Gentle, expert care",
+      "style": "claymorphism",
+      "styleName": "Claymorphism",
+      "product": "Veterinary Clinic",
+      "typography": "Varela Round + Nunito Sans",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#F0FDFA",
+        "surface": "#FFFFFF",
+        "accent": "#0D9488",
+        "ink": "#134E4A"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/pawsome-care/index.html"
+    },
+    {
+      "slug": "the-groom-room",
+      "query": "Pet Services organic-biophilic undefined",
+      "category": "Pet Services",
+      "mode": "Light",
+      "brand": "The Groom Room",
+      "tagline": "Calm, unhurried grooming",
+      "style": "claymorphism",
+      "styleName": "Claymorphism",
+      "product": "Veterinary Clinic",
+      "typography": "Varela Round + Nunito Sans",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#F0FDFA",
+        "surface": "#FFFFFF",
+        "accent": "#0D9488",
+        "ink": "#134E4A"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/the-groom-room/index.html"
+    },
+    {
+      "slug": "cortex-desk",
+      "query": "AI/Chatbot ai-native-ui undefined",
+      "category": "AI/Chatbot",
+      "mode": "Light",
+      "brand": "Cortex Desk",
+      "tagline": "Support that answers",
+      "style": "ai-native-ui",
+      "styleName": "AI-Native UI",
+      "product": "AI/Chatbot Platform",
+      "typography": "Space Grotesk + DM Sans",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#FAF5FF",
+        "surface": "#FFFFFF",
+        "accent": "#7C3AED",
+        "ink": "#1E1B4B"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/cortex-desk/index.html"
+    },
+    {
+      "slug": "promptly",
+      "query": "AI/Chatbot zero-interface undefined",
+      "category": "AI/Chatbot",
+      "mode": "Light",
+      "brand": "Promptly",
+      "tagline": "Your writing copilot",
+      "style": "ai-native-ui",
+      "styleName": "AI-Native UI",
+      "product": "AI/Chatbot Platform",
+      "typography": "Space Grotesk + DM Sans",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#FAF5FF",
+        "surface": "#FFFFFF",
+        "accent": "#7C3AED",
+        "ink": "#1E1B4B"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/promptly/index.html"
+    },
+    {
+      "slug": "maison-lume",
+      "query": "E-commerce liquid-glass undefined",
+      "category": "E-commerce",
+      "mode": "Light",
+      "brand": "Maison Lume",
+      "tagline": "Considered objects",
+      "style": "liquid-glass",
+      "styleName": "Liquid Glass",
+      "product": "E-commerce Luxury",
+      "typography": "Cormorant + Montserrat",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#FAFAF9",
+        "surface": "#FFFFFF",
+        "accent": "#1C1917",
+        "ink": "#0C0A09"
+      },
+      "contrast": {
+        "pass": 7,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/maison-lume/index.html"
+    },
+    {
+      "slug": "thread-co",
+      "query": "E-commerce vintage-analog-retro-film undefined",
+      "category": "E-commerce",
+      "mode": "Light",
+      "brand": "Thread & Co",
+      "tagline": "Made to measure",
+      "style": "motion-driven",
+      "styleName": "Motion-Driven",
+      "product": "Brewery/Winery",
+      "typography": "Abril Fatface + Merriweather",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#FEF2F2",
+        "surface": "#FFFFFF",
+        "accent": "#7C2D12",
+        "ink": "#450A0A"
+      },
+      "contrast": {
+        "pass": 7,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/thread-co/index.html"
+    },
+    {
+      "slug": "ledgerline",
+      "query": "Fintech/Crypto financial-dashboard undefined",
+      "category": "Fintech/Crypto",
+      "mode": "Dark",
+      "brand": "Ledgerline",
+      "tagline": "Built for finance teams",
+      "style": "minimalism-and-swiss-style",
+      "styleName": "Minimalism & Swiss Style",
+      "product": "Fintech/Crypto",
+      "typography": "IBM Plex Sans",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#0F172A",
+        "surface": "#222735",
+        "accent": "#F59E0B",
+        "ink": "#F8FAFC"
+      },
+      "contrast": {
+        "pass": 7,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/ledgerline/index.html"
+    },
+    {
+      "slug": "satoshi-vault",
+      "query": "Fintech/Crypto cyberpunk-ui undefined",
+      "category": "Fintech/Crypto",
+      "mode": "Dark",
+      "brand": "Satoshi Vault",
+      "tagline": "Self-custody, simplified",
+      "style": "minimalism-and-swiss-style",
+      "styleName": "Minimalism & Swiss Style",
+      "product": "Fintech/Crypto",
+      "typography": "Orbitron + JetBrains Mono",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#0F172A",
+        "surface": "#222735",
+        "accent": "#F59E0B",
+        "ink": "#F8FAFC"
+      },
+      "contrast": {
+        "pass": 7,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/satoshi-vault/index.html"
+    },
+    {
+      "slug": "meridian-health",
+      "query": "Healthcare accessible-and-ethical undefined",
+      "category": "Healthcare",
+      "mode": "Light",
+      "brand": "Meridian Health",
+      "tagline": "Care that keeps up",
+      "style": "neumorphism",
+      "styleName": "Neumorphism",
+      "product": "Healthcare App",
+      "typography": "Atkinson Hyperlegible",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#ECFEFF",
+        "surface": "#FFFFFF",
+        "accent": "#0891B2",
+        "ink": "#164E63"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/meridian-health/index.html"
+    },
+    {
+      "slug": "mindful",
+      "query": "Healthcare nature-distilled undefined",
+      "category": "Healthcare",
+      "mode": "Light",
+      "brand": "Mindful",
+      "tagline": "Therapy, without the waitlist",
+      "style": "neumorphism",
+      "styleName": "Neumorphism",
+      "product": "Healthcare App",
+      "typography": "Atkinson Hyperlegible",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#ECFEFF",
+        "surface": "#FFFFFF",
+        "accent": "#0891B2",
+        "ink": "#164E63"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/mindful/index.html"
+    },
+    {
+      "slug": "studio-aperture",
+      "query": "Creative bento-box-grid undefined",
+      "category": "Creative",
+      "mode": "Light",
+      "brand": "Studio Aperture",
+      "tagline": "Photography with intent",
+      "style": "vibrant-and-block-based",
+      "styleName": "Vibrant & Block-based",
+      "product": "Creator Economy Platform",
+      "typography": "Inter + Playfair Display",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#FDF2F8",
+        "surface": "#FFFFFF",
+        "accent": "#EC4899",
+        "ink": "#831843"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/studio-aperture/index.html"
+    },
+    {
+      "slug": "pigment",
+      "query": "Creative kinetic-typography undefined",
+      "category": "Creative",
+      "mode": "Light",
+      "brand": "Pigment",
+      "tagline": "Brand and digital",
+      "style": "minimalism-and-swiss-style",
+      "styleName": "Minimalism & Swiss Style",
+      "product": "General",
+      "typography": "Inter + Playfair Display",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#F8FAFC",
+        "surface": "#FFFFFF",
+        "accent": "#2563EB",
+        "ink": "#1E293B"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/pigment/index.html"
+    },
+    {
+      "slug": "havenly-estates",
+      "query": "Real Estate editorial-grid-magazine undefined",
+      "category": "Real Estate",
+      "mode": "Light",
+      "brand": "Havenly Estates",
+      "tagline": "Homes, not listings",
+      "style": "glassmorphism",
+      "styleName": "Glassmorphism",
+      "product": "Real Estate/Property",
+      "typography": "Cinzel + Josefin Sans",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#F0FDFA",
+        "surface": "#FFFFFF",
+        "accent": "#0F766E",
+        "ink": "#134E4A"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/havenly-estates/index.html"
+    },
+    {
+      "slug": "northkey",
+      "query": "Real Estate spatial-ui-visionos undefined",
+      "category": "Real Estate",
+      "mode": "Dark",
+      "brand": "Northkey",
+      "tagline": "Rentals, sorted",
+      "style": "spatial-ui-visionos",
+      "styleName": "Spatial UI (VisionOS)",
+      "product": "Spatial Computing OS / App",
+      "typography": "Inter",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#888888",
+        "surface": "#999999",
+        "accent": "#FFFFFF",
+        "ink": "#000000"
+      },
+      "contrast": {
+        "pass": 5,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/northkey/index.html"
+    },
+    {
+      "slug": "pixelforge",
+      "query": "Gaming pixel-art undefined",
+      "category": "Gaming",
+      "mode": "Dark",
+      "brand": "Pixelforge",
+      "tagline": "Games with a spine",
+      "style": "pixel-art",
+      "styleName": "Pixel Art",
+      "product": "Arcade & Retro Game",
+      "typography": "Press Start 2P + VT323",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#0F172A",
+        "surface": "#192134",
+        "accent": "#DC2626",
+        "ink": "#FFFFFF"
+      },
+      "contrast": {
+        "pass": 7,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/pixelforge/index.html"
+    },
+    {
+      "slug": "arena-rank",
+      "query": "Gaming hud-sci-fi-fui undefined",
+      "category": "Gaming",
+      "mode": "Dark",
+      "brand": "Arena Rank",
+      "tagline": "Competitive coaching",
+      "style": "hud-sci-fi-fui",
+      "styleName": "HUD / Sci-Fi FUI",
+      "product": "Space Tech / Aerospace",
+      "typography": "Share Tech Mono + Fira Code",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#0B0B10",
+        "surface": "#1E1E23",
+        "accent": "#F8FAFC",
+        "ink": "#F8FAFC"
+      },
+      "contrast": {
+        "pass": 7,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/arena-rank/index.html"
+    },
+    {
+      "slug": "ember-oak",
+      "query": "Food & Restaurant vintage-analog-retro-film undefined",
+      "category": "Food & Restaurant",
+      "mode": "Light",
+      "brand": "Ember & Oak",
+      "tagline": "Fire-cooked, seasonal",
+      "style": "motion-driven",
+      "styleName": "Motion-Driven",
+      "product": "Brewery/Winery",
+      "typography": "Abril Fatface + Merriweather",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#FEF2F2",
+        "surface": "#FFFFFF",
+        "accent": "#7C2D12",
+        "ink": "#450A0A"
+      },
+      "contrast": {
+        "pass": 7,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/ember-oak/index.html"
+    },
+    {
+      "slug": "pantry",
+      "query": "Food & Restaurant tactile-digital-deformable-ui undefined",
+      "category": "Food & Restaurant",
+      "mode": "Light",
+      "brand": "Pantry",
+      "tagline": "Cook real food, faster",
+      "style": "vibrant-and-block-based",
+      "styleName": "Vibrant & Block-based",
+      "product": "Restaurant/Food Service",
+      "typography": "Playfair Display SC + Karla",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#FEF2F2",
+        "surface": "#FFFFFF",
+        "accent": "#DC2626",
+        "ink": "#450A0A"
+      },
+      "contrast": {
+        "pass": 7,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/pantry/index.html"
+    },
+    {
+      "slug": "ironwood",
+      "query": "Fitness motion-driven undefined",
+      "category": "Fitness",
+      "mode": "Dark",
+      "brand": "Ironwood",
+      "tagline": "Strength, coached properly",
+      "style": "vibrant-and-block-based",
+      "styleName": "Vibrant & Block-based",
+      "product": "Fitness/Gym App",
+      "typography": "Barlow Condensed + Barlow",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#1F2937",
+        "surface": "#313742",
+        "accent": "#F97316",
+        "ink": "#F8FAFC"
+      },
+      "contrast": {
+        "pass": 7,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/ironwood/index.html"
+    },
+    {
+      "slug": "cadence",
+      "query": "Fitness neubrutalism undefined",
+      "category": "Fitness",
+      "mode": "Dark",
+      "brand": "Cadence",
+      "tagline": "Running, planned",
+      "style": "vibrant-and-block-based",
+      "styleName": "Vibrant & Block-based",
+      "product": "Fitness/Gym App",
+      "typography": "Barlow Condensed + Barlow",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#1F2937",
+        "surface": "#313742",
+        "accent": "#F97316",
+        "ink": "#F8FAFC"
+      },
+      "contrast": {
+        "pass": 7,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/cadence/index.html"
+    },
+    {
+      "slug": "wanderlane",
+      "query": "Travel parallax-storytelling undefined",
+      "category": "Travel",
+      "mode": "Light",
+      "brand": "Wanderlane",
+      "tagline": "Trips that fit you",
+      "style": "minimalism-and-swiss-style",
+      "styleName": "Minimalism & Swiss Style",
+      "product": "General",
+      "typography": "Outfit + Work Sans",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#F8FAFC",
+        "surface": "#FFFFFF",
+        "accent": "#2563EB",
+        "ink": "#1E293B"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/wanderlane/index.html"
+    },
+    {
+      "slug": "aviary",
+      "query": "Travel e-ink-paper undefined",
+      "category": "Travel",
+      "mode": "Light",
+      "brand": "Aviary",
+      "tagline": "Flights, honest about cost",
+      "style": "organic-biophilic",
+      "styleName": "Organic Biophilic",
+      "product": "Sustainable Energy / Climate Tech",
+      "typography": "Fira Code + Fira Sans",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#ECFDF5",
+        "surface": "#FFFFFF",
+        "accent": "#059669",
+        "ink": "#064E3B"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/aviary/index.html"
+    },
+    {
+      "slug": "prism-mint",
+      "query": "NFT/Web3 cyberpunk-ui undefined",
+      "category": "NFT/Web3",
+      "mode": "Dark",
+      "brand": "Prism Mint",
+      "tagline": "Creators first",
+      "style": "cyberpunk-ui",
+      "styleName": "Cyberpunk UI",
+      "product": "NFT/Web3 Platform",
+      "typography": "Orbitron + Exo 2",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#0F0F23",
+        "surface": "#1E1D35",
+        "accent": "#8B5CF6",
+        "ink": "#F8FAFC"
+      },
+      "contrast": {
+        "pass": 7,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/prism-mint/index.html"
+    },
+    {
+      "slug": "chainproof",
+      "query": "NFT/Web3 chromatic-aberration-rgb-split undefined",
+      "category": "NFT/Web3",
+      "mode": "Dark",
+      "brand": "Chainproof",
+      "tagline": "Audit before you deploy",
+      "style": "cyberpunk-ui",
+      "styleName": "Cyberpunk UI",
+      "product": "NFT/Web3 Platform",
+      "typography": "Orbitron + Exo 2",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#0F0F23",
+        "surface": "#1E1D35",
+        "accent": "#8B5CF6",
+        "ink": "#F8FAFC"
+      },
+      "contrast": {
+        "pass": 7,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/chainproof/index.html"
+    },
+    {
+      "slug": "serene-spa",
+      "query": "Beauty/Spa soft-ui-evolution undefined",
+      "category": "Beauty/Spa",
+      "mode": "Light",
+      "brand": "Serene Spa",
+      "tagline": "Quiet, properly",
+      "style": "soft-ui-evolution",
+      "styleName": "Soft UI Evolution",
+      "product": "Beauty/Spa/Wellness Service",
+      "typography": "Playfair Display + Inter",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#FDF2F8",
+        "surface": "#FFFFFF",
+        "accent": "#EC4899",
+        "ink": "#831843"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/serene-spa/index.html"
+    },
+    {
+      "slug": "glow-lab",
+      "query": "Beauty/Spa nature-distilled undefined",
+      "category": "Beauty/Spa",
+      "mode": "Light",
+      "brand": "Glow Lab",
+      "tagline": "Skincare that says what it does",
+      "style": "soft-ui-evolution",
+      "styleName": "Soft UI Evolution",
+      "product": "Beauty/Spa/Wellness Service",
+      "typography": "Playfair Display + Inter",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#FDF2F8",
+        "surface": "#FFFFFF",
+        "accent": "#EC4899",
+        "ink": "#831843"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/glow-lab/index.html"
+    },
+    {
+      "slug": "shipyard",
+      "query": "Developer Tools dark-mode-oled undefined",
+      "category": "Developer Tools",
+      "mode": "Dark",
+      "brand": "Shipyard",
+      "tagline": "CI that does not fight you",
+      "style": "dark-mode-oled",
+      "styleName": "Dark Mode (OLED)",
+      "product": "Developer Tool / IDE",
+      "typography": "JetBrains Mono + IBM Plex Sans",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#0F172A",
+        "surface": "#1B2336",
+        "accent": "#1E293B",
+        "ink": "#F8FAFC"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/shipyard/index.html"
+    },
+    {
+      "slug": "tracepoint",
+      "query": "Developer Tools hud-sci-fi-fui undefined",
+      "category": "Developer Tools",
+      "mode": "Dark",
+      "brand": "Tracepoint",
+      "tagline": "See what production sees",
+      "style": "hud-sci-fi-fui",
+      "styleName": "HUD / Sci-Fi FUI",
+      "product": "Space Tech / Aerospace",
+      "typography": "Share Tech Mono + Fira Code",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#0B0B10",
+        "surface": "#1E1E23",
+        "accent": "#F8FAFC",
+        "ink": "#F8FAFC"
+      },
+      "contrast": {
+        "pass": 7,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/tracepoint/index.html"
+    },
+    {
+      "slug": "cineville",
+      "query": "Entertainment kinetic-typography undefined",
+      "category": "Entertainment",
+      "mode": "Light",
+      "brand": "Cineville",
+      "tagline": "Films worth leaving the house for",
+      "style": "minimalism-and-swiss-style",
+      "styleName": "Minimalism & Swiss Style",
+      "product": "General",
+      "typography": "Outfit + Work Sans",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#F8FAFC",
+        "surface": "#FFFFFF",
+        "accent": "#2563EB",
+        "ink": "#1E293B"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/cineville/index.html"
+    },
+    {
+      "slug": "soundwave",
+      "query": "Entertainment vaporwave undefined",
+      "category": "Entertainment",
+      "mode": "Light",
+      "brand": "Soundwave",
+      "tagline": "Music, paid fairly",
+      "style": "minimalism-and-swiss-style",
+      "styleName": "Minimalism & Swiss Style",
+      "product": "General",
+      "typography": "Outfit + Work Sans",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#F8FAFC",
+        "surface": "#FFFFFF",
+        "accent": "#2563EB",
+        "ink": "#1E293B"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/soundwave/index.html"
+    },
+    {
+      "slug": "blackwell-legal",
+      "query": "Legal swiss-modernism-2-0 undefined",
+      "category": "Legal",
+      "mode": "Light",
+      "brand": "Blackwell Legal",
+      "tagline": "Plain-speaking solicitors",
+      "style": "swiss-modernism-2-0",
+      "styleName": "Swiss Modernism 2.0",
+      "product": "Patent / IP Database",
+      "typography": "EB Garamond + Lato",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#F8FAFC",
+        "surface": "#FFFFFF",
+        "accent": "#475569",
+        "ink": "#1E293B"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/blackwell-legal/index.html"
+    },
+    {
+      "slug": "clausewise",
+      "query": "Legal e-ink-paper undefined",
+      "category": "Legal",
+      "mode": "Light",
+      "brand": "Clausewise",
+      "tagline": "Contracts, reviewed in minutes",
+      "style": "organic-biophilic",
+      "styleName": "Organic Biophilic",
+      "product": "Sustainable Energy / Climate Tech",
+      "typography": "Fira Code + Fira Sans",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#ECFDF5",
+        "surface": "#FFFFFF",
+        "accent": "#059669",
+        "ink": "#064E3B"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/clausewise/index.html"
+    },
+    {
+      "slug": "gatherly",
+      "query": "Events memphis-design undefined",
+      "category": "Events",
+      "mode": "Light",
+      "brand": "Gatherly",
+      "tagline": "Events people attend",
+      "style": "minimalism-and-swiss-style",
+      "styleName": "Minimalism & Swiss Style",
+      "product": "General",
+      "typography": "Outfit + Work Sans",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#FFF7ED",
+        "surface": "#FFFFFF",
+        "accent": "#EA580C",
+        "ink": "#0F172A"
+      },
+      "contrast": {
+        "pass": 7,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/gatherly/index.html"
+    },
+    {
+      "slug": "stagewright",
+      "query": "Events gradient-mesh-aurora-evolved undefined",
+      "category": "Events",
+      "mode": "Light",
+      "brand": "Stagewright",
+      "tagline": "Production, end to end",
+      "style": "minimalism-and-swiss-style",
+      "styleName": "Minimalism & Swiss Style",
+      "product": "General",
+      "typography": "Outfit + Work Sans",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#FFF7ED",
+        "surface": "#FFFFFF",
+        "accent": "#EA580C",
+        "ink": "#0F172A"
+      },
+      "contrast": {
+        "pass": 7,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/stagewright/index.html"
+    },
+    {
+      "slug": "civic-trust",
+      "query": "Other flat-design undefined",
+      "category": "Other",
+      "mode": "Light",
+      "brand": "Civic Trust",
+      "tagline": "Community, funded",
+      "style": "minimalism-and-swiss-style",
+      "styleName": "Minimalism & Swiss Style",
+      "product": "General",
+      "typography": "Inter",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#F8FAFC",
+        "surface": "#FFFFFF",
+        "accent": "#2563EB",
+        "ink": "#1E293B"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/civic-trust/index.html"
+    },
+    {
+      "slug": "greenpath",
+      "query": "Other inclusive-design undefined",
+      "category": "Other",
+      "mode": "Light",
+      "brand": "Greenpath",
+      "tagline": "Sustainability, measured",
+      "style": "minimalism-and-swiss-style",
+      "styleName": "Minimalism & Swiss Style",
+      "product": "General",
+      "typography": "Atkinson Hyperlegible",
+      "fontFallbacks": [],
+      "colors": {
+        "background": "#F8FAFC",
+        "surface": "#FFFFFF",
+        "accent": "#2563EB",
+        "ink": "#1E293B"
+      },
+      "contrast": {
+        "pass": 6,
+        "total": 7
+      },
+      "tokens": 44,
+      "lint": {
+        "findings": 0,
+        "rules": []
+      },
+      "path": "demos/greenpath/index.html"
+    }
+  ]
+}
