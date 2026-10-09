@@ -54,8 +54,8 @@ comes before verification: _what should this look like?_
   (40 entries of real copy, two per category, each pair given a distinct
   style direction so they do not collapse into the same look).
 - **Gallery filters** — category chips, Light/Dark mode chips and a
-  clickable palette row, mirroring the reference gallery's filter UI, with
-  a "Showing N of 40 demos" count line.
+  clickable palette row for narrowing the grid, with a "Showing N of 40
+  demos" count line.
 - **Demos are now built from the components.** The first pass bolted a
   component showcase onto a page whose sections were hand-written class
   strings, so the components sat in an appendix below the fold and were

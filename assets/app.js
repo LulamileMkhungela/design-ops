@@ -2892,7 +2892,7 @@ function renderDemos() {
     '<div class="ad-charter-item"><h4>What you see is what was checked</h4><p>The class strings in the shipped <code>index.html</code> and in the linted <code>page.tsx</code> come from the same template function. They cannot drift apart.</p></div>' +
     '<div class="ad-charter-item"><h4>Palettes are measured, not asserted</h4><p>The catalogue has never checked a contrast ratio. The bridge measures seven pairs per proposal, and the result is on the card — including the ones that fail.</p></div>' +
     '<div class="ad-charter-item"><h4>Contrast failures are shown</h4><p>Several of these sites ship with a failing pair. That number is on the card rather than quietly fixed, because the fix is a design decision, not a build step.</p></div>' +
-    '<div class="ad-charter-item"><h4>The palette filter is the point</h4><p>Every card shows its four measured colours. Click a swatch row to filter to that category — the same way the reference gallery is browsed, except here the swatches are the tokens the page actually compiles against.</p></div>' +
+    '<div class="ad-charter-item"><h4>The palette filter is the point</h4><p>Every card shows its four measured colours. Click a swatch row to filter to that category. These are not screenshots — they are the tokens the page actually compiles against.</p></div>' +
     "</div>" +
     '<div class="section-hdr"><h2>Generate your own</h2></div>' +
     '<div class="dm-cmds">' +
