@@ -21,13 +21,13 @@ all JSX elements and does not need component import settings.
 ```tsx
 // Allowed.
 <div className="text-primary">Account settings</div>
-<div className="text-(--label-color)" style={{ "--label-color": "var(--color-primary)" }} />
+<div className="text-(--label-color)" style={% raw %}{{ "--label-color": "var(--color-primary)" }}{% endraw %} />
 
 // Reported: an ordinary inline property.
-<div style={{ color: "var(--color-primary)" }}>Account settings</div>
+<div style={% raw %}{{ color: "var(--color-primary)" }}{% endraw %}>Account settings</div>
 
 // Reported: a hardcoded color in a custom property.
-<div style={{ "--label-color": "#ec4899" }}>Account settings</div>
+<div style={% raw %}{{ "--label-color": "#ec4899" }}{% endraw %}>Account settings</div>
 ```
 
 The rule reports each disallowed property separately. A custom property
@@ -40,7 +40,7 @@ export function Panel({ width }: { width: number }) {
   return (
     <div
       className="w-(--panel-width)"
-      style={{ "--panel-width": `${width}px` } as React.CSSProperties}
+      style={% raw %}{{ "--panel-width": `${width}px` } as React.CSSProperties}{% endraw %}
     />
   )
 }
@@ -58,7 +58,7 @@ The rule reads same-file objects and lookup values one hop deep:
 const colors = { accent: "#ec4899" }
 
 // Reported: the lookup contains a raw color.
-<div style={{ "--label-color": colors.accent }} />
+<div style={% raw %}{{ "--label-color": colors.accent }}{% endraw %} />
 ```
 
 An imported object, unknown function call, unreadable spread, or mutated
@@ -108,10 +108,10 @@ For a property controlled by an animation library:
 
 ```tsx
 // Allowed.
-<div style={{ transform: "translateX(10px)" }} />
+<div style={% raw %}{{ transform: "translateX(10px)" }}{% endraw %} />
 
 // Reported.
-<div style={{ color: "red" }} />
+<div style={% raw %}{{ color: "red" }}{% endraw %} />
 ```
 
 Use CSS property names, not Tailwind classes. `backgroundColor` and
@@ -135,10 +135,10 @@ A contract can allow a property on one component:
 
 ```tsx
 // Allowed by the contract.
-<Motion style={{ transform: "translateX(10px)" }} />
+<Motion style={% raw %}{{ transform: "translateX(10px)" }}{% endraw %} />
 
 // Reported: the contract does not apply to div.
-<div style={{ transform: "translateX(10px)" }} />
+<div style={% raw %}{{ transform: "translateX(10px)" }}{% endraw %} />
 ```
 
 This rule matches the JSX component name as written. It does not resolve
@@ -149,19 +149,19 @@ top-level policy. See [contract inheritance](../rules.md#contracts).
 
 ```js
 "designops/no-inline-styles": ["error", {
-  message: 'Use a class instead of {{property|inline CSS}}.',
+  message: 'Use a class instead of {% raw %}{{property|inline CSS}}{% endraw %}.',
 }]
 ```
 
-For `style={{ color: "red" }}`:
+For `style={% raw %}{{ color: "red" }}{% endraw %}`:
 
 ```text
 Use a class instead of color.
 ```
 
-`{{property}}` uses the source spelling, such as `backgroundColor`.
+`{% raw %}{{property}}{% endraw %}` uses the source spelling, such as `backgroundColor`.
 It is empty for dynamic style objects and `<style>` elements, so provide
-a fallback. `{{component}}` is empty on lowercase elements.
+a fallback. `{% raw %}{{component}}{% endraw %}` is empty on lowercase elements.
 
 ## Options
 

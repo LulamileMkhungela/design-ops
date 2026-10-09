@@ -111,12 +111,12 @@ the top-level policy.
 
 ```js
 "designops/no-unknown-classes": ["error", {
-  message: 'Unknown class "{{className}}". Check the spelling or use {{suggestions|an existing class}}.',
+  message: 'Unknown class "{% raw %}{{className}}". Check the spelling or use {{suggestions|an existing class}}{% endraw %}.',
 }]
 ```
 
-`{{suggestions}}` contains the suggested spelling, if available.
-`{{file}}` points to the theme CSS. Custom messages keep editor suggestions.
+`{% raw %}{{suggestions}}{% endraw %}` contains the suggested spelling, if available.
+`{% raw %}{{file}}{% endraw %}` points to the theme CSS. Custom messages keep editor suggestions.
 See [message placeholders](../rules.md#your-own-words).
 
 ### Interplay with no-raw-colors

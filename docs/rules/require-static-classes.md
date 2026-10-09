@@ -135,7 +135,7 @@ register helpers whose arguments accurately describe their output.
 
 ```js
 "designops/require-static-classes": ["error", {
-  message: "Use complete class names on {{component}} so the linter can check them.",
+  message: "Use complete class names on {% raw %}{{component}}{% endraw %} so the linter can check them.",
 }]
 ```
 
@@ -143,7 +143,7 @@ register helpers whose arguments accurately describe their output.
 
 | Option    | Default           | What it does                                                           |
 | --------- | ----------------- | ---------------------------------------------------------------------- |
-| `message` | Built-in guidance | Replaces the error text. `{{component}}` names the resolved component. |
+| `message` | Built-in guidance | Replaces the error text. `{% raw %}{{component}}{% endraw %}` names the resolved component. |
 
 The rule also accepts [recognition options](../rules.md#recognition):
 `componentImports`, `ignoreImports`, `mergeFunctions`, and `variantFunctions`.

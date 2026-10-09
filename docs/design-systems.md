@@ -102,8 +102,8 @@ one message for all findings, or a different message for each category:
   deny: ["w-*"],
   message: {
     layout: "Set width on the parent container.",
-    spacing: "Use a Button size: {{sizes|none defined}}.",
-    default: "Use a Button variant: {{variants|none defined}}.",
+    spacing: "Use a Button size: {% raw %}{{sizes|none defined}}{% endraw %}.",
+    default: "Use a Button variant: {% raw %}{{variants|none defined}}{% endraw %}.",
   },
 }
 ```
