@@ -24,8 +24,8 @@ export function Page() {
           <path d="M8 7.5v4M8 5h.01" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-medium text-ink-default">Music, paid fairly</p>
-          <p className="mt-1 text-sm text-ink-muted">Soundwave is live — 82% to artists and counting.</p>
+          <p className="text-sm font-medium text-ink-default">Update</p>
+          <p className="mt-1 text-sm text-ink-muted">Payouts now run weekly, not monthly.</p>
         </div>
         <button className="shrink-0 rounded-md px-2 py-1 text-xs text-ink-subtle hover:bg-neutral-700" type="button" aria-label="Dismiss">✕</button>
       </div>
@@ -47,17 +47,16 @@ export function Page() {
         </form>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <div className="flex items-center">
-            <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs" title="Amelia R.">AR</span>
+            <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs" title="Priya O.">PO</span>
+          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Femi T.">FT</span>
           <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Thabo K.">TK</span>
-          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Marta S.">MS</span>
-          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Jonas B.">JB</span>
-          <span className="-ml-2 inline-flex h-8 w-8 text-xs items-center justify-center rounded-full border-2 border-neutral-900 bg-neutral-700 text-ink-muted">+12</span>
+          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Priya O.">PO</span>
           </div>
-          <p className="text-ink-subtle text-sm">Trusted by 82% to artists</p>
+          <p className="text-ink-subtle text-sm">Used by 12,000 artists</p>
         </div>
       </header>
       
-      <section className="border-y border-neutral-700 bg-neutral-800 border-b">
+      <section className="border-y border-neutral-700 bg-neutral-800">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-12 md:grid-cols-4">
           <div className="text-center"><div className="font-heading text-primary-900 text-3xl font-extrabold">82%</div><div className="text-ink-subtle mt-2 text-sm">To artists</div></div>
           <div className="text-center"><div className="font-heading text-primary-900 text-3xl font-extrabold">4.1M</div><div className="text-ink-subtle mt-2 text-sm">Tracks</div></div>
@@ -66,27 +65,27 @@ export function Page() {
         </div>
       </section>
       
-      <section id="features" className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="font-heading text-ink-default text-center text-3xl font-bold">Everything you need</h2>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Published split</h3>
+      <section id="features" className="mx-auto max-w-6xl px-6 py-16">
+        <h2 className="font-heading text-ink-default text-3xl font-bold">How the split is calculated</h2>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Published split</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Exactly where your subscription goes, every month.</p></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Per-play payout</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Per-play payout</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Your money follows your listening, not a global pool.</p></article>
-          <article className="rounded-lg border border-neutral-600 p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Lossless included</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Lossless included</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">FLAC at no extra cost, because storage is cheap now.</p></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Direct tips</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Direct tips</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Send an artist money, with nothing skimmed.</p></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">No free ads</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">No free ads</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">The free tier has no advertising at all.</p></article>
-          <article className="rounded-lg border border-neutral-600 p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Offline forever</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Offline forever</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Downloads stay yours if you cancel.</p></article>
         </div>
       </section>
       
       <section id="glance" className="border-neutral-700 bg-neutral-800">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <h2 className="font-heading text-ink-default text-center text-3xl font-bold">At a glance</h2>
+          <h2 className="font-heading text-ink-default text-3xl font-bold">By the numbers</h2>
           <p className="text-ink-muted mx-auto mt-4 max-w-2xl text-center text-sm">Live numbers, rendered with the data-table component.</p>
           <div className="mt-10">
             <div className="overflow-hidden rounded-lg border border-neutral-700">
@@ -96,34 +95,29 @@ export function Page() {
             <tr>
               <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Metric</th>
               <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Value</th>
-              <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Period</th>
-              <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Status</th>
+              <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Change</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">To artists</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">82%</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">+12%</td>
             </tr>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">Tracks</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">4.1M</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">+4%</td>
             </tr>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">Included</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">Lossless</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">-2%</td>
             </tr>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">Free tier ads</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">$0</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">+31%</td>
             </tr>
           </tbody>
         </table>
@@ -132,43 +126,55 @@ export function Page() {
         </div>
       </section>
       
-      <section id="pricing" className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="font-heading text-ink-default text-center text-3xl font-bold">Simple, transparent pricing</h2>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex items-start justify-between">
-              <h3 className="font-heading text-ink-default text-lg font-semibold">Free</h3>
-              <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">Free</span>
-            </div>
-            <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$0</div>
-            <ul className="mt-6 space-y-2">
-              <li className="text-ink-muted text-sm">— Ad-free listening</li>
-              <li className="text-ink-muted text-sm">— Standard quality</li>
-              <li className="text-ink-muted text-sm">— Offline</li>
-            </ul>
-            <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm mt-8 w-full" type="button">Choose Free</button></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 border border-primary-900"><div className="flex items-start justify-between">
-              <h3 className="font-heading text-ink-default text-lg font-semibold">Listener</h3>
-              <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Most popular</span>
-            </div>
-            <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$11/mo</div>
-            <ul className="mt-6 space-y-2">
-              <li className="text-ink-muted text-sm">— Lossless audio</li>
-              <li className="text-ink-muted text-sm">— Offline forever</li>
-              <li className="text-ink-muted text-sm">— Direct tips</li>
-            </ul>
-            <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity bg-primary-900 text-neutral-900 hover:bg-primary-800 px-4 py-2 text-sm mt-8 w-full" type="button">Choose Listener</button></article>
-          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex items-start justify-between">
-              <h3 className="font-heading text-ink-default text-lg font-semibold">Supporter</h3>
-              <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">Supporter</span>
-            </div>
-            <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$25/mo</div>
-            <ul className="mt-6 space-y-2">
-              <li className="text-ink-muted text-sm">— Everything</li>
-              <li className="text-ink-muted text-sm">— 3× artist payout</li>
-              <li className="text-ink-muted text-sm">— Early releases</li>
-              <li className="text-ink-muted text-sm">— Lyrics and credits</li>
-            </ul>
-            <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm mt-8 w-full" type="button">Choose Supporter</button></article>
+      <section id="pricing" className="mx-auto max-w-6xl px-6 py-16">
+        <h2 className="font-heading text-ink-default text-3xl font-bold">Free to upload, 85 percent to you</h2>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex h-full flex-col">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-heading text-ink-default text-lg font-semibold">Free</h3>
+                
+              </div>
+              <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$0</div>
+              <ul className="mt-6 space-y-2">
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ad-free listening</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Standard quality</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Offline</span></li>
+              </ul>
+              <div className="mt-auto pt-8">
+                <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm w-full" type="button">Choose Free</button>
+              </div>
+            </div></article>
+          <article className="rounded-lg border border-primary-900 bg-neutral-800 shadow-md p-6"><div className="flex h-full flex-col">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-heading text-ink-default text-lg font-semibold">Listener</h3>
+                <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Most popular</span>
+              </div>
+              <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$11/mo</div>
+              <ul className="mt-6 space-y-2">
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Lossless audio</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Offline forever</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Direct tips</span></li>
+              </ul>
+              <div className="mt-auto pt-8">
+                <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity bg-primary-900 text-neutral-900 hover:bg-primary-800 px-4 py-2 text-sm w-full" type="button">Choose Listener</button>
+              </div>
+            </div></article>
+          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex h-full flex-col">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-heading text-ink-default text-lg font-semibold">Supporter</h3>
+                
+              </div>
+              <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$25/mo</div>
+              <ul className="mt-6 space-y-2">
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Everything</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3× artist payout</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Early releases</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Lyrics and credits</span></li>
+              </ul>
+              <div className="mt-auto pt-8">
+                <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm w-full" type="button">Choose Supporter</button>
+              </div>
+            </div></article>
         </div>
       </section>
       
@@ -182,8 +188,8 @@ export function Page() {
       
       <section className="border-neutral-700 bg-neutral-800">
         <div className="mx-auto max-w-4xl px-6 py-20 text-center">
-          <h2 className="font-heading text-ink-default text-3xl font-bold">Ready to start?</h2>
-          <p className="text-ink-muted mx-auto mt-4 max-w-xl">How payouts work — no card, no call, no commitment.</p>
+          <h2 className="font-heading text-ink-default text-3xl font-bold">Upload a track</h2>
+          <p className="text-ink-muted mx-auto mt-4 max-w-xl">How payouts work, or read how it works first.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity bg-primary-900 text-neutral-900 hover:bg-primary-800 px-6 py-3 text-base" href="#pricing">Start listening</a>
             <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-6 py-3 text-base" type="button">Talk to us</button>
@@ -391,7 +397,7 @@ export function Page() {
           <div className="font-heading text-primary-900 text-lg font-bold">Soundwave</div>
           <p className="text-ink-subtle text-sm">Music, paid fairly · built with DesignOps</p>
           <div className="flex gap-2">
-            <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">v2.0</span>
+            <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">Entertainment</span>
             <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Live</span>
           </div>
         </div>

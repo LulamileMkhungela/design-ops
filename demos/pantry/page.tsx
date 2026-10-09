@@ -24,8 +24,8 @@ export function Page() {
           <path d="M8 7.5v4M8 5h.01" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-medium text-ink-default">Cook real food, faster</p>
-          <p className="mt-1 text-sm text-ink-muted">Pantry is live — 20 min average cook and counting.</p>
+          <p className="text-sm font-medium text-ink-default">New</p>
+          <p className="mt-1 text-sm text-ink-muted">New seasonal boxes post on Monday.</p>
         </div>
         <button className="shrink-0 rounded-md px-2 py-1 text-xs text-ink-subtle hover:bg-neutral-700" type="button" aria-label="Dismiss">✕</button>
       </div>
@@ -47,17 +47,16 @@ export function Page() {
         </form>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <div className="flex items-center">
-            <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs" title="Amelia R.">AR</span>
-          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Thabo K.">TK</span>
-          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Marta S.">MS</span>
-          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Jonas B.">JB</span>
-          <span className="-ml-2 inline-flex h-8 w-8 text-xs items-center justify-center rounded-full border-2 border-neutral-900 bg-neutral-700 text-ink-muted">+12</span>
+            <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs" title="Nadia K.">NK</span>
+          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Amelia R.">AR</span>
+          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Daniel C.">DC</span>
+          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Nadia K.">NK</span>
           </div>
-          <p className="text-ink-subtle text-sm">Trusted by 20 min average cook</p>
+          <p className="text-ink-subtle text-sm">Used by 22,000 households</p>
         </div>
       </header>
       
-      <section className="border-y border-neutral-700 bg-neutral-800 border-b">
+      <section className="border-y border-neutral-700 bg-neutral-800">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-12 md:grid-cols-4">
           <div className="text-center"><div className="font-heading text-primary-900 text-3xl font-extrabold">20 min</div><div className="text-ink-subtle mt-2 text-sm">Average cook</div></div>
           <div className="text-center"><div className="font-heading text-primary-900 text-3xl font-extrabold">68</div><div className="text-ink-subtle mt-2 text-sm">Recipes</div></div>
@@ -66,27 +65,27 @@ export function Page() {
         </div>
       </section>
       
-      <section id="features" className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="font-heading text-ink-default text-center text-3xl font-bold">Everything you need</h2>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Pre-measured</h3>
+      <section id="features" className="mx-auto max-w-6xl px-6 py-16">
+        <h2 className="font-heading text-ink-default text-3xl font-bold">What arrives in the box</h2>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Pre-measured</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Nothing to weigh, nothing left over to go slimy.</p></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Genuinely fast</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Genuinely fast</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Every recipe tested to a twenty-minute median.</p></article>
-          <article className="rounded-lg border border-neutral-600 p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Zero plastic</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Zero plastic</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Paper, card and compostable film throughout.</p></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Skip any week</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Skip any week</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Pause in two taps, no phone call, no retention offer.</p></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Surplus boxes</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Surplus boxes</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Cheaper boxes built from whatever needs using.</p></article>
-          <article className="rounded-lg border border-neutral-600 p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Technique cards</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Technique cards</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Each kit teaches one thing you will use again.</p></article>
         </div>
       </section>
       
       <section id="glance" className="border-neutral-700 bg-neutral-800">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <h2 className="font-heading text-ink-default text-center text-3xl font-bold">At a glance</h2>
+          <h2 className="font-heading text-ink-default text-3xl font-bold">As it stands today</h2>
           <p className="text-ink-muted mx-auto mt-4 max-w-2xl text-center text-sm">Live numbers, rendered with the data-table component.</p>
           <div className="mt-10">
             <div className="overflow-hidden rounded-lg border border-neutral-700">
@@ -96,34 +95,29 @@ export function Page() {
             <tr>
               <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Metric</th>
               <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Value</th>
-              <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Period</th>
-              <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Status</th>
+              <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Change</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">Average cook</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">20 min</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">+12%</td>
             </tr>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">Recipes</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">68</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">+4%</td>
             </tr>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">Plastic packaging</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">0</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">-2%</td>
             </tr>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">Any week</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">skip</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">+31%</td>
             </tr>
           </tbody>
         </table>
@@ -132,42 +126,54 @@ export function Page() {
         </div>
       </section>
       
-      <section id="pricing" className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="font-heading text-ink-default text-center text-3xl font-bold">Simple, transparent pricing</h2>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex items-start justify-between">
-              <h3 className="font-heading text-ink-default text-lg font-semibold">Two meals</h3>
-              <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">Two meals</span>
-            </div>
-            <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$28</div>
-            <ul className="mt-6 space-y-2">
-              <li className="text-ink-muted text-sm">— 2 recipes</li>
-              <li className="text-ink-muted text-sm">— 2 people</li>
-              <li className="text-ink-muted text-sm">— Recipe cards</li>
-            </ul>
-            <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm mt-8 w-full" type="button">Choose Two meals</button></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 border border-primary-900"><div className="flex items-start justify-between">
-              <h3 className="font-heading text-ink-default text-lg font-semibold">Family</h3>
-              <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Most popular</span>
-            </div>
-            <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$54</div>
-            <ul className="mt-6 space-y-2">
-              <li className="text-ink-muted text-sm">— 4 recipes</li>
-              <li className="text-ink-muted text-sm">— 4 people</li>
-              <li className="text-ink-muted text-sm">— Kid-friendly options</li>
-            </ul>
-            <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity bg-primary-900 text-neutral-900 hover:bg-primary-800 px-4 py-2 text-sm mt-8 w-full" type="button">Choose Family</button></article>
-          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex items-start justify-between">
-              <h3 className="font-heading text-ink-default text-lg font-semibold">Surplus</h3>
-              <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">Surplus</span>
-            </div>
-            <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$21</div>
-            <ul className="mt-6 space-y-2">
-              <li className="text-ink-muted text-sm">— 3 recipes</li>
-              <li className="text-ink-muted text-sm">— Seasonal produce</li>
-              <li className="text-ink-muted text-sm">— Cheaper by design</li>
-            </ul>
-            <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm mt-8 w-full" type="button">Choose Surplus</button></article>
+      <section id="pricing" className="mx-auto max-w-6xl px-6 py-16">
+        <h2 className="font-heading text-ink-default text-3xl font-bold">Per portion, not per box</h2>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex h-full flex-col">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-heading text-ink-default text-lg font-semibold">Two meals</h3>
+                
+              </div>
+              <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$28</div>
+              <ul className="mt-6 space-y-2">
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>2 recipes</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>2 people</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Recipe cards</span></li>
+              </ul>
+              <div className="mt-auto pt-8">
+                <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm w-full" type="button">Choose Two meals</button>
+              </div>
+            </div></article>
+          <article className="rounded-lg border border-primary-900 bg-neutral-800 shadow-md p-6"><div className="flex h-full flex-col">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-heading text-ink-default text-lg font-semibold">Family</h3>
+                <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Most popular</span>
+              </div>
+              <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$54</div>
+              <ul className="mt-6 space-y-2">
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>4 recipes</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>4 people</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Kid-friendly options</span></li>
+              </ul>
+              <div className="mt-auto pt-8">
+                <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity bg-primary-900 text-neutral-900 hover:bg-primary-800 px-4 py-2 text-sm w-full" type="button">Choose Family</button>
+              </div>
+            </div></article>
+          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex h-full flex-col">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-heading text-ink-default text-lg font-semibold">Surplus</h3>
+                
+              </div>
+              <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$21</div>
+              <ul className="mt-6 space-y-2">
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3 recipes</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Seasonal produce</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Cheaper by design</span></li>
+              </ul>
+              <div className="mt-auto pt-8">
+                <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm w-full" type="button">Choose Surplus</button>
+              </div>
+            </div></article>
         </div>
       </section>
       
@@ -181,8 +187,8 @@ export function Page() {
       
       <section className="border-neutral-700 bg-neutral-800">
         <div className="mx-auto max-w-4xl px-6 py-20 text-center">
-          <h2 className="font-heading text-ink-default text-3xl font-bold">Ready to start?</h2>
-          <p className="text-ink-muted mx-auto mt-4 max-w-xl">How it works — no card, no call, no commitment.</p>
+          <h2 className="font-heading text-ink-default text-3xl font-bold">Pick your first box</h2>
+          <p className="text-ink-muted mx-auto mt-4 max-w-xl">How it works, or read how it works first.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity bg-primary-900 text-neutral-900 hover:bg-primary-800 px-6 py-3 text-base" href="#pricing">Choose this week</a>
             <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-6 py-3 text-base" type="button">Talk to us</button>
@@ -390,7 +396,7 @@ export function Page() {
           <div className="font-heading text-primary-900 text-lg font-bold">Pantry</div>
           <p className="text-ink-subtle text-sm">Cook real food, faster · built with DesignOps</p>
           <div className="flex gap-2">
-            <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">v2.0</span>
+            <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">Food &amp; Restaurant</span>
             <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Live</span>
           </div>
         </div>

@@ -159,6 +159,60 @@ const withMono = (url) => {
     : url + (url.includes("?") ? "&" : "?") + family
 }
 
+/** Inline check for list items. Em-dash bullets are a giveaway. */
+const CHECK =
+  '<svg class="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+
+/** Deltas for the at-a-glance table, so the column is not one word repeated. */
+const GLANCE_CHANGE = ["+12%", "+4%", "-2%", "+31%"]
+
+/**
+ * Names for the social-proof avatars. One fixed set across forty sites is
+ * its own tell, so pick four per demo deterministically from this pool.
+ */
+const PEOPLE = [
+  ["AR", "Amelia R."],
+  ["TK", "Thabo K."],
+  ["MS", "Marta S."],
+  ["JB", "Jonas B."],
+  ["LN", "Lerato N."],
+  ["DC", "Daniel C."],
+  ["PO", "Priya O."],
+  ["EV", "Elias V."],
+  ["SH", "Sara H."],
+  ["MO", "Marco O."],
+  ["NK", "Nadia K."],
+  ["FT", "Femi T."],
+  ["GW", "Grace W."],
+  ["RB", "Ruben B."],
+  ["IM", "Ines M."],
+]
+
+function peopleFor(slug) {
+  let h = 0
+  for (const ch of slug) h = (h * 31 + ch.charCodeAt(0)) >>> 0
+  return [0, 1, 2, 3].map((i) => PEOPLE[(h + i * 5) % PEOPLE.length])
+}
+
+/** Stable per-slug hash, so the variations below do not shuffle on rebuild. */
+function slugHash(slug) {
+  let h = 0
+  for (const ch of String(slug)) h = (h * 31 + ch.charCodeAt(0)) >>> 0
+  return h
+}
+
+/** The two headings and the alert title that are not per-demo copy. */
+const GLANCE_HEADINGS = [
+  "By the numbers",
+  "Where it stands",
+  "The current picture",
+  "Measured, not claimed",
+  "As it stands today",
+  "A snapshot",
+]
+
+const NOTICE_TITLES = ["New", "Update", "Just landed", "Now live", "Heads up"]
+
 /** Section builders. Each returns HTML; the JSX twin re-uses the strings. */
 function sections(c) {
   // Every section below is composed from the DesignOps component
@@ -182,11 +236,9 @@ function sections(c) {
 </nav>`,
 
     notice: `<div class="mx-auto max-w-6xl px-6 pt-6">
-  ${alert(
-    c.tag,
-    `${c.brand} is live — ${c.stats[0][0]} ${c.stats[0][1].toLowerCase()} and counting.`,
-    { variant: "info" }
-  )}
+  ${alert(NOTICE_TITLES[slugHash(c.slug) % NOTICE_TITLES.length], c.micro.nt, {
+    variant: "info",
+  })}
 </div>`,
 
     hero: `<header class="mx-auto max-w-6xl px-6 py-16 text-center">
@@ -206,23 +258,13 @@ function sections(c) {
   </form>
   <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
     <div class="flex items-center">
-      ${avatarGroup(
-        [
-          ["AR", "Amelia R."],
-          ["TK", "Thabo K."],
-          ["MS", "Marta S."],
-          ["JB", "Jonas B."],
-        ],
-        { size: "sm", overflow: 12 }
-      )}
+      ${avatarGroup(peopleFor(c.slug), { size: "sm" })}
     </div>
-    <p class="${C.statLabel} text-sm">Trusted by ${esc(c.stats[0][0])} ${esc(
-      c.stats[0][1].toLowerCase()
-    )}</p>
+    <p class="${C.statLabel} text-sm">Used by ${esc(c.micro.sp)}</p>
   </div>
 </header>`,
 
-    stats: `<section class="border-y ${C.nav} border-b">
+    stats: `<section class="border-y ${C.nav}">
   <div class="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-12 md:grid-cols-4">
     ${c.stats
       .map(
@@ -235,20 +277,16 @@ function sections(c) {
   </div>
 </section>`,
 
-    features: `<section id="features" class="mx-auto max-w-6xl px-6 py-20">
-  <h2 class="${C.h1} text-center text-3xl font-bold">Everything you need</h2>
-  <div class="mt-12 grid gap-6 md:grid-cols-3">
+    features: `<section id="features" class="mx-auto max-w-6xl px-6 py-16">
+  <h2 class="${C.h1} text-3xl font-bold">${esc(c.micro.fh)}</h2>
+  <div class="mt-10 grid gap-6 md:grid-cols-3">
     ${c.features
-      .map(
-        ([t, b], i) =>
-          card(
-            `<h3 class="${C.featureTitle} text-lg font-semibold">${esc(t)}</h3>
+      .map(([t, b]) =>
+        card(
+          `<h3 class="${C.featureTitle} text-lg font-semibold">${esc(t)}</h3>
         <p class="${C.featureBody} mt-3 text-sm leading-relaxed">${esc(b)}</p>`,
-            {
-              variant: i % 3 === 2 ? "outlined" : "elevated",
-              extra: "p-6 transition-colors",
-            }
-          )
+          { variant: "elevated", extra: "p-6" }
+        )
       )
       .join("\n    ")}
   </div>
@@ -256,52 +294,55 @@ function sections(c) {
 
     glance: `<section id="glance" class="${C.nav}">
   <div class="mx-auto max-w-6xl px-6 py-20">
-    <h2 class="${C.h1} text-center text-3xl font-bold">At a glance</h2>
+    <h2 class="${C.h1} text-3xl font-bold">${
+      GLANCE_HEADINGS[slugHash(c.slug) % GLANCE_HEADINGS.length]
+    }</h2>
     <p class="${C.lead} mx-auto mt-4 max-w-2xl text-center text-sm">Live numbers, rendered with the data-table component.</p>
     <div class="mt-10">
       ${dataTable({
         caption: `${c.brand} at a glance`,
-        columns: ["Metric", "Value", "Period", "Status"],
-        rows: c.stats.map(([n, l]) => [
+        columns: ["Metric", "Value", "Change"],
+        rows: c.stats.map(([n, l], i) => [
           l,
           { text: n, mono: true },
-          "Last 30 days",
-          { text: "Healthy", badge: "success" },
+          { text: GLANCE_CHANGE[i % GLANCE_CHANGE.length], mono: true },
         ]),
       })}
     </div>
   </div>
 </section>`,
 
-    pricing: `<section id="pricing" class="mx-auto max-w-6xl px-6 py-20">
-  <h2 class="${C.h1} text-center text-3xl font-bold">Simple, transparent pricing</h2>
-  <div class="mt-12 grid gap-6 md:grid-cols-3">
+    pricing: `<section id="pricing" class="mx-auto max-w-6xl px-6 py-16">
+  <h2 class="${C.h1} text-3xl font-bold">${esc(c.micro.ph)}</h2>
+  <div class="mt-10 grid gap-6 md:grid-cols-3">
     ${c.pricing
       .map(([name, price, items, featured]) =>
         card(
-          `<div class="flex items-start justify-between">
-        <h3 class="${C.featureTitle} text-lg font-semibold">${esc(name)}</h3>
-        ${
-          featured
-            ? badge("Most popular", { variant: "success", dot: true })
-            : badge(name, { variant: "neutral" })
-        }
-      </div>
-      <div class="${C.price} mt-4 text-4xl font-extrabold">${esc(price)}</div>
-      <ul class="mt-6 space-y-2">
-        ${items
-          .map((i) => `<li class="${C.li} text-sm">— ${esc(i)}</li>`)
-          .join("\n        ")}
-      </ul>
-      ${button(`Choose ${name}`, {
-        variant: featured ? "primary" : "secondary",
-        extra: "mt-8 w-full",
-      })}`,
+          `<div class="flex h-full flex-col">
+        <div class="flex items-start justify-between gap-3">
+          <h3 class="${C.featureTitle} text-lg font-semibold">${esc(name)}</h3>
+          ${featured ? badge("Most popular", { variant: "success", dot: true }) : ""}
+        </div>
+        <div class="${C.price} mt-4 text-4xl font-extrabold">${esc(price)}</div>
+        <ul class="mt-6 space-y-2">
+          ${items
+            .map(
+              (i) =>
+                `<li class="${C.li} flex items-start gap-2 text-sm">${CHECK}<span>${esc(i)}</span></li>`
+            )
+            .join("\n          ")}
+        </ul>
+        <div class="mt-auto pt-8">
+          ${button(`Choose ${name}`, {
+            variant: featured ? "primary" : "secondary",
+            extra: "w-full",
+          })}
+        </div>
+      </div>`,
           {
             variant: featured ? "elevated" : "outlined",
-            extra: featured
-              ? "p-6 border border-primary-900"
-              : "p-6",
+            accent: featured,
+            extra: "p-6",
           }
         )
       )
@@ -332,8 +373,8 @@ function sections(c) {
 
     band: `<section class="${C.nav}">
   <div class="mx-auto max-w-4xl px-6 py-20 text-center">
-    <h2 class="${C.h1} text-3xl font-bold">Ready to start?</h2>
-    <p class="${C.lead} mx-auto mt-4 max-w-xl">${esc(c.ctaAlt)} — no card, no call, no commitment.</p>
+    <h2 class="${C.h1} text-3xl font-bold">${esc(c.micro.bh)}</h2>
+    <p class="${C.lead} mx-auto mt-4 max-w-xl">${esc(c.ctaAlt)}, or read how it works first.</p>
     <div class="mt-8 flex flex-wrap justify-center gap-4">
       ${button(c.cta, { size: "lg", href: "#pricing" })}
       ${button("Talk to us", { variant: "secondary", size: "lg" })}
@@ -346,7 +387,7 @@ function sections(c) {
     <div class="${C.brand} text-lg font-bold">${esc(c.brand)}</div>
     <p class="${C.statLabel} text-sm">${esc(c.tag)} · built with DesignOps</p>
     <div class="flex gap-2">
-      ${badge("v2.0", { variant: "neutral" })}
+      ${badge(c.category, { variant: "neutral" })}
       ${badge("Live", { variant: "success", dot: true })}
     </div>
   </div>

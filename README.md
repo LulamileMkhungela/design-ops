@@ -203,6 +203,12 @@ and:
   they are visible in the gallery thumbnail rather than buried.
 - a **Components** section at the end showing all eight with every variant.
 
+Each site carries its own section headings, notice line and social-proof
+count (`MICROCOPY` in `tools/demo-content.mjs`), because forty pages that
+all say "Everything you need" above an identical grid read as one
+template. Avatars, the notice title and the at-a-glance heading rotate on
+a stable per-slug hash, so they vary without shuffling between rebuilds.
+
 The gallery view filters by category, by Light/Dark mode, or by clicking a
 palette swatch row, and shows "Showing N of 40 demos" as you narrow it.
 

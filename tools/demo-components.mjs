@@ -131,11 +131,15 @@ export function badge(text, opts = {}) {
 /* ── Card ───────────────────────────────────────────────────── */
 
 export function card(inner, opts = {}) {
-  const { variant = "elevated", extra = "" } = opts
-  const skin =
-    variant === "outlined"
-      ? "border border-neutral-600"
-      : "border border-neutral-700 bg-neutral-800 shadow-md"
+  const { variant = "elevated", extra = "", accent = false } = opts
+  // One border declaration per card. Callers used to append a second
+  // `border border-primary-900` in `extra`, which left two conflicting
+  // utilities on the element — the wrong one wins depending on the order
+  // Tailwind happens to emit them.
+  let skin
+  if (accent) skin = "border border-primary-900 bg-neutral-800 shadow-md"
+  else if (variant === "outlined") skin = "border border-neutral-600"
+  else skin = "border border-neutral-700 bg-neutral-800 shadow-md"
   return `<article class="rounded-lg ${skin} ${extra}">${inner}</article>`
 }
 

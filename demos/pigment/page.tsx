@@ -24,8 +24,8 @@ export function Page() {
           <path d="M8 7.5v4M8 5h.01" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-medium text-ink-default">Brand and digital</p>
-          <p className="mt-1 text-sm text-ink-muted">Pigment is live — 9 yrs in practice and counting.</p>
+          <p className="text-sm font-medium text-ink-default">Now live</p>
+          <p className="mt-1 text-sm text-ink-muted">We have room for one project this quarter.</p>
         </div>
         <button className="shrink-0 rounded-md px-2 py-1 text-xs text-ink-subtle hover:bg-neutral-700" type="button" aria-label="Dismiss">✕</button>
       </div>
@@ -47,17 +47,16 @@ export function Page() {
         </form>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <div className="flex items-center">
-            <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs" title="Amelia R.">AR</span>
-          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Thabo K.">TK</span>
-          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Marta S.">MS</span>
+            <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs" title="Ruben B.">RB</span>
           <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Jonas B.">JB</span>
-          <span className="-ml-2 inline-flex h-8 w-8 text-xs items-center justify-center rounded-full border-2 border-neutral-900 bg-neutral-700 text-ink-muted">+12</span>
+          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Sara H.">SH</span>
+          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Ruben B.">RB</span>
           </div>
-          <p className="text-ink-subtle text-sm">Trusted by 9 yrs in practice</p>
+          <p className="text-ink-subtle text-sm">Used by 60 brands</p>
         </div>
       </header>
       
-      <section className="border-y border-neutral-700 bg-neutral-800 border-b">
+      <section className="border-y border-neutral-700 bg-neutral-800">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-12 md:grid-cols-4">
           <div className="text-center"><div className="font-heading text-primary-900 text-3xl font-extrabold">9 yrs</div><div className="text-ink-subtle mt-2 text-sm">In practice</div></div>
           <div className="text-center"><div className="font-heading text-primary-900 text-3xl font-extrabold">60+</div><div className="text-ink-subtle mt-2 text-sm">Brands built</div></div>
@@ -66,27 +65,27 @@ export function Page() {
         </div>
       </section>
       
-      <section id="features" className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="font-heading text-ink-default text-center text-3xl font-bold">Everything you need</h2>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Identity</h3>
+      <section id="features" className="mx-auto max-w-6xl px-6 py-16">
+        <h2 className="font-heading text-ink-default text-3xl font-bold">What we actually do</h2>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Identity</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Marks, type systems and the rules that keep them standing.</p></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Product design</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Product design</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Interfaces designed with the engineers who build them.</p></article>
-          <article className="rounded-lg border border-neutral-600 p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Design systems</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Design systems</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Tokens, components and documentation your team maintains.</p></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Motion</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Motion</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Movement that explains, rather than decorates.</p></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Naming and voice</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Naming and voice</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">What you are called, and how you sound.</p></article>
-          <article className="rounded-lg border border-neutral-600 p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Senior-led</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Senior-led</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">The person who pitches is the person who does the work.</p></article>
         </div>
       </section>
       
       <section id="glance" className="border-neutral-700 bg-neutral-800">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <h2 className="font-heading text-ink-default text-center text-3xl font-bold">At a glance</h2>
+          <h2 className="font-heading text-ink-default text-3xl font-bold">As it stands today</h2>
           <p className="text-ink-muted mx-auto mt-4 max-w-2xl text-center text-sm">Live numbers, rendered with the data-table component.</p>
           <div className="mt-10">
             <div className="overflow-hidden rounded-lg border border-neutral-700">
@@ -96,34 +95,29 @@ export function Page() {
             <tr>
               <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Metric</th>
               <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Value</th>
-              <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Period</th>
-              <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Status</th>
+              <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Change</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">In practice</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">9 yrs</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">+12%</td>
             </tr>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">Brands built</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">60+</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">+4%</td>
             </tr>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">Studios, one team</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">2</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">-2%</td>
             </tr>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">Senior-led</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">100%</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">+31%</td>
             </tr>
           </tbody>
         </table>
@@ -132,44 +126,56 @@ export function Page() {
         </div>
       </section>
       
-      <section id="pricing" className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="font-heading text-ink-default text-center text-3xl font-bold">Simple, transparent pricing</h2>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex items-start justify-between">
-              <h3 className="font-heading text-ink-default text-lg font-semibold">Identity sprint</h3>
-              <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">Identity sprint</span>
-            </div>
-            <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$12K</div>
-            <ul className="mt-6 space-y-2">
-              <li className="text-ink-muted text-sm">— 2 weeks</li>
-              <li className="text-ink-muted text-sm">— Mark and type</li>
-              <li className="text-ink-muted text-sm">— Usage rules</li>
-              <li className="text-ink-muted text-sm">— Brand sheet</li>
-            </ul>
-            <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm mt-8 w-full" type="button">Choose Identity sprint</button></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 border border-primary-900"><div className="flex items-start justify-between">
-              <h3 className="font-heading text-ink-default text-lg font-semibold">Full identity</h3>
-              <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Most popular</span>
-            </div>
-            <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$38K</div>
-            <ul className="mt-6 space-y-2">
-              <li className="text-ink-muted text-sm">— 6 weeks</li>
-              <li className="text-ink-muted text-sm">— Full system</li>
-              <li className="text-ink-muted text-sm">— Design tokens</li>
-              <li className="text-ink-muted text-sm">— Guidelines</li>
-            </ul>
-            <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity bg-primary-900 text-neutral-900 hover:bg-primary-800 px-4 py-2 text-sm mt-8 w-full" type="button">Choose Full identity</button></article>
-          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex items-start justify-between">
-              <h3 className="font-heading text-ink-default text-lg font-semibold">Product partner</h3>
-              <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">Product partner</span>
-            </div>
-            <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">From $9K/mo</div>
-            <ul className="mt-6 space-y-2">
-              <li className="text-ink-muted text-sm">— Embedded designer</li>
-              <li className="text-ink-muted text-sm">— Design system</li>
-              <li className="text-ink-muted text-sm">— Ongoing delivery</li>
-            </ul>
-            <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm mt-8 w-full" type="button">Choose Product partner</button></article>
+      <section id="pricing" className="mx-auto max-w-6xl px-6 py-16">
+        <h2 className="font-heading text-ink-default text-3xl font-bold">Fixed-fee projects, mostly</h2>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex h-full flex-col">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-heading text-ink-default text-lg font-semibold">Identity sprint</h3>
+                
+              </div>
+              <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$12K</div>
+              <ul className="mt-6 space-y-2">
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>2 weeks</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Mark and type</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Usage rules</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Brand sheet</span></li>
+              </ul>
+              <div className="mt-auto pt-8">
+                <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm w-full" type="button">Choose Identity sprint</button>
+              </div>
+            </div></article>
+          <article className="rounded-lg border border-primary-900 bg-neutral-800 shadow-md p-6"><div className="flex h-full flex-col">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-heading text-ink-default text-lg font-semibold">Full identity</h3>
+                <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Most popular</span>
+              </div>
+              <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$38K</div>
+              <ul className="mt-6 space-y-2">
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>6 weeks</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Full system</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Design tokens</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Guidelines</span></li>
+              </ul>
+              <div className="mt-auto pt-8">
+                <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity bg-primary-900 text-neutral-900 hover:bg-primary-800 px-4 py-2 text-sm w-full" type="button">Choose Full identity</button>
+              </div>
+            </div></article>
+          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex h-full flex-col">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-heading text-ink-default text-lg font-semibold">Product partner</h3>
+                
+              </div>
+              <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">From $9K/mo</div>
+              <ul className="mt-6 space-y-2">
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Embedded designer</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Design system</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ongoing delivery</span></li>
+              </ul>
+              <div className="mt-auto pt-8">
+                <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm w-full" type="button">Choose Product partner</button>
+              </div>
+            </div></article>
         </div>
       </section>
       
@@ -183,8 +189,8 @@ export function Page() {
       
       <section className="border-neutral-700 bg-neutral-800">
         <div className="mx-auto max-w-4xl px-6 py-20 text-center">
-          <h2 className="font-heading text-ink-default text-3xl font-bold">Ready to start?</h2>
-          <p className="text-ink-muted mx-auto mt-4 max-w-xl">See our work — no card, no call, no commitment.</p>
+          <h2 className="font-heading text-ink-default text-3xl font-bold">Start with a conversation</h2>
+          <p className="text-ink-muted mx-auto mt-4 max-w-xl">See our work, or read how it works first.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity bg-primary-900 text-neutral-900 hover:bg-primary-800 px-6 py-3 text-base" href="#pricing">Start a project</a>
             <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-6 py-3 text-base" type="button">Talk to us</button>
@@ -392,7 +398,7 @@ export function Page() {
           <div className="font-heading text-primary-900 text-lg font-bold">Pigment</div>
           <p className="text-ink-subtle text-sm">Brand and digital · built with DesignOps</p>
           <div className="flex gap-2">
-            <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">v2.0</span>
+            <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">Creative</span>
             <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Live</span>
           </div>
         </div>

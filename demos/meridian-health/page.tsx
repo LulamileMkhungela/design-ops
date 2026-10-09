@@ -24,8 +24,8 @@ export function Page() {
           <path d="M8 7.5v4M8 5h.01" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-medium text-ink-default">Care that keeps up</p>
-          <p className="mt-1 text-sm text-ink-muted">Meridian Health is live — 15 min median wait and counting.</p>
+          <p className="text-sm font-medium text-ink-default">Heads up</p>
+          <p className="mt-1 text-sm text-ink-muted">Same-week appointments are open.</p>
         </div>
         <button className="shrink-0 rounded-md px-2 py-1 text-xs text-ink-subtle hover:bg-neutral-700" type="button" aria-label="Dismiss">✕</button>
       </div>
@@ -47,17 +47,16 @@ export function Page() {
         </form>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <div className="flex items-center">
-            <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs" title="Amelia R.">AR</span>
-          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Thabo K.">TK</span>
-          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Marta S.">MS</span>
-          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Jonas B.">JB</span>
-          <span className="-ml-2 inline-flex h-8 w-8 text-xs items-center justify-center rounded-full border-2 border-neutral-900 bg-neutral-700 text-ink-muted">+12</span>
+            <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs" title="Ines M.">IM</span>
+          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Lerato N.">LN</span>
+          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Marco O.">MO</span>
+          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Ines M.">IM</span>
           </div>
-          <p className="text-ink-subtle text-sm">Trusted by 15 min median wait</p>
+          <p className="text-ink-subtle text-sm">Used by 23,000 patients</p>
         </div>
       </header>
       
-      <section className="border-y border-neutral-700 bg-neutral-800 border-b">
+      <section className="border-y border-neutral-700 bg-neutral-800">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-12 md:grid-cols-4">
           <div className="text-center"><div className="font-heading text-primary-900 text-3xl font-extrabold">15 min</div><div className="text-ink-subtle mt-2 text-sm">Median wait</div></div>
           <div className="text-center"><div className="font-heading text-primary-900 text-3xl font-extrabold">24/7</div><div className="text-ink-subtle mt-2 text-sm">Virtual care</div></div>
@@ -66,27 +65,27 @@ export function Page() {
         </div>
       </section>
       
-      <section id="features" className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="font-heading text-ink-default text-center text-3xl font-bold">Everything you need</h2>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Same-day slots</h3>
+      <section id="features" className="mx-auto max-w-6xl px-6 py-16">
+        <h2 className="font-heading text-ink-default text-3xl font-bold">What happens at an appointment</h2>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Same-day slots</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Mornings are held back for urgent appointments, every day.</p></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">One record</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">One record</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Your history, imaging and prescriptions in one place.</p></article>
-          <article className="rounded-lg border border-neutral-600 p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Virtual first</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Virtual first</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Most things can be handled without a waiting room.</p></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Specialist referral</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Specialist referral</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Referred in-app, with the notes sent ahead of you.</p></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Repeat prescriptions</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Repeat prescriptions</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Request, approve and collect without a phone call.</p></article>
-          <article className="rounded-lg border border-neutral-600 p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Transparent pricing</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Transparent pricing</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">You see the cost before you agree to anything.</p></article>
         </div>
       </section>
       
       <section id="glance" className="border-neutral-700 bg-neutral-800">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <h2 className="font-heading text-ink-default text-center text-3xl font-bold">At a glance</h2>
+          <h2 className="font-heading text-ink-default text-3xl font-bold">The current picture</h2>
           <p className="text-ink-muted mx-auto mt-4 max-w-2xl text-center text-sm">Live numbers, rendered with the data-table component.</p>
           <div className="mt-10">
             <div className="overflow-hidden rounded-lg border border-neutral-700">
@@ -96,34 +95,29 @@ export function Page() {
             <tr>
               <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Metric</th>
               <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Value</th>
-              <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Period</th>
-              <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Status</th>
+              <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Change</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">Median wait</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">15 min</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">+12%</td>
             </tr>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">Virtual care</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">24/7</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">+4%</td>
             </tr>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">Would recommend</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">96%</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">-2%</td>
             </tr>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">Record, everywhere</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">1</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">+31%</td>
             </tr>
           </tbody>
         </table>
@@ -132,45 +126,57 @@ export function Page() {
         </div>
       </section>
       
-      <section id="pricing" className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="font-heading text-ink-default text-center text-3xl font-bold">Simple, transparent pricing</h2>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex items-start justify-between">
-              <h3 className="font-heading text-ink-default text-lg font-semibold">Pay as you go</h3>
-              <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">Pay as you go</span>
-            </div>
-            <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$65</div>
-            <ul className="mt-6 space-y-2">
-              <li className="text-ink-muted text-sm">— One consultation</li>
-              <li className="text-ink-muted text-sm">— Virtual or in person</li>
-              <li className="text-ink-muted text-sm">— Digital notes</li>
-              <li className="text-ink-muted text-sm">— Prescription service</li>
-            </ul>
-            <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm mt-8 w-full" type="button">Choose Pay as you go</button></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 border border-primary-900"><div className="flex items-start justify-between">
-              <h3 className="font-heading text-ink-default text-lg font-semibold">Membership</h3>
-              <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Most popular</span>
-            </div>
-            <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$29/mo</div>
-            <ul className="mt-6 space-y-2">
-              <li className="text-ink-muted text-sm">— Unlimited virtual</li>
-              <li className="text-ink-muted text-sm">— 2 in-person visits</li>
-              <li className="text-ink-muted text-sm">— Priority booking</li>
-              <li className="text-ink-muted text-sm">— Family sharing</li>
-            </ul>
-            <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity bg-primary-900 text-neutral-900 hover:bg-primary-800 px-4 py-2 text-sm mt-8 w-full" type="button">Choose Membership</button></article>
-          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex items-start justify-between">
-              <h3 className="font-heading text-ink-default text-lg font-semibold">Family</h3>
-              <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">Family</span>
-            </div>
-            <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$79/mo</div>
-            <ul className="mt-6 space-y-2">
-              <li className="text-ink-muted text-sm">— Up to 6 people</li>
-              <li className="text-ink-muted text-sm">— Unlimited virtual</li>
-              <li className="text-ink-muted text-sm">— Paediatric care</li>
-              <li className="text-ink-muted text-sm">— Annual screening</li>
-            </ul>
-            <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm mt-8 w-full" type="button">Choose Family</button></article>
+      <section id="pricing" className="mx-auto max-w-6xl px-6 py-16">
+        <h2 className="font-heading text-ink-default text-3xl font-bold">Most insurance accepted</h2>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex h-full flex-col">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-heading text-ink-default text-lg font-semibold">Pay as you go</h3>
+                
+              </div>
+              <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$65</div>
+              <ul className="mt-6 space-y-2">
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>One consultation</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Virtual or in person</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Digital notes</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Prescription service</span></li>
+              </ul>
+              <div className="mt-auto pt-8">
+                <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm w-full" type="button">Choose Pay as you go</button>
+              </div>
+            </div></article>
+          <article className="rounded-lg border border-primary-900 bg-neutral-800 shadow-md p-6"><div className="flex h-full flex-col">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-heading text-ink-default text-lg font-semibold">Membership</h3>
+                <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Most popular</span>
+              </div>
+              <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$29/mo</div>
+              <ul className="mt-6 space-y-2">
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Unlimited virtual</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>2 in-person visits</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Priority booking</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Family sharing</span></li>
+              </ul>
+              <div className="mt-auto pt-8">
+                <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity bg-primary-900 text-neutral-900 hover:bg-primary-800 px-4 py-2 text-sm w-full" type="button">Choose Membership</button>
+              </div>
+            </div></article>
+          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex h-full flex-col">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-heading text-ink-default text-lg font-semibold">Family</h3>
+                
+              </div>
+              <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$79/mo</div>
+              <ul className="mt-6 space-y-2">
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Up to 6 people</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Unlimited virtual</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Paediatric care</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Annual screening</span></li>
+              </ul>
+              <div className="mt-auto pt-8">
+                <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm w-full" type="button">Choose Family</button>
+              </div>
+            </div></article>
         </div>
       </section>
       
@@ -184,8 +190,8 @@ export function Page() {
       
       <section className="border-neutral-700 bg-neutral-800">
         <div className="mx-auto max-w-4xl px-6 py-20 text-center">
-          <h2 className="font-heading text-ink-default text-3xl font-bold">Ready to start?</h2>
-          <p className="text-ink-muted mx-auto mt-4 max-w-xl">Our services — no card, no call, no commitment.</p>
+          <h2 className="font-heading text-ink-default text-3xl font-bold">Book with a GP</h2>
+          <p className="text-ink-muted mx-auto mt-4 max-w-xl">Our services, or read how it works first.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity bg-primary-900 text-neutral-900 hover:bg-primary-800 px-6 py-3 text-base" href="#pricing">Book a consultation</a>
             <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-6 py-3 text-base" type="button">Talk to us</button>
@@ -393,7 +399,7 @@ export function Page() {
           <div className="font-heading text-primary-900 text-lg font-bold">Meridian Health</div>
           <p className="text-ink-subtle text-sm">Care that keeps up · built with DesignOps</p>
           <div className="flex gap-2">
-            <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">v2.0</span>
+            <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">Healthcare</span>
             <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Live</span>
           </div>
         </div>

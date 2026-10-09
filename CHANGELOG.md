@@ -75,6 +75,19 @@ comes before verification: _what should this look like?_
   `fitDemoShots()` in assets/app.js measures each card and sets the scale
   so the page fits the width exactly, with the height following the
   aspect ratio. Re-fits on resize and after the filters change the grid.
+- **Anti-template pass.** Fixed the things that made the pages read as
+  generated. Alignment: pricing cards had two competing `border` classes
+  on one element (the wrong one won depending on Tailwind's emit order)
+  and their CTAs sat at whatever height the list above them happened to
+  end — now one border, `flex h-full flex-col`, CTA on `mt-auto`. The
+  stats band declared `border-y` and `border-b` together. Copy: em-dash
+  list bullets replaced with a check glyph; the redundant badge that
+  echoed each pricing tier's own name removed; section headings, the
+  notice line and the social-proof count are now per demo
+  (`MICROCOPY`), fixing 35 sites whose "Trusted by <first stat>" read as
+  "Trusted by 12 weeks"; the at-a-glance table's constant Status/Period
+  columns replaced with a varying Change column; avatars and two
+  remaining constant headings rotate on a stable per-slug hash.
 - **`--font-mono`** — the advisory proposes a heading/body pairing and no
   tabular face, so the generator adds one (JetBrains Mono). Declared in the
   theme, counted in the 44 tokens, requested from Google Fonts.

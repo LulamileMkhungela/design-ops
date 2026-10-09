@@ -24,8 +24,8 @@ export function Page() {
           <path d="M8 7.5v4M8 5h.01" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-medium text-ink-default">CI that does not fight you</p>
-          <p className="mt-1 text-sm text-ink-muted">Shipyard is live — 3.8 min median pipeline and counting.</p>
+          <p className="text-sm font-medium text-ink-default">New</p>
+          <p className="mt-1 text-sm text-ink-muted">Cache restore is roughly four times faster.</p>
         </div>
         <button className="shrink-0 rounded-md px-2 py-1 text-xs text-ink-subtle hover:bg-neutral-700" type="button" aria-label="Dismiss">✕</button>
       </div>
@@ -47,17 +47,16 @@ export function Page() {
         </form>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <div className="flex items-center">
-            <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs" title="Amelia R.">AR</span>
-          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Thabo K.">TK</span>
-          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Marta S.">MS</span>
-          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Jonas B.">JB</span>
-          <span className="-ml-2 inline-flex h-8 w-8 text-xs items-center justify-center rounded-full border-2 border-neutral-900 bg-neutral-700 text-ink-muted">+12</span>
+            <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs" title="Daniel C.">DC</span>
+          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Nadia K.">NK</span>
+          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Amelia R.">AR</span>
+          <span className="inline-flex items-center justify-center rounded-full bg-primary-900 font-heading text-neutral-900 border-2 border-neutral-900 h-8 w-8 text-xs -ml-2" title="Daniel C.">DC</span>
           </div>
-          <p className="text-ink-subtle text-sm">Trusted by 3.8 min median pipeline</p>
+          <p className="text-ink-subtle text-sm">Used by 11,000 pipelines a day</p>
         </div>
       </header>
       
-      <section className="border-y border-neutral-700 bg-neutral-800 border-b">
+      <section className="border-y border-neutral-700 bg-neutral-800">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-12 md:grid-cols-4">
           <div className="text-center"><div className="font-heading text-primary-900 text-3xl font-extrabold">3.8 min</div><div className="text-ink-subtle mt-2 text-sm">Median pipeline</div></div>
           <div className="text-center"><div className="font-heading text-primary-900 text-3xl font-extrabold">94%</div><div className="text-ink-subtle mt-2 text-sm">Cache hit rate</div></div>
@@ -66,27 +65,27 @@ export function Page() {
         </div>
       </section>
       
-      <section id="features" className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="font-heading text-ink-default text-center text-3xl font-bold">Everything you need</h2>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Fast by default</h3>
+      <section id="features" className="mx-auto max-w-6xl px-6 py-16">
+        <h2 className="font-heading text-ink-default text-3xl font-bold">Why builds stop failing</h2>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Fast by default</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Layer caching and a warm runner pool, no tuning.</p></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Clear failures</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Clear failures</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">The error, the file, and the diff that caused it.</p></article>
-          <article className="rounded-lg border border-neutral-600 p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Zero-config start</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Zero-config start</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Detects your stack and writes a sensible first pipeline.</p></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Reproducible locally</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Reproducible locally</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Run the exact same pipeline on your laptop.</p></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Matrix builds</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Matrix builds</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Every version, in parallel, without a YAML novella.</p></article>
-          <article className="rounded-lg border border-neutral-600 p-6 transition-colors"><h3 className="font-heading text-ink-default text-lg font-semibold">Honest pricing</h3>
+          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6"><h3 className="font-heading text-ink-default text-lg font-semibold">Honest pricing</h3>
               <p className="text-ink-muted mt-3 text-sm leading-relaxed">Per-second billing, no seat minimums, no surprises.</p></article>
         </div>
       </section>
       
       <section id="glance" className="border-neutral-700 bg-neutral-800">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <h2 className="font-heading text-ink-default text-center text-3xl font-bold">At a glance</h2>
+          <h2 className="font-heading text-ink-default text-3xl font-bold">The current picture</h2>
           <p className="text-ink-muted mx-auto mt-4 max-w-2xl text-center text-sm">Live numbers, rendered with the data-table component.</p>
           <div className="mt-10">
             <div className="overflow-hidden rounded-lg border border-neutral-700">
@@ -96,34 +95,29 @@ export function Page() {
             <tr>
               <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Metric</th>
               <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Value</th>
-              <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Period</th>
-              <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Status</th>
+              <th className="px-4 py-2 text-left text-xs font-medium text-ink-subtle" scope="col">Change</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">Median pipeline</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">3.8 min</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">+12%</td>
             </tr>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">Cache hit rate</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">94%</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">+4%</td>
             </tr>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">Config files required</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">0</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">-2%</td>
             </tr>
             <tr className="border-t border-neutral-700">
               <td className="px-4 py-3 text-sm text-ink-muted">Cheaper than incumbent</td>
               <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">5×</td>
-              <td className="px-4 py-3 text-sm text-ink-muted">Last 30 days</td>
-              <td className="px-4 py-3 text-sm text-ink-muted"><span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Healthy</span></td>
+              <td className="px-4 py-3 text-sm text-ink-muted font-mono text-ink-default">+31%</td>
             </tr>
           </tbody>
         </table>
@@ -132,44 +126,56 @@ export function Page() {
         </div>
       </section>
       
-      <section id="pricing" className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="font-heading text-ink-default text-center text-3xl font-bold">Simple, transparent pricing</h2>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex items-start justify-between">
-              <h3 className="font-heading text-ink-default text-lg font-semibold">Open source</h3>
-              <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">Open source</span>
-            </div>
-            <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">Free</div>
-            <ul className="mt-6 space-y-2">
-              <li className="text-ink-muted text-sm">— Unlimited minutes</li>
-              <li className="text-ink-muted text-sm">— Public repos</li>
-              <li className="text-ink-muted text-sm">— Community support</li>
-            </ul>
-            <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm mt-8 w-full" type="button">Choose Open source</button></article>
-          <article className="rounded-lg border border-neutral-700 bg-neutral-800 shadow-md p-6 border border-primary-900"><div className="flex items-start justify-between">
-              <h3 className="font-heading text-ink-default text-lg font-semibold">Team</h3>
-              <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Most popular</span>
-            </div>
-            <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$29/mo</div>
-            <ul className="mt-6 space-y-2">
-              <li className="text-ink-muted text-sm">— 10,000 minutes</li>
-              <li className="text-ink-muted text-sm">— Private repos</li>
-              <li className="text-ink-muted text-sm">— Matrix builds</li>
-              <li className="text-ink-muted text-sm">— Local runner</li>
-            </ul>
-            <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity bg-primary-900 text-neutral-900 hover:bg-primary-800 px-4 py-2 text-sm mt-8 w-full" type="button">Choose Team</button></article>
-          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex items-start justify-between">
-              <h3 className="font-heading text-ink-default text-lg font-semibold">Enterprise</h3>
-              <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">Enterprise</span>
-            </div>
-            <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">Custom</div>
-            <ul className="mt-6 space-y-2">
-              <li className="text-ink-muted text-sm">— Self-hosted runners</li>
-              <li className="text-ink-muted text-sm">— SSO &amp; audit</li>
-              <li className="text-ink-muted text-sm">— Dedicated support</li>
-              <li className="text-ink-muted text-sm">— SLA</li>
-            </ul>
-            <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm mt-8 w-full" type="button">Choose Enterprise</button></article>
+      <section id="pricing" className="mx-auto max-w-6xl px-6 py-16">
+        <h2 className="font-heading text-ink-default text-3xl font-bold">Free for open source</h2>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex h-full flex-col">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-heading text-ink-default text-lg font-semibold">Open source</h3>
+                
+              </div>
+              <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">Free</div>
+              <ul className="mt-6 space-y-2">
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Unlimited minutes</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Public repos</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Community support</span></li>
+              </ul>
+              <div className="mt-auto pt-8">
+                <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm w-full" type="button">Choose Open source</button>
+              </div>
+            </div></article>
+          <article className="rounded-lg border border-primary-900 bg-neutral-800 shadow-md p-6"><div className="flex h-full flex-col">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-heading text-ink-default text-lg font-semibold">Team</h3>
+                <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Most popular</span>
+              </div>
+              <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">$29/mo</div>
+              <ul className="mt-6 space-y-2">
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>10,000 minutes</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Private repos</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Matrix builds</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Local runner</span></li>
+              </ul>
+              <div className="mt-auto pt-8">
+                <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity bg-primary-900 text-neutral-900 hover:bg-primary-800 px-4 py-2 text-sm w-full" type="button">Choose Team</button>
+              </div>
+            </div></article>
+          <article className="rounded-lg border border-neutral-600 p-6"><div className="flex h-full flex-col">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-heading text-ink-default text-lg font-semibold">Enterprise</h3>
+                
+              </div>
+              <div className="font-heading text-ink-default mt-4 text-4xl font-extrabold">Custom</div>
+              <ul className="mt-6 space-y-2">
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Self-hosted runners</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>SSO &amp; audit</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Dedicated support</span></li>
+                <li className="text-ink-muted flex items-start gap-2 text-sm"><svg className="mt-0.5 h-4 w-4 shrink-0 text-primary-900" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>SLA</span></li>
+              </ul>
+              <div className="mt-auto pt-8">
+                <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-4 py-2 text-sm w-full" type="button">Choose Enterprise</button>
+              </div>
+            </div></article>
         </div>
       </section>
       
@@ -183,8 +189,8 @@ export function Page() {
       
       <section className="border-neutral-700 bg-neutral-800">
         <div className="mx-auto max-w-4xl px-6 py-20 text-center">
-          <h2 className="font-heading text-ink-default text-3xl font-bold">Ready to start?</h2>
-          <p className="text-ink-muted mx-auto mt-4 max-w-xl">See a sample run — no card, no call, no commitment.</p>
+          <h2 className="font-heading text-ink-default text-3xl font-bold">Run your first pipeline</h2>
+          <p className="text-ink-muted mx-auto mt-4 max-w-xl">See a sample run, or read how it works first.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity bg-primary-900 text-neutral-900 hover:bg-primary-800 px-6 py-3 text-base" href="#pricing">Connect a repo</a>
             <button className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-opacity border border-neutral-600 text-ink-default hover:bg-neutral-700 px-6 py-3 text-base" type="button">Talk to us</button>
@@ -392,7 +398,7 @@ export function Page() {
           <div className="font-heading text-primary-900 text-lg font-bold">Shipyard</div>
           <p className="text-ink-subtle text-sm">CI that does not fight you · built with DesignOps</p>
           <div className="flex gap-2">
-            <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">v2.0</span>
+            <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-neutral-700 text-ink-muted ">Developer Tools</span>
             <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium bg-success-600 text-neutral-900 "><span className="h-1.5 w-1.5 rounded-full bg-neutral-900"></span>Live</span>
           </div>
         </div>

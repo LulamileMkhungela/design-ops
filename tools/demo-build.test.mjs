@@ -502,6 +502,93 @@ test(
   }
 )
 
+/**
+ * "Looks generated" is mostly a property of the copy, not the code: forty
+ * sites that all say "Everything you need" above an identical three-card
+ * grid read as one template. These guard the things that make them read
+ * as separate sites.
+ */
+test(
+  "section headings are not one template repeated forty times",
+  { skip: !BUILT },
+  () => {
+    const seen = new Map()
+    for (const d of manifest.demos) {
+      const html = readFileSync(join(DEMOS, d.slug, "index.html"), "utf8")
+      // The component showcase heading is deliberately the same on every
+      // page — it is describing the same eight components.
+      const headings = [...html.matchAll(/<h2 class="[^"]*">([^<]+)<\/h2>/g)]
+        .map((m) => m[1])
+        .filter((h) => h !== "Every component, in this system's tokens")
+      for (const h of new Set(headings)) {
+        seen.set(h, (seen.get(h) || 0) + 1)
+      }
+    }
+    const total = manifest.demos.length
+    for (const [heading, n] of seen) {
+      assert.ok(
+        n <= Math.ceil(total / 4),
+        `heading "${heading}" appears on ${n} of ${total} demos — the pages read as one template`
+      )
+    }
+    assert.ok(
+      seen.size >= total,
+      `only ${seen.size} distinct headings across ${total} demos`
+    )
+  }
+)
+
+test(
+  "no demo uses em-dash list bullets or a duplicated border colour",
+  { skip: !BUILT },
+  () => {
+    for (const d of manifest.demos) {
+      const html = readFileSync(join(DEMOS, d.slug, "index.html"), "utf8")
+      assert.ok(
+        !html.includes(">— "),
+        `demos/${d.slug} uses em-dash list bullets`
+      )
+      for (const m of html.matchAll(/class="([^"]+)"/g)) {
+        const colours = m[1]
+          .split(/\s+/)
+          .filter((c) =>
+            /^border-(neutral|primary|success|warning|danger|info|ink)-\d+$/.test(
+              c
+            )
+          )
+        assert.ok(
+          colours.length <= 1,
+          `demos/${d.slug} puts ${colours.length} competing border colours on one element: ${colours.join(" ")}`
+        )
+      }
+    }
+  }
+)
+
+test(
+  "pricing cards bottom-align their call to action",
+  { skip: !BUILT },
+  () => {
+    for (const d of manifest.demos) {
+      const html = readFileSync(join(DEMOS, d.slug, "index.html"), "utf8")
+      const start = html.indexOf('id="pricing"')
+      assert.ok(start > 0, `demos/${d.slug} has no pricing section`)
+      const end = html.indexOf('id="story"')
+      const pricing = html.slice(start, end > start ? end : undefined)
+      // Without h-full + mt-auto the buttons sit at different heights
+      // whenever a tier has a different number of list items.
+      assert.ok(
+        pricing.includes("flex h-full flex-col"),
+        `demos/${d.slug} pricing cards are not full-height flex columns`
+      )
+      assert.ok(
+        pricing.includes("mt-auto"),
+        `demos/${d.slug} pricing CTA is not pinned to the card bottom`
+      )
+    }
+  }
+)
+
 test(
   "the bundled fallback matches the generated manifest",
   { skip: !BUILT },
