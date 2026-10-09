@@ -279,11 +279,11 @@ test(
 )
 
 /**
- * The twenty categories uupm.cc filters by. Hard-coded here on purpose:
- * this is the parity the gallery claims, and it should break loudly the
- * day the upstream list changes.
+ * The twenty categories the gallery covers. Hard-coded here on purpose:
+ * this is the promise the gallery makes, and it should break loudly the
+ * day the category set changes.
  */
-const UUPM_CATEGORIES = [
+const GALLERY_CATEGORIES = [
   "SaaS",
   "Education",
   "Pet Services",
@@ -307,7 +307,7 @@ const UUPM_CATEGORIES = [
 ]
 
 test(
-  "the gallery covers every uupm.cc category, with more than one demo each",
+  "the gallery covers every category, with more than one demo each",
   { skip: !BUILT },
   async () => {
     const { CATEGORIES } = await import("./demo-content.mjs")
@@ -315,8 +315,8 @@ test(
 
     assert.deepEqual(
       declared,
-      UUPM_CATEGORIES,
-      "demo-content.mjs no longer matches the uupm.cc category list"
+      GALLERY_CATEGORIES,
+      "demo-content.mjs no longer matches the gallery category set"
     )
 
     const byCategory = new Map()
@@ -325,7 +325,7 @@ test(
       byCategory.set(d.category, (byCategory.get(d.category) || 0) + 1)
     }
 
-    for (const cat of UUPM_CATEGORIES) {
+    for (const cat of GALLERY_CATEGORIES) {
       const n = byCategory.get(cat) || 0
       assert.ok(
         n >= 2,
@@ -334,8 +334,8 @@ test(
     }
     assert.equal(
       byCategory.size,
-      UUPM_CATEGORIES.length,
-      `manifest has ${byCategory.size} categories, expected ${UUPM_CATEGORIES.length}`
+      GALLERY_CATEGORIES.length,
+      `manifest has ${byCategory.size} categories, expected ${GALLERY_CATEGORIES.length}`
     )
   }
 )
@@ -517,9 +517,9 @@ test(
     )
     assert.equal(
       fallback.categories.length,
-      UUPM_CATEGORIES.length,
+      GALLERY_CATEGORIES.length,
       `DEMO_FALLBACK lists ${fallback.categories.length} categories, expected ${
-        UUPM_CATEGORIES.length
+        GALLERY_CATEGORIES.length
       }`
     )
     for (const d of fallback.demos) {

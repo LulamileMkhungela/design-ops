@@ -1,7 +1,8 @@
 /**
  * DesignOps · demo content catalogue
  * ─────────────────────────────────────────────────────────────
- * Two demos for each of the twenty categories on https://uupm.cc:
+ * Two demos for each of our twenty categories — the product types a
+ * design system actually gets pointed at:
  *
  *   SaaS · Education · Pet Services · AI/Chatbot · E-commerce
  *   Fintech/Crypto · Healthcare · Creative · Real Estate · Gaming

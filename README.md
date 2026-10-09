@@ -170,8 +170,9 @@ out: [`packages/advisory/VENDOR.md`](./packages/advisory/VENDOR.md).
 
 ## Demo gallery
 
-**Forty generated sites across twenty categories** — the same category set the
-reference gallery at [uupm.cc](https://uupm.cc) filters by, two demos each:
+**Forty generated sites across twenty categories** — our own category set,
+covering the product types a design system actually gets pointed at, two
+demos each:
 
 ```bash
 node tools/demo-build.mjs --all                    # regenerate all forty

@@ -2554,7 +2554,7 @@ function demosData() {
  */
 const demoFilter = { category: "All", mode: "All Modes" }
 
-/** Category chips + mode chips, mirroring the filter row on uupm.cc. */
+/** Category chips, mode chips and a palette row for filtering the grid. */
 function demoFilters() {
   const data = demosData()
   const cats = ["All"].concat(
@@ -2621,7 +2621,7 @@ function demoFilters() {
   )
 }
 
-/** "Showing 6 of 40 demos" — the line uupm puts under its filter row. */
+/** "Showing 6 of 40 demos" — the running count under the filter row. */
 function demoCountLine() {
   const data = demosData()
   const shown = demoVisible()

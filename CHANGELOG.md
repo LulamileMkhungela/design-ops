@@ -40,7 +40,7 @@ comes before verification: _what should this look like?_
   `index.html` and once as JSX for `@designops/lint`, so the page you open is
   the page that was checked.
 - **Demo gallery — forty sites, twenty categories.** Two demos for every
-  category the reference gallery at uupm.cc filters by: SaaS, Education,
+  category in our set: SaaS, Education,
   Pet Services, AI/Chatbot, E-commerce, Fintech/Crypto, Healthcare,
   Creative, Real Estate, Gaming, Food & Restaurant, Fitness, Travel,
   NFT/Web3, Beauty/Spa, Developer Tools, Entertainment, Legal, Events and
