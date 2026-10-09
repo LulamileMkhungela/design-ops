@@ -161,7 +161,7 @@ Set `message` to replace a rule's error text:
 
 ```js
 "designops/no-raw-colors": ["error", {
-  message: 'Use a theme color for "{{className}}". See {{file}}.',
+  message: 'Use a theme color for "{% raw %}{{className}}". See {{file}}{% endraw %}.',
 }]
 ```
 
@@ -169,11 +169,11 @@ Every finding provides these placeholders, empty when they do not apply:
 
 | Placeholder       | Value                                                     |
 | ----------------- | --------------------------------------------------------- |
-| `{{className}}`   | The class, or an SVG attribute such as `fill="#f00"`.     |
-| `{{property}}`    | The inline CSS property.                                  |
-| `{{component}}`   | The component name.                                       |
-| `{{suggestions}}` | Suggested tokens, scale values, or a spelling correction. |
-| `{{file}}`        | The relevant theme or component file.                     |
+| `{% raw %}{{className}}{% endraw %}`   | The class, or an SVG attribute such as `fill="#f00"`.     |
+| `{% raw %}{{property}}{% endraw %}`    | The inline CSS property.                                  |
+| `{% raw %}{{component}}{% endraw %}`   | The component name.                                       |
+| `{% raw %}{{suggestions}}{% endraw %}` | Suggested tokens, scale values, or a spelling correction. |
+| `{% raw %}{{file}}{% endraw %}`        | The relevant theme or component file.                     |
 
 `no-restyle` also accepts a message object with category keys:
 
@@ -181,8 +181,8 @@ Every finding provides these placeholders, empty when they do not apply:
 "designops/no-restyle": ["error", {
   allow: ["layout"],
   message: {
-    spacing: "Use a {{component}} size: {{sizes|none defined}}.",
-    default: "Use a {{component}} variant: {{variants|none defined}}.",
+    spacing: "Use a {% raw %}{{component}} size: {{sizes|none defined}}{% endraw %}.",
+    default: "Use a {% raw %}{{component}} variant: {{variants|none defined}}{% endraw %}.",
   },
 }]
 ```
@@ -195,30 +195,30 @@ Additional `no-restyle` placeholders:
 
 | Placeholder    | Value                                                            |
 | -------------- | ---------------------------------------------------------------- |
-| `{{category}}` | The class category, including `layout` or `unclassified`.        |
-| `{{variants}}` | Comma-separated variant names, or empty.                         |
-| `{{wrapper}}`  | The forwarding component name, or empty.                         |
-| `{{sizes}}`    | Size names on spacing findings, except explicit `deny` findings. |
-| `{{around}}`   | Where spacing can go instead, on spacing findings.               |
-| `{{entries}}`  | The relevant allow or deny entries.                              |
+| `{% raw %}{{category}}{% endraw %}` | The class category, including `layout` or `unclassified`.        |
+| `{% raw %}{{variants}}{% endraw %}` | Comma-separated variant names, or empty.                         |
+| `{% raw %}{{wrapper}}{% endraw %}`  | The forwarding component name, or empty.                         |
+| `{% raw %}{{sizes}}{% endraw %}`    | Size names on spacing findings, except explicit `deny` findings. |
+| `{% raw %}{{around}}{% endraw %}`   | Where spacing can go instead, on spacing findings.               |
+| `{% raw %}{{entries}}{% endraw %}`  | The relevant allow or deny entries.                              |
 
-`{{around}}` names the places the contracts accept, for example
+`{% raw %}{{around}}{% endraw %}` names the places the contracts accept, for example
 `margin here, gap on the parent, or spacing on <CardContent>`.
 
 Other rules provide these placeholders on the findings that use them:
 
 | Placeholder       | Value                                                                                                                                 |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `{{tokens}}`      | Declared color names on `no-raw-colors` and `no-arbitrary-values` color findings, up to 12.                                           |
-| `{{suggestion}}`  | The corrected class on `no-raw-colors` and `no-unknown-classes` spelling findings. On SVG attribute findings, the nearest token name. |
-| `{{replacement}}` | The equivalent scale or token class on `no-arbitrary-values` findings, such as `p-3.25`.                                              |
-| `{{attribute}}`   | The SVG attribute name on `no-raw-colors` attribute findings, such as `fill`.                                                         |
-| `{{value}}`       | That attribute's value, such as `#f00`.                                                                                               |
+| `{% raw %}{{tokens}}{% endraw %}`      | Declared color names on `no-raw-colors` and `no-arbitrary-values` color findings, up to 12.                                           |
+| `{% raw %}{{suggestion}}{% endraw %}`  | The corrected class on `no-raw-colors` and `no-unknown-classes` spelling findings. On SVG attribute findings, the nearest token name. |
+| `{% raw %}{{replacement}}{% endraw %}` | The equivalent scale or token class on `no-arbitrary-values` findings, such as `p-3.25`.                                              |
+| `{% raw %}{{attribute}}{% endraw %}`   | The SVG attribute name on `no-raw-colors` attribute findings, such as `fill`.                                                         |
+| `{% raw %}{{value}}{% endraw %}`       | That attribute's value, such as `#f00`.                                                                                               |
 
-`{{suggestions}}` already contains the `{{suggestion}}` or
-`{{replacement}}` value when a finding provides one.
+`{% raw %}{{suggestions}}` already contains the `{{suggestion}}{% endraw %}` or
+`{% raw %}{{replacement}}{% endraw %}` value when a finding provides one.
 
-Use `{{variants|none defined}}` to supply a fallback for an empty value.
+Use `{% raw %}{{variants|none defined}}{% endraw %}` to supply a fallback for an empty value.
 Unknown or unavailable placeholders stay literal, including their fallback.
 Likely placeholder typos produce a warning. Messages are limited to
 500 characters.

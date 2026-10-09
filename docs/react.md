@@ -110,12 +110,12 @@ the design explicitly calls for one.
 ## What is read
 
 - `className` and similar props, including `wrapperClassName` and
-  `classNames={{ day: "..." }}`.
+  `classNames={% raw %}{{ day: "..." }}{% endraw %}`.
 - Calls to `cn`, `cx`, `clsx`, `cva`, `tv`, `twMerge`, `twJoin`, and
   `classNames`, in and outside JSX.
 - Same-file variables and object values, one hop deep.
 - Readable objects spread onto elements.
-- `style={{ ... }}`, `<style>` elements, and SVG color attributes.
+- `style={% raw %}{{ ... }}{% endraw %}`, `<style>` elements, and SVG color attributes.
 - Base UI's `render` prop: the classes land on what it renders.
 - Variants from `cva`, `tv`, and props typed as a union of string
   literals.

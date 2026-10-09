@@ -227,7 +227,7 @@ Svelte and Vue components forward `class` the same way. See
 ## Where it looks
 
 - `className` and similar props, including `wrapperClassName`,
-  `classNames={{ day: "..." }}`, and Astro's `class:list` with a string,
+  `classNames={% raw %}{{ day: "..." }}{% endraw %}`, and Astro's `class:list` with a string,
   array, object, or Set.
 - Svelte and Vue templates under ESLint: `class`, `:class`, `class:name`,
   `style`, `:style`, `style:property`, and spreads. See

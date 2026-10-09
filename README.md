@@ -90,7 +90,7 @@ Framework specifics: [React](./docs/react.md), [Vue](./docs/vue.md),
 | `designops/no-restyle`             | overriding a design-system component's styling  |
 | `designops/no-raw-colors`          | hex/rgb/palette colours instead of theme tokens |
 | `designops/no-arbitrary-values`    | `p-[13px]`, `bg-[#fff]` instead of the scale    |
-| `designops/no-inline-styles`       | `style={{}}` instead of classes                 |
+| `designops/no-inline-styles`       | `style={% raw %}{{}}{% endraw %}` instead of classes                 |
 | `designops/no-unknown-classes`     | classes that generate no CSS                    |
 | `designops/require-static-classes` | class values the linter cannot read             |
 

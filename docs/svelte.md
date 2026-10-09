@@ -134,7 +134,7 @@ contracts: [{ pattern: "^CardTitle$", allow: ["layout", "typography"] }]
 | `class="p-4 {active ? 'a' : 'b'}"` | text and expression, both branches     |
 | `class={cn(base, className)}`      | a helper call, `base` resolved one hop |
 | `class={["a", active && "b"]}`     | an array                               |
-| `class={{ "bg-primary": active }}` | an object, keys as classes             |
+| `class={% raw %}{{ "bg-primary": active }}{% endraw %}` | an object, keys as classes             |
 | `class:bg-primary={active}`        | a class directive                      |
 | `{...{ class: "p-4" }}`            | a spread                               |
 | `style="color: red"`               | a style, property by property          |

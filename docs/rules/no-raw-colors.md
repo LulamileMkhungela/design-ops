@@ -128,7 +128,7 @@ has its own policy. See [contracts](../rules.md#contracts).
 
 ```js
 "designops/no-raw-colors": ["error", {
-  message: 'Use a theme color for "{{className}}". See {{file}}.',
+  message: 'Use a theme color for "{% raw %}{{className}}". See {{file}}{% endraw %}.',
 }]
 ```
 
@@ -138,8 +138,8 @@ For `bg-pink-500`, with the theme in `app/globals.css`:
 Use a theme color for "bg-pink-500". See app/globals.css.
 ```
 
-`{{suggestions}}` contains nearby colors or a spelling correction;
-`{{tokens}}` contains the declared color names on class findings.
+`{% raw %}{{suggestions}}{% endraw %}` contains nearby colors or a spelling correction;
+`{% raw %}{{tokens}}{% endraw %}` contains the declared color names on class findings.
 A contract can also set `message`. See
 [message placeholders](../rules.md#your-own-words).
 

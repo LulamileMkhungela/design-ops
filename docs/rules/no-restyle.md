@@ -101,8 +101,8 @@ Use one message for every error, or write a message for each category:
 "designops/no-restyle": ["error", {
   allow: ["layout"],
   message: {
-    spacing: "Use a {{component}} size: {{sizes|none defined}}.",
-    default: "Use a {{component}} variant: {{variants|none defined}}.",
+    spacing: "Use a {% raw %}{{component}} size: {{sizes|none defined}}{% endraw %}.",
+    default: "Use a {% raw %}{{component}} variant: {{variants|none defined}}{% endraw %}.",
   },
 }]
 ```
@@ -113,8 +113,8 @@ For `<Button className="p-4">`, when Button defines `sm` and `lg` sizes:
 Use a Button size: sm, lg.
 ```
 
-`{{sizes}}` is available on spacing findings, except explicit `deny`
-findings. `{{variants}}`, `{{component}}`, and `{{file}}` are available
+`{% raw %}{{sizes}}{% endraw %}` is available on spacing findings, except explicit `deny`
+findings. `{% raw %}{{variants}}`, `{{component}}`, and `{{file}}{% endraw %}` are available
 across this rule's findings. Missing component data may be empty.
 A contract can provide its own `message` using the same format.
 See [message placeholders](../rules.md#your-own-words).

@@ -125,7 +125,7 @@ Write components against the tokens. Use the token names, not the hex values:
 // right
 <button className="bg-primary-900 text-ink-default rounded-md px-4">Save</button>
 // wrong — every one of these is a lint error
-<button className="bg-[#0F172A] text-[#F8FAFC] rounded-[6px]" style={{ padding: 16 }}>Save</button>
+<button className="bg-[#0F172A] text-[#F8FAFC] rounded-[6px]" style={% raw %}{{ padding: 16 }}{% endraw %}>Save</button>
 ```
 
 Prefer a variant on the shared component over a `className` override. If a
@@ -147,7 +147,7 @@ The six rules:
 | ---------------------------------- | ----------------------------------------------- |
 | `designops/no-raw-colors`          | hex/rgb/palette colours instead of theme tokens |
 | `designops/no-arbitrary-values`    | `p-[13px]`, `bg-[#fff]` instead of the scale    |
-| `designops/no-inline-styles`       | `style={{}}` instead of classes                 |
+| `designops/no-inline-styles`       | `style={% raw %}{{}}{% endraw %}` instead of classes                 |
 | `designops/no-restyle`             | overriding a design-system component's styling  |
 | `designops/no-unknown-classes`     | classes that generate no CSS                    |
 | `designops/require-static-classes` | class values the linter cannot read             |

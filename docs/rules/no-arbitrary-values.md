@@ -115,12 +115,12 @@ contract inheritance.
 ```js
 "designops/no-arbitrary-values": ["error", {
   allow: ["layout"],
-  message: 'Use {{suggestions|a theme token or scale value}} instead of "{{className}}".',
+  message: 'Use {% raw %}{{suggestions|a theme token or scale value}} instead of "{{className}}{% endraw %}".',
 }]
 ```
 
-`{{suggestions}}` contains an exact replacement, nearby scale steps, or
-nearby color tokens. `{{file}}` is the theme file. A contract can provide
+`{% raw %}{{suggestions}}{% endraw %}` contains an exact replacement, nearby scale steps, or
+nearby color tokens. `{% raw %}{{file}}{% endraw %}` is the theme file. A contract can provide
 its own message; editor suggestions are preserved.
 See [message placeholders](../rules.md#your-own-words).
 
