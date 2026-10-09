@@ -5,6 +5,9 @@
 //   scratch copy of the demo design system and returns its diagnostics,
 //   powering the interactive playground in the dashboard's Lint view.
 // - GET /api/health reports the lint package version.
+// - POST /api/advisory { query, mode } and GET /api/advisory/health
+//   query the vendored design-intelligence catalogue (packages/advisory)
+//   through tools/advisory.mjs, powering the Advisory view.
 // - GET /api/figma/files/:key proxies the Figma API (x-figma-token header)
 //   for the Integrations view when a direct browser call is blocked.
 //
@@ -14,6 +17,7 @@
 // The lint engine is exported so tools/lint-capture.mjs can reuse it to
 // refresh the verbatim diagnostics in assets/data.js (LINT_RULES).
 
+import { spawnSync } from "node:child_process"
 import * as fs from "node:fs"
 import * as http from "node:http"
 import { createRequire } from "node:module"
@@ -180,8 +184,130 @@ function readBody(req, limit) {
   })
 }
 
+/**
+ * The advisory catalogue: a vendored, read-only design-intelligence
+ * database. `/api/advisory` runs the same tools/advisory.mjs the terminal
+ * uses, so the dashboard and the agent see identical output.
+ *
+ * Local preview tool: it spawns a Python process per request.
+ */
+function runAdvisoryBridge(args) {
+  const res = spawnSync(
+    process.execPath,
+    [path.join(ROOT, "tools", "advisory.mjs"), ...args],
+    { encoding: "utf8", maxBuffer: 32 * 1024 * 1024, cwd: ROOT }
+  )
+  if (res.error) throw res.error
+  return res
+}
+
+function advisoryCounts() {
+  const counts = {}
+  try {
+    const dir = path.join(ROOT, "packages", "advisory", "data")
+    for (const [key, file] of [
+      ["products", "colors.csv"],
+      ["typography", "typography.csv"],
+      ["ux", "ux-guidelines.csv"],
+      ["icons", "icons.csv"],
+      ["charts", "charts.csv"],
+    ]) {
+      const lines = fs.readFileSync(path.join(dir, file), "utf8").split("\n")
+      counts[key] = Math.max(0, lines.filter((l) => l.trim()).length - 1)
+    }
+    // Styles carry a Status column: 50 active + 29 supplemental are the
+    // searchable set the catalogue advertises as 79.
+    const styles = fs
+      .readFileSync(path.join(dir, "styles.csv"), "utf8")
+      .split("\n")
+    counts.styles = styles.filter((l) =>
+      /,(active|supplemental),/.test(l)
+    ).length
+    counts.stacks = fs
+      .readdirSync(path.join(dir, "stacks"))
+      .filter((f) => f.endsWith(".csv")).length
+  } catch {
+    /* counts are cosmetic; the endpoint still works without them */
+  }
+  return counts
+}
+
 const server = http.createServer(async (req, res) => {
   try {
+    if (req.method === "GET" && req.url.startsWith("/api/advisory/health")) {
+      const present = fs.existsSync(
+        path.join(ROOT, "packages", "advisory", "scripts", "search.py")
+      )
+      const probe = present
+        ? runAdvisoryBridge([
+            "search",
+            "contrast",
+            "--domain",
+            "ux",
+            "--max-results",
+            "1",
+          ])
+        : null
+      const ok = Boolean(present && probe && probe.status === 0)
+      res.writeHead(ok ? 200 : 503, { "content-type": MIME[".json"] })
+      res.end(
+        JSON.stringify(
+          ok
+            ? { ok: true, ...advisoryCounts() }
+            : {
+                ok: false,
+                error:
+                  "the vendored catalogue or Python 3 is unavailable — see packages/advisory/README.md",
+              }
+        )
+      )
+      return
+    }
+    if (req.method === "POST" && req.url.startsWith("/api/advisory")) {
+      const body = await readBody(req, 8 * 1024)
+      const { query, mode, domain, stack } = JSON.parse(body)
+      if (typeof query !== "string" || !query.trim()) {
+        res.writeHead(400, { "content-type": MIME[".json"] })
+        res.end(
+          JSON.stringify({ error: "`query` must be a non-empty string." })
+        )
+        return
+      }
+      if (query.length > 400) {
+        res.writeHead(400, { "content-type": MIME[".json"] })
+        res.end(JSON.stringify({ error: "`query` exceeds 400 characters." }))
+        return
+      }
+      const args =
+        mode === "propose"
+          ? ["propose", query]
+          : ["search", query].concat(
+              domain ? ["--domain", String(domain)] : [],
+              stack ? ["--stack", String(stack)] : [],
+              ["--max-results", "1"]
+            )
+      const child = runAdvisoryBridge(args)
+      if (child.status !== 0) {
+        res.writeHead(502, { "content-type": MIME[".json"] })
+        res.end(
+          JSON.stringify({
+            error:
+              (child.stderr || "").trim().split("\n").slice(-3).join("\n") ||
+              "the advisory bridge failed",
+          })
+        )
+        return
+      }
+      res.writeHead(200, { "content-type": MIME[".json"] })
+      res.end(
+        JSON.stringify(
+          mode === "propose"
+            ? JSON.parse(child.stdout)
+            : { text: child.stdout, query, mode: "search" }
+        )
+      )
+      return
+    }
     if (req.method === "GET" && req.url.startsWith("/api/health")) {
       res.writeHead(200, { "content-type": MIME[".json"] })
       res.end(JSON.stringify({ ok: true, version: lintVersion() }))

@@ -11,94 +11,255 @@
    `f` is the Figma variable path. css/js/scss/tw names are derived
    by the naming rule, exactly like tools/ship.mjs does for dist/. */
 const TOKENS = [
-  { f: 'color/primary/50',  v: '#f9ffe0', t: 'color', group: 'color' },
-  { f: 'color/primary/800', v: '#d5ef48', t: 'color', group: 'color' },
-  { f: 'color/primary/900', v: '#e8ff5a', t: 'color', group: 'color' },
-  { f: 'color/neutral/900', v: '#0d0d0b', t: 'color', group: 'color' },
-  { f: 'color/neutral/800', v: '#141412', t: 'color', group: 'color' },
-  { f: 'color/neutral/700', v: '#1e1e1b', t: 'color', group: 'color' },
-  { f: 'color/neutral/600', v: '#2a2a26', t: 'color', group: 'color' },
-  { f: 'color/ink/default', v: '#f0ede6', t: 'color', group: 'color' },
-  { f: 'color/ink/muted',   v: 'rgba(240,237,230,.7)',  t: 'color', group: 'color' },
-  { f: 'color/ink/subtle',  v: 'rgba(240,237,230,.45)', t: 'color', group: 'color' },
-  { f: 'color/danger/600',  v: '#dd4040', t: 'color', group: 'color' },
-  { f: 'color/success/600', v: '#4ade80', t: 'color', group: 'color' },
-  { f: 'color/warning/600', v: '#fbbf24', t: 'color', group: 'color' },
-  { f: 'color/info/600',    v: '#60a5fa', t: 'color', group: 'color' },
+  { f: "color/primary/50", v: "#f9ffe0", t: "color", group: "color" },
+  { f: "color/primary/800", v: "#d5ef48", t: "color", group: "color" },
+  { f: "color/primary/900", v: "#e8ff5a", t: "color", group: "color" },
+  { f: "color/neutral/900", v: "#0d0d0b", t: "color", group: "color" },
+  { f: "color/neutral/800", v: "#141412", t: "color", group: "color" },
+  { f: "color/neutral/700", v: "#1e1e1b", t: "color", group: "color" },
+  { f: "color/neutral/600", v: "#2a2a26", t: "color", group: "color" },
+  { f: "color/ink/default", v: "#f0ede6", t: "color", group: "color" },
+  {
+    f: "color/ink/muted",
+    v: "rgba(240,237,230,.7)",
+    t: "color",
+    group: "color",
+  },
+  {
+    f: "color/ink/subtle",
+    v: "rgba(240,237,230,.45)",
+    t: "color",
+    group: "color",
+  },
+  { f: "color/danger/600", v: "#dd4040", t: "color", group: "color" },
+  { f: "color/success/600", v: "#4ade80", t: "color", group: "color" },
+  { f: "color/warning/600", v: "#fbbf24", t: "color", group: "color" },
+  { f: "color/info/600", v: "#60a5fa", t: "color", group: "color" },
 
-  { f: 'space/1', v: '4px',  t: 'dimension', group: 'spacing' },
-  { f: 'space/2', v: '8px',  t: 'dimension', group: 'spacing' },
-  { f: 'space/3', v: '12px', t: 'dimension', group: 'spacing' },
-  { f: 'space/4', v: '16px', t: 'dimension', group: 'spacing' },
-  { f: 'space/5', v: '20px', t: 'dimension', group: 'spacing' },
-  { f: 'space/6', v: '24px', t: 'dimension', group: 'spacing' },
-  { f: 'space/7', v: '32px', t: 'dimension', group: 'spacing' },
-  { f: 'space/8', v: '40px', t: 'dimension', group: 'spacing' },
+  { f: "space/1", v: "4px", t: "dimension", group: "spacing" },
+  { f: "space/2", v: "8px", t: "dimension", group: "spacing" },
+  { f: "space/3", v: "12px", t: "dimension", group: "spacing" },
+  { f: "space/4", v: "16px", t: "dimension", group: "spacing" },
+  { f: "space/5", v: "20px", t: "dimension", group: "spacing" },
+  { f: "space/6", v: "24px", t: "dimension", group: "spacing" },
+  { f: "space/7", v: "32px", t: "dimension", group: "spacing" },
+  { f: "space/8", v: "40px", t: "dimension", group: "spacing" },
 
-  { f: 'radius/sm',   v: '4px',    t: 'dimension', group: 'radius' },
-  { f: 'radius/md',   v: '8px',    t: 'dimension', group: 'radius' },
-  { f: 'radius/lg',   v: '12px',   t: 'dimension', group: 'radius' },
-  { f: 'radius/xl',   v: '16px',   t: 'dimension', group: 'radius' },
-  { f: 'radius/full', v: '9999px', t: 'dimension', group: 'radius' },
+  { f: "radius/sm", v: "4px", t: "dimension", group: "radius" },
+  { f: "radius/md", v: "8px", t: "dimension", group: "radius" },
+  { f: "radius/lg", v: "12px", t: "dimension", group: "radius" },
+  { f: "radius/xl", v: "16px", t: "dimension", group: "radius" },
+  { f: "radius/full", v: "9999px", t: "dimension", group: "radius" },
 
-  { f: 'typography/size/xs',   v: '0.75rem',  t: 'dimension',  group: 'typography' },
-  { f: 'typography/size/sm',   v: '0.875rem', t: 'dimension',  group: 'typography' },
-  { f: 'typography/size/base', v: '1rem',     t: 'dimension',  group: 'typography' },
-  { f: 'typography/size/lg',   v: '1.125rem', t: 'dimension',  group: 'typography' },
-  { f: 'typography/size/xl',   v: '1.5rem',   t: 'dimension',  group: 'typography' },
-  { f: 'typography/weight/regular', v: '400', t: 'fontWeight', group: 'typography' },
-  { f: 'typography/weight/medium',  v: '600', t: 'fontWeight', group: 'typography' },
-  { f: 'typography/weight/bold',    v: '700', t: 'fontWeight', group: 'typography' },
+  {
+    f: "typography/size/xs",
+    v: "0.75rem",
+    t: "dimension",
+    group: "typography",
+  },
+  {
+    f: "typography/size/sm",
+    v: "0.875rem",
+    t: "dimension",
+    group: "typography",
+  },
+  { f: "typography/size/base", v: "1rem", t: "dimension", group: "typography" },
+  {
+    f: "typography/size/lg",
+    v: "1.125rem",
+    t: "dimension",
+    group: "typography",
+  },
+  { f: "typography/size/xl", v: "1.5rem", t: "dimension", group: "typography" },
+  {
+    f: "typography/weight/regular",
+    v: "400",
+    t: "fontWeight",
+    group: "typography",
+  },
+  {
+    f: "typography/weight/medium",
+    v: "600",
+    t: "fontWeight",
+    group: "typography",
+  },
+  {
+    f: "typography/weight/bold",
+    v: "700",
+    t: "fontWeight",
+    group: "typography",
+  },
 
-  { f: 'shadow/sm', v: '0 1px 4px rgba(0,0,0,.2)',  t: 'shadow', group: 'shadow' },
-  { f: 'shadow/md', v: '0 4px 16px rgba(0,0,0,.3)', t: 'shadow', group: 'shadow' },
-  { f: 'shadow/lg', v: '0 8px 32px rgba(0,0,0,.4)', t: 'shadow', group: 'shadow' },
+  {
+    f: "shadow/sm",
+    v: "0 1px 4px rgba(0,0,0,.2)",
+    t: "shadow",
+    group: "shadow",
+  },
+  {
+    f: "shadow/md",
+    v: "0 4px 16px rgba(0,0,0,.3)",
+    t: "shadow",
+    group: "shadow",
+  },
+  {
+    f: "shadow/lg",
+    v: "0 8px 32px rgba(0,0,0,.4)",
+    t: "shadow",
+    group: "shadow",
+  },
 
-  { f: 'motion/duration/fast', v: '150ms', t: 'duration', group: 'motion' },
-  { f: 'motion/duration/base', v: '220ms', t: 'duration', group: 'motion' },
-  { f: 'motion/easing/out',    v: 'cubic-bezier(.22,1,.36,1)', t: 'cubicBezier', group: 'motion' },
-];
+  { f: "motion/duration/fast", v: "150ms", t: "duration", group: "motion" },
+  { f: "motion/duration/base", v: "220ms", t: "duration", group: "motion" },
+  {
+    f: "motion/easing/out",
+    v: "cubic-bezier(.22,1,.36,1)",
+    t: "cubicBezier",
+    group: "motion",
+  },
+]
 
 /* Derive every consumer name for a token (single naming rule). */
-const TOK = {};
+const TOK = {}
 TOKENS.forEach((tok) => {
-  const parts = tok.f.split('/');
-  tok.css  = '--' + parts.join('-');                                   // --color-primary-900
-  tok.scss = '$' + parts.join('-');                                    // $color-primary-900
-  tok.js   = parts.map((s, i) => (i ? s[0].toUpperCase() + s.slice(1) : s)).join(''); // colorPrimary900
-  tok.tw   = parts.slice(1).join('-');                                 // primary-900 / 4 / md
-  TOK[tok.f] = tok;
-});
-const tok = (figmaPath) => TOK[figmaPath];          // lookup helper
-const cssVar = (figmaPath) => `var(${TOK[figmaPath].css})`;
+  const parts = tok.f.split("/")
+  tok.css = "--" + parts.join("-") // --color-primary-900
+  tok.scss = "$" + parts.join("-") // $color-primary-900
+  tok.js = parts
+    .map((s, i) => (i ? s[0].toUpperCase() + s.slice(1) : s))
+    .join("") // colorPrimary900
+  tok.tw = parts.slice(1).join("-") // primary-900 / 4 / md
+  TOK[tok.f] = tok
+})
+const tok = (figmaPath) => TOK[figmaPath] // lookup helper
+const cssVar = (figmaPath) => `var(${TOK[figmaPath].css})`
 
 /* ── 2 · PIPELINE STAGES ─────────────────────────────────────── */
 const STAGES = [
-  { key: 'figma',     name: 'Figma',    color: 'var(--figma)' },
-  { key: 'tokens',    name: 'Tokens',   color: 'var(--token)' },
-  { key: 'build',     name: 'Transform', color: 'var(--stdict)' },
-  { key: 'frameworks', name: 'Frameworks', color: 'var(--accent)' },
-  { key: 'storybook', name: 'Storybook', color: 'var(--storybook)' },
-];
+  { key: "figma", name: "Figma", color: "var(--figma)" },
+  { key: "tokens", name: "Tokens", color: "var(--token)" },
+  { key: "build", name: "Transform", color: "var(--stdict)" },
+  { key: "frameworks", name: "Frameworks", color: "var(--accent)" },
+  { key: "storybook", name: "Storybook", color: "var(--storybook)" },
+]
 
 /* ── 3 · FRAMEWORK TARGETS ───────────────────────────────────── */
 const FRAMEWORKS = [
-  { key: 'react',    name: 'React',         kind: 'framework',      logo: 'Re', lc: '#61dafb', install: 'npm i @designops/tokens @designops/react' },
-  { key: 'next',     name: 'Next.js',       kind: 'meta-framework', logo: 'Nx', lc: '#ffffff', install: 'npm i @designops/tokens @designops/react' },
-  { key: 'vue',      name: 'Vue',           kind: 'framework',      logo: 'Vu', lc: '#42d392', install: 'npm i @designops/tokens @designops/vue' },
-  { key: 'nuxt',     name: 'Nuxt',          kind: 'meta-framework', logo: 'Nu', lc: '#00dc82', install: 'npx nuxi module add @designops/nuxt' },
-  { key: 'svelte',   name: 'Svelte / SvelteKit', kind: 'framework', logo: 'Sv', lc: '#ff3e00', install: 'npm i @designops/tokens @designops/svelte' },
-  { key: 'angular',  name: 'Angular',       kind: 'framework',      logo: 'An', lc: '#dd4040', install: 'npm i @designops/tokens @designops/angular' },
-  { key: 'remix',    name: 'Remix',         kind: 'meta-framework', logo: 'Rm', lc: '#8ab4f8', install: 'npm i @designops/tokens @designops/react' },
-  { key: 'astro',    name: 'Astro',         kind: 'meta-framework', logo: 'As', lc: '#bc52ee', install: 'npx astro add @designops/astro' },
-  { key: 'ionic',    name: 'Ionic',         kind: 'framework',      logo: 'Io', lc: '#498aff', install: 'npm i @designops/tokens @designops/ionic' },
-  { key: 'mui',      name: 'MUI · Material UI', kind: 'ui library', logo: 'Mu', lc: '#00b0ff', install: 'npm i @designops/tokens @designops/mui' },
-  { key: 'tailwind', name: 'Tailwind CSS',  kind: 'css framework',  logo: 'Tw', lc: '#38bdf8', install: 'npm i @designops/tokens-tailwind' },
-  { key: 'rn',       name: 'React Native',  kind: 'mobile',         logo: 'Rn', lc: '#61dafb', install: 'npm i @designops/native' },
-  { key: 'css',      name: 'Any stack · plain CSS', kind: 'universal', logo: '{}', lc: '#e8ff5a', install: '<link rel="stylesheet" href="https://cdn.designops.dev/tokens@3/tokens.css">' },
-  { key: 'webc',     name: 'Web Components', kind: 'universal',     logo: 'Wc', lc: '#34d399', install: 'npm i @designops/elements' },
-];
-const fwByKey = (k) => FRAMEWORKS.find((f) => f.key === k);
+  {
+    key: "react",
+    name: "React",
+    kind: "framework",
+    logo: "Re",
+    lc: "#61dafb",
+    install: "npm i @designops/tokens @designops/react",
+  },
+  {
+    key: "next",
+    name: "Next.js",
+    kind: "meta-framework",
+    logo: "Nx",
+    lc: "#ffffff",
+    install: "npm i @designops/tokens @designops/react",
+  },
+  {
+    key: "vue",
+    name: "Vue",
+    kind: "framework",
+    logo: "Vu",
+    lc: "#42d392",
+    install: "npm i @designops/tokens @designops/vue",
+  },
+  {
+    key: "nuxt",
+    name: "Nuxt",
+    kind: "meta-framework",
+    logo: "Nu",
+    lc: "#00dc82",
+    install: "npx nuxi module add @designops/nuxt",
+  },
+  {
+    key: "svelte",
+    name: "Svelte / SvelteKit",
+    kind: "framework",
+    logo: "Sv",
+    lc: "#ff3e00",
+    install: "npm i @designops/tokens @designops/svelte",
+  },
+  {
+    key: "angular",
+    name: "Angular",
+    kind: "framework",
+    logo: "An",
+    lc: "#dd4040",
+    install: "npm i @designops/tokens @designops/angular",
+  },
+  {
+    key: "remix",
+    name: "Remix",
+    kind: "meta-framework",
+    logo: "Rm",
+    lc: "#8ab4f8",
+    install: "npm i @designops/tokens @designops/react",
+  },
+  {
+    key: "astro",
+    name: "Astro",
+    kind: "meta-framework",
+    logo: "As",
+    lc: "#bc52ee",
+    install: "npx astro add @designops/astro",
+  },
+  {
+    key: "ionic",
+    name: "Ionic",
+    kind: "framework",
+    logo: "Io",
+    lc: "#498aff",
+    install: "npm i @designops/tokens @designops/ionic",
+  },
+  {
+    key: "mui",
+    name: "MUI · Material UI",
+    kind: "ui library",
+    logo: "Mu",
+    lc: "#00b0ff",
+    install: "npm i @designops/tokens @designops/mui",
+  },
+  {
+    key: "tailwind",
+    name: "Tailwind CSS",
+    kind: "css framework",
+    logo: "Tw",
+    lc: "#38bdf8",
+    install: "npm i @designops/tokens-tailwind",
+  },
+  {
+    key: "rn",
+    name: "React Native",
+    kind: "mobile",
+    logo: "Rn",
+    lc: "#61dafb",
+    install: "npm i @designops/native",
+  },
+  {
+    key: "css",
+    name: "Any stack · plain CSS",
+    kind: "universal",
+    logo: "{}",
+    lc: "#e8ff5a",
+    install:
+      '<link rel="stylesheet" href="https://cdn.designops.dev/tokens@3/tokens.css">',
+  },
+  {
+    key: "webc",
+    name: "Web Components",
+    kind: "universal",
+    logo: "Wc",
+    lc: "#34d399",
+    install: "npm i @designops/elements",
+  },
+]
+const fwByKey = (k) => FRAMEWORKS.find((f) => f.key === k)
 
 /* ── 4 · COMPONENTS ────────────────────────────────────────────
    Schema-driven: `css.base/variants/modifiers` are the design, and
@@ -107,39 +268,100 @@ const fwByKey = (k) => FRAMEWORKS.find((f) => f.key === k);
    review | waiting | missing. */
 const COMPONENTS = [
   {
-    id: 'button', name: 'Button', tag: 'ds-button', cls: 'ds-btn', element: 'button',
-    version: '2.1.0', figmaPath: 'Components / Button', stories: 9,
-    status: { figma: 'ready', tokens: 'ready', build: 'ready', frameworks: 'ready', storybook: 'ready' },
-    subs: { figma: '4 variants · 3 sizes', tokens: '6 tokens exported', build: 'CSS + TS generated', frameworks: '14/14 targets live', storybook: '9 stories · docs current' },
-    desc: 'Trigger actions and submits. All color, spacing, radius and weight values are token-referenced; nothing is hard-coded.',
+    id: "button",
+    name: "Button",
+    tag: "ds-button",
+    cls: "ds-btn",
+    element: "button",
+    version: "2.1.0",
+    figmaPath: "Components / Button",
+    stories: 9,
+    status: {
+      figma: "ready",
+      tokens: "ready",
+      build: "ready",
+      frameworks: "ready",
+      storybook: "ready",
+    },
+    subs: {
+      figma: "4 variants · 3 sizes",
+      tokens: "6 tokens exported",
+      build: "CSS + TS generated",
+      frameworks: "14/14 targets live",
+      storybook: "9 stories · docs current",
+    },
+    desc: "Trigger actions and submits. All color, spacing, radius and weight values are token-referenced; nothing is hard-coded.",
     props: [
-      { n: 'variant', t: "'primary' | 'secondary' | 'destructive' | 'ghost'", d: "'primary'", figma: 'variant' },
-      { n: 'size',    t: "'sm' | 'md' | 'lg'", d: "'md'", figma: 'size' },
-      { n: 'disabled', t: 'boolean', d: 'false', figma: 'disabled' },
-      { n: 'loading',  t: 'boolean', d: 'false', figma: 'loading' },
+      {
+        n: "variant",
+        t: "'primary' | 'secondary' | 'destructive' | 'ghost'",
+        d: "'primary'",
+        figma: "variant",
+      },
+      { n: "size", t: "'sm' | 'md' | 'lg'", d: "'md'", figma: "size" },
+      { n: "disabled", t: "boolean", d: "false", figma: "disabled" },
+      { n: "loading", t: "boolean", d: "false", figma: "loading" },
     ],
     spec: [
-      { prop: 'background (primary)', token: 'color/primary/900' },
-      { prop: 'background (destructive)', token: 'color/danger/600' },
-      { prop: 'text color (on primary)', token: 'color/neutral/900' },
-      { prop: 'padding block (md)', token: 'space/2' },
-      { prop: 'padding inline (md)', token: 'space/4' },
-      { prop: 'corner radius', token: 'radius/md' },
-      { prop: 'label weight', token: 'typography/weight/medium' },
-      { prop: 'label size (md)', token: 'typography/size/base' },
+      { prop: "background (primary)", token: "color/primary/900" },
+      { prop: "background (destructive)", token: "color/danger/600" },
+      { prop: "text color (on primary)", token: "color/neutral/900" },
+      { prop: "padding block (md)", token: "space/2" },
+      { prop: "padding inline (md)", token: "space/4" },
+      { prop: "corner radius", token: "radius/md" },
+      { prop: "label weight", token: "typography/weight/medium" },
+      { prop: "label size (md)", token: "typography/size/base" },
     ],
-    tokensUsed: ['color/primary/900', 'color/primary/800', 'color/danger/600', 'color/neutral/900', 'space/2', 'space/4', 'radius/md', 'typography/weight/medium'],
+    tokensUsed: [
+      "color/primary/900",
+      "color/primary/800",
+      "color/danger/600",
+      "color/neutral/900",
+      "space/2",
+      "space/4",
+      "radius/md",
+      "typography/weight/medium",
+    ],
     css: {
-      base: [['display', 'inline-flex'], ['align-items', 'center'], ['gap', cssVar('space/2')], ['padding', `${cssVar('space/2')} ${cssVar('space/4')}`], ['border', 'none'], ['border-radius', cssVar('radius/md')], ['font-weight', cssVar('typography/weight/medium')], ['cursor', 'pointer'], ['transition', `opacity ${cssVar('motion/duration/fast')}`]],
+      base: [
+        ["display", "inline-flex"],
+        ["align-items", "center"],
+        ["gap", cssVar("space/2")],
+        ["padding", `${cssVar("space/2")} ${cssVar("space/4")}`],
+        ["border", "none"],
+        ["border-radius", cssVar("radius/md")],
+        ["font-weight", cssVar("typography/weight/medium")],
+        ["cursor", "pointer"],
+        ["transition", `opacity ${cssVar("motion/duration/fast")}`],
+      ],
       variants: {
-        primary:     [['background', cssVar('color/primary/900')], ['color', cssVar('color/neutral/900')]],
-        secondary:   [['background', 'transparent'], ['color', cssVar('color/ink/default')], ['border', '1.5px solid rgba(255,255,255,.2)']],
-        destructive: [['background', cssVar('color/danger/600')], ['color', '#ffffff']],
-        ghost:       [['background', 'transparent'], ['color', cssVar('color/ink/muted')]],
+        primary: [
+          ["background", cssVar("color/primary/900")],
+          ["color", cssVar("color/neutral/900")],
+        ],
+        secondary: [
+          ["background", "transparent"],
+          ["color", cssVar("color/ink/default")],
+          ["border", "1.5px solid rgba(255,255,255,.2)"],
+        ],
+        destructive: [
+          ["background", cssVar("color/danger/600")],
+          ["color", "#ffffff"],
+        ],
+        ghost: [
+          ["background", "transparent"],
+          ["color", cssVar("color/ink/muted")],
+        ],
       },
       modifiers: {
-        sm: [['padding', `${cssVar('space/1')} ${cssVar('space/3')}`], ['font-size', cssVar('typography/size/sm')]],
-        lg: [['padding', `${cssVar('space/3')} ${cssVar('space/6')}`], ['font-size', cssVar('typography/size/lg')]],
+        sm: [
+          ["padding", `${cssVar("space/1")} ${cssVar("space/3")}`],
+          ["font-size", cssVar("typography/size/sm")],
+        ],
+        lg: [
+          ["padding", `${cssVar("space/3")} ${cssVar("space/6")}`],
+          ["font-size", cssVar("typography/size/lg")],
+        ],
       },
     },
     preview: `
@@ -159,56 +381,171 @@ const COMPONENTS = [
         <span class="prev-btn prev-btn-primary prev-btn-loading">Loading</span>
       </div>`,
     a11y: [
-      'Uses a native <code>&lt;button&gt;</code> — keyboard and screen-reader support is free.',
-      '<code>aria-busy</code> is set while <code>loading</code> is true and the click handler is suppressed.',
-      'Focus ring is visible in both color schemes (tested at 4.5:1+).',
+      "Uses a native <code>&lt;button&gt;</code> — keyboard and screen-reader support is free.",
+      "<code>aria-busy</code> is set while <code>loading</code> is true and the click handler is suppressed.",
+      "Focus ring is visible in both color schemes (tested at 4.5:1+).",
     ],
     usage: {
-      do: ['One primary button per view — it owns the main action', 'Use destructive only for irreversible actions', 'Use loading during async submits instead of disabling silently'],
-      dont: ['Never hard-code hex colors — always compose variants', 'Don’t place two primary buttons side by side', 'Don’t use ghost for critical actions'],
+      do: [
+        "One primary button per view — it owns the main action",
+        "Use destructive only for irreversible actions",
+        "Use loading during async submits instead of disabling silently",
+      ],
+      dont: [
+        "Never hard-code hex colors — always compose variants",
+        "Don’t place two primary buttons side by side",
+        "Don’t use ghost for critical actions",
+      ],
     },
     comments: [
-      { a: 'Thabo M.', ini: 'TM', col: 'var(--figma)', bg: 'var(--figma-dim)', time: '2d ago', type: 'Change request', where: 'Frameworks', text: 'Ghost hover background was missing in the React build — spec says color/primary/50 wash.', reactions: 2 },
-      { a: 'Lulamile M.', ini: 'LM', col: 'var(--accent)', bg: 'var(--accent-dim)', time: '1d ago', type: 'Approved', where: 'Frameworks', text: 'Fixed in v2.1.0 — ghost hover now resolves to --color-primary-50 in every target. Storybook updated.', reactions: 1 },
-      { a: 'Sipho R.', ini: 'SR', col: 'var(--blue)', bg: 'var(--blue-dim)', time: '5h ago', type: 'Question', where: 'Figma', text: 'Do we need a full-width variant? Onboarding flows need width:100%.', reactions: 3 },
+      {
+        a: "Thabo M.",
+        ini: "TM",
+        col: "var(--figma)",
+        bg: "var(--figma-dim)",
+        time: "2d ago",
+        type: "Change request",
+        where: "Frameworks",
+        text: "Ghost hover background was missing in the React build — spec says color/primary/50 wash.",
+        reactions: 2,
+      },
+      {
+        a: "Lulamile M.",
+        ini: "LM",
+        col: "var(--accent)",
+        bg: "var(--accent-dim)",
+        time: "1d ago",
+        type: "Approved",
+        where: "Frameworks",
+        text: "Fixed in v2.1.0 — ghost hover now resolves to --color-primary-50 in every target. Storybook updated.",
+        reactions: 1,
+      },
+      {
+        a: "Sipho R.",
+        ini: "SR",
+        col: "var(--blue)",
+        bg: "var(--blue-dim)",
+        time: "5h ago",
+        type: "Question",
+        where: "Figma",
+        text: "Do we need a full-width variant? Onboarding flows need width:100%.",
+        reactions: 3,
+      },
     ],
     /* Release history — every entry is tied to a request, review or token change. */
     history: [
-      { v: '2.1.0', date: '22 Jul 2026', type: 'minor', by: 'Lulamile M.', notes: ['Ghost hover now resolves to --color-primary-50 in every target (closes Thabo’s change request)', 'Loading spinner is aria-hidden; click suppressed while loading'] },
-      { v: '2.0.0', date: '30 Jun 2026', type: 'major', by: 'Lulamile M.', notes: ['Migrated to tokens v3 palette (primary/800 hover)', 'loading prop promoted from flag to first-class Figma property', 'Codemod shipped for the removed textColor prop'] },
-      { v: '1.4.2', date: '18 May 2026', type: 'patch', by: 'Thabo M.', notes: ['Secondary border bumped to 1.5px to hit 3:1 non-text contrast'] },
-      { v: '1.0.0', date: '02 Apr 2026', type: 'stable', by: 'Lulamile M.', notes: ['First stable release: 4 variants × 3 sizes across all 14 targets'] },
+      {
+        v: "2.1.0",
+        date: "22 Jul 2026",
+        type: "minor",
+        by: "Lulamile M.",
+        notes: [
+          "Ghost hover now resolves to --color-primary-50 in every target (closes Thabo’s change request)",
+          "Loading spinner is aria-hidden; click suppressed while loading",
+        ],
+      },
+      {
+        v: "2.0.0",
+        date: "30 Jun 2026",
+        type: "major",
+        by: "Lulamile M.",
+        notes: [
+          "Migrated to tokens v3 palette (primary/800 hover)",
+          "loading prop promoted from flag to first-class Figma property",
+          "Codemod shipped for the removed textColor prop",
+        ],
+      },
+      {
+        v: "1.4.2",
+        date: "18 May 2026",
+        type: "patch",
+        by: "Thabo M.",
+        notes: [
+          "Secondary border bumped to 1.5px to hit 3:1 non-text contrast",
+        ],
+      },
+      {
+        v: "1.0.0",
+        date: "02 Apr 2026",
+        type: "stable",
+        by: "Lulamile M.",
+        notes: [
+          "First stable release: 4 variants × 3 sizes across all 14 targets",
+        ],
+      },
     ],
   },
 
   {
-    id: 'input', name: 'Input Field', tag: 'ds-field', cls: 'ds-input', element: 'div',
-    version: '2.0.3', figmaPath: 'Components / Input Field', stories: 6,
-    status: { figma: 'ready', tokens: 'ready', build: 'ready', frameworks: 'ready', storybook: 'ready' },
-    subs: { figma: '4 states designed', tokens: 'All tokens exported', build: 'CSS + TS generated', frameworks: '14/14 targets live', storybook: '6 stories · docs current' },
-    desc: 'Labelled text input with hint and error messaging. Reactive-forms / v-model / controlled compatible.',
+    id: "input",
+    name: "Input Field",
+    tag: "ds-field",
+    cls: "ds-input",
+    element: "div",
+    version: "2.0.3",
+    figmaPath: "Components / Input Field",
+    stories: 6,
+    status: {
+      figma: "ready",
+      tokens: "ready",
+      build: "ready",
+      frameworks: "ready",
+      storybook: "ready",
+    },
+    subs: {
+      figma: "4 states designed",
+      tokens: "All tokens exported",
+      build: "CSS + TS generated",
+      frameworks: "14/14 targets live",
+      storybook: "6 stories · docs current",
+    },
+    desc: "Labelled text input with hint and error messaging. Reactive-forms / v-model / controlled compatible.",
     props: [
-      { n: 'label', t: 'string', d: '—', figma: 'label' },
-      { n: 'type', t: "'text' | 'email' | 'password' | 'number'", d: "'text'", figma: 'type' },
-      { n: 'hint', t: 'string', d: '—', figma: 'hint' },
-      { n: 'error', t: 'string', d: '—', figma: 'error' },
-      { n: 'disabled', t: 'boolean', d: 'false', figma: 'disabled' },
-      { n: 'required', t: 'boolean', d: 'false', figma: 'required' },
+      { n: "label", t: "string", d: "—", figma: "label" },
+      {
+        n: "type",
+        t: "'text' | 'email' | 'password' | 'number'",
+        d: "'text'",
+        figma: "type",
+      },
+      { n: "hint", t: "string", d: "—", figma: "hint" },
+      { n: "error", t: "string", d: "—", figma: "error" },
+      { n: "disabled", t: "boolean", d: "false", figma: "disabled" },
+      { n: "required", t: "boolean", d: "false", figma: "required" },
     ],
     spec: [
-      { prop: 'padding block', token: 'space/2' },
-      { prop: 'padding inline', token: 'space/3' },
-      { prop: 'corner radius', token: 'radius/md' },
-      { prop: 'focus ring', token: 'color/primary/900' },
-      { prop: 'error border', token: 'color/danger/600' },
-      { prop: 'text size', token: 'typography/size/base' },
+      { prop: "padding block", token: "space/2" },
+      { prop: "padding inline", token: "space/3" },
+      { prop: "corner radius", token: "radius/md" },
+      { prop: "focus ring", token: "color/primary/900" },
+      { prop: "error border", token: "color/danger/600" },
+      { prop: "text size", token: "typography/size/base" },
     ],
-    tokensUsed: ['color/primary/900', 'color/danger/600', 'space/2', 'space/3', 'radius/md', 'typography/size/base'],
+    tokensUsed: [
+      "color/primary/900",
+      "color/danger/600",
+      "space/2",
+      "space/3",
+      "radius/md",
+      "typography/size/base",
+    ],
     css: {
-      base: [['padding', `${cssVar('space/2')} ${cssVar('space/3')}`], ['border-radius', cssVar('radius/md')], ['font-size', cssVar('typography/size/base')], ['border', '1px solid rgba(255,255,255,.12)'], ['background', cssVar('color/neutral/800')], ['color', cssVar('color/ink/default')], ['transition', `border-color ${cssVar('motion/duration/fast')}`], ['outline', 'none']],
+      base: [
+        ["padding", `${cssVar("space/2")} ${cssVar("space/3")}`],
+        ["border-radius", cssVar("radius/md")],
+        ["font-size", cssVar("typography/size/base")],
+        ["border", "1px solid rgba(255,255,255,.12)"],
+        ["background", cssVar("color/neutral/800")],
+        ["color", cssVar("color/ink/default")],
+        ["transition", `border-color ${cssVar("motion/duration/fast")}`],
+        ["outline", "none"],
+      ],
       variants: {
-        focus: [['border-color', cssVar('color/primary/900')], ['box-shadow', `0 0 0 3px ${cssVar('color/primary/50')}`]],
-        error: [['border-color', cssVar('color/danger/600')]],
+        focus: [
+          ["border-color", cssVar("color/primary/900")],
+          ["box-shadow", `0 0 0 3px ${cssVar("color/primary/50")}`],
+        ],
+        error: [["border-color", cssVar("color/danger/600")]],
       },
       modifiers: {},
     },
@@ -226,52 +563,157 @@ const COMPONENTS = [
         <div class="prev-input"><div class="prev-input-label">Account ID</div><div class="prev-input-field prev-input-disabled">ACC-00482</div></div>
       </div>`,
     a11y: [
-      'Label is a real <code>&lt;label&gt;</code> bound with for/id in every target.',
+      "Label is a real <code>&lt;label&gt;</code> bound with for/id in every target.",
       'Error text uses role="alert" so screen readers announce it on submit.',
-      'aria-invalid mirrors the error state automatically.',
+      "aria-invalid mirrors the error state automatically.",
     ],
     usage: {
-      do: ['Always pair with a visible label', 'Use hint for format expectations (e.g. “min. 8 characters”)', 'Show errors after submit, not while typing'],
-      dont: ['Don’t rely on placeholder as the label', 'Don’t disable without explaining why nearby'],
+      do: [
+        "Always pair with a visible label",
+        "Use hint for format expectations (e.g. “min. 8 characters”)",
+        "Show errors after submit, not while typing",
+      ],
+      dont: [
+        "Don’t rely on placeholder as the label",
+        "Don’t disable without explaining why nearby",
+      ],
     },
     comments: [
-      { a: 'Nandi K.', ini: 'NK', col: 'var(--amber)', bg: 'var(--amber-dim)', time: '3d ago', type: 'In review', where: 'Figma', text: 'Textarea variant isn’t spec’d yet — request logged for a multiline flag.', reactions: 3 },
+      {
+        a: "Nandi K.",
+        ini: "NK",
+        col: "var(--amber)",
+        bg: "var(--amber-dim)",
+        time: "3d ago",
+        type: "In review",
+        where: "Figma",
+        text: "Textarea variant isn’t spec’d yet — request logged for a multiline flag.",
+        reactions: 3,
+      },
     ],
     history: [
-      { v: '2.0.3', date: '10 Jul 2026', type: 'patch', by: 'Thabo M.', notes: ['Error text announced via role="alert" on submit in React and Vue targets'] },
-      { v: '2.0.0', date: '12 Jun 2026', type: 'major', by: 'Lulamile M.', notes: ['helpText renamed to hint with codemod; errorMessages map replaced by hint + error', 'aria-invalid now mirrors error automatically'] },
-      { v: '1.5.0', date: '02 May 2026', type: 'minor', by: 'Lulamile M.', notes: ['Focus ring shadow tokenized (--color-primary-50 wash)', 'Disabled state contrast fixed per QA report'] },
-      { v: '1.0.0', date: '02 Apr 2026', type: 'stable', by: 'Lulamile M.', notes: ['First stable release — 4 states, Reactive-forms/v-model/controlled compatible'] },
+      {
+        v: "2.0.3",
+        date: "10 Jul 2026",
+        type: "patch",
+        by: "Thabo M.",
+        notes: [
+          'Error text announced via role="alert" on submit in React and Vue targets',
+        ],
+      },
+      {
+        v: "2.0.0",
+        date: "12 Jun 2026",
+        type: "major",
+        by: "Lulamile M.",
+        notes: [
+          "helpText renamed to hint with codemod; errorMessages map replaced by hint + error",
+          "aria-invalid now mirrors error automatically",
+        ],
+      },
+      {
+        v: "1.5.0",
+        date: "02 May 2026",
+        type: "minor",
+        by: "Lulamile M.",
+        notes: [
+          "Focus ring shadow tokenized (--color-primary-50 wash)",
+          "Disabled state contrast fixed per QA report",
+        ],
+      },
+      {
+        v: "1.0.0",
+        date: "02 Apr 2026",
+        type: "stable",
+        by: "Lulamile M.",
+        notes: [
+          "First stable release — 4 states, Reactive-forms/v-model/controlled compatible",
+        ],
+      },
     ],
   },
 
   {
-    id: 'badge', name: 'Badge / Chip', tag: 'ds-badge', cls: 'ds-badge', element: 'span',
-    version: '1.0.2', figmaPath: 'Components / Badge', stories: 5,
-    status: { figma: 'ready', tokens: 'ready', build: 'ready', frameworks: 'ready', storybook: 'review' },
-    subs: { figma: '5 status variants', tokens: 'Tokens exported', build: 'CSS + TS generated', frameworks: '14/14 targets live', storybook: '5 stories · PR #51 in review' },
-    desc: 'Compact status and count indicators. Pill radius and semantic colors are fully tokenized.',
+    id: "badge",
+    name: "Badge / Chip",
+    tag: "ds-badge",
+    cls: "ds-badge",
+    element: "span",
+    version: "1.0.2",
+    figmaPath: "Components / Badge",
+    stories: 5,
+    status: {
+      figma: "ready",
+      tokens: "ready",
+      build: "ready",
+      frameworks: "ready",
+      storybook: "review",
+    },
+    subs: {
+      figma: "5 status variants",
+      tokens: "Tokens exported",
+      build: "CSS + TS generated",
+      frameworks: "14/14 targets live",
+      storybook: "5 stories · PR #51 in review",
+    },
+    desc: "Compact status and count indicators. Pill radius and semantic colors are fully tokenized.",
     props: [
-      { n: 'variant', t: "'success' | 'warning' | 'danger' | 'info' | 'neutral'", d: "'neutral'", figma: 'variant' },
-      { n: 'dot', t: 'boolean', d: 'false', figma: 'showDot' },
+      {
+        n: "variant",
+        t: "'success' | 'warning' | 'danger' | 'info' | 'neutral'",
+        d: "'neutral'",
+        figma: "variant",
+      },
+      { n: "dot", t: "boolean", d: "false", figma: "showDot" },
     ],
     spec: [
-      { prop: 'padding block', token: 'space/1' },
-      { prop: 'padding inline', token: 'space/3' },
-      { prop: 'corner radius', token: 'radius/full' },
-      { prop: 'text size', token: 'typography/size/sm' },
-      { prop: 'text weight', token: 'typography/weight/medium' },
-      { prop: 'success color', token: 'color/success/600' },
+      { prop: "padding block", token: "space/1" },
+      { prop: "padding inline", token: "space/3" },
+      { prop: "corner radius", token: "radius/full" },
+      { prop: "text size", token: "typography/size/sm" },
+      { prop: "text weight", token: "typography/weight/medium" },
+      { prop: "success color", token: "color/success/600" },
     ],
-    tokensUsed: ['color/success/600', 'color/warning/600', 'color/danger/600', 'color/info/600', 'space/1', 'space/3', 'radius/full'],
+    tokensUsed: [
+      "color/success/600",
+      "color/warning/600",
+      "color/danger/600",
+      "color/info/600",
+      "space/1",
+      "space/3",
+      "radius/full",
+    ],
     css: {
-      base: [['display', 'inline-flex'], ['align-items', 'center'], ['gap', cssVar('space/1')], ['padding', `${cssVar('space/1')} ${cssVar('space/3')}`], ['border-radius', cssVar('radius/full')], ['font-size', cssVar('typography/size/sm')], ['font-weight', cssVar('typography/weight/medium')]],
+      base: [
+        ["display", "inline-flex"],
+        ["align-items", "center"],
+        ["gap", cssVar("space/1")],
+        ["padding", `${cssVar("space/1")} ${cssVar("space/3")}`],
+        ["border-radius", cssVar("radius/full")],
+        ["font-size", cssVar("typography/size/sm")],
+        ["font-weight", cssVar("typography/weight/medium")],
+      ],
       variants: {
-        success: [['background', 'rgba(74,222,128,.1)'], ['color', cssVar('color/success/600')]],
-        warning: [['background', 'rgba(251,191,36,.1)'], ['color', cssVar('color/warning/600')]],
-        danger:  [['background', 'rgba(248,113,113,.1)'], ['color', cssVar('color/danger/600')]],
-        info:    [['background', 'rgba(96,165,250,.1)'],  ['color', cssVar('color/info/600')]],
-        neutral: [['background', 'rgba(240,237,230,.06)'], ['color', cssVar('color/ink/subtle')]],
+        success: [
+          ["background", "rgba(74,222,128,.1)"],
+          ["color", cssVar("color/success/600")],
+        ],
+        warning: [
+          ["background", "rgba(251,191,36,.1)"],
+          ["color", cssVar("color/warning/600")],
+        ],
+        danger: [
+          ["background", "rgba(248,113,113,.1)"],
+          ["color", cssVar("color/danger/600")],
+        ],
+        info: [
+          ["background", "rgba(96,165,250,.1)"],
+          ["color", cssVar("color/info/600")],
+        ],
+        neutral: [
+          ["background", "rgba(240,237,230,.06)"],
+          ["color", cssVar("color/ink/subtle")],
+        ],
       },
       modifiers: {},
     },
@@ -288,42 +730,126 @@ const COMPONENTS = [
         <span class="prev-badge prev-badge-neutral">New</span>
         <span class="prev-badge prev-badge-success">v1.2.0</span>
       </div>`,
-    a11y: ['Count badges include visually-hidden context (“4 unread”).', 'Color is never the only signal — pair with text or dot.'],
+    a11y: [
+      "Count badges include visually-hidden context (“4 unread”).",
+      "Color is never the only signal — pair with text or dot.",
+    ],
     usage: {
-      do: ['Keep label to one or two words', 'Use semantic variants for system status only'],
-      dont: ['Don’t use badges as buttons', 'Don’t stack more than two badges in a table cell'],
+      do: [
+        "Keep label to one or two words",
+        "Use semantic variants for system status only",
+      ],
+      dont: [
+        "Don’t use badges as buttons",
+        "Don’t stack more than two badges in a table cell",
+      ],
     },
     comments: [
-      { a: 'Jana D.', ini: 'JD', col: 'var(--figma)', bg: 'var(--figma-dim)', time: '1d ago', type: 'Change request', where: 'Transform', text: 'Warning variant was mapped to --color-warning-500 in one target — corrected to warning-600 per Figma.', reactions: 4 },
+      {
+        a: "Jana D.",
+        ini: "JD",
+        col: "var(--figma)",
+        bg: "var(--figma-dim)",
+        time: "1d ago",
+        type: "Change request",
+        where: "Transform",
+        text: "Warning variant was mapped to --color-warning-500 in one target — corrected to warning-600 per Figma.",
+        reactions: 4,
+      },
     ],
     history: [
-      { v: '1.0.2', date: '19 Jul 2026', type: 'patch', by: 'Lulamile M.', notes: ['Warning variant corrected to --color-warning-600 (one target mapped 500) — closes Jana’s change request'] },
-      { v: '1.0.0', date: '25 Jun 2026', type: 'stable', by: 'Lulamile M.', notes: ['First stable: 5 status variants + dot indicator on all targets'] },
-      { v: '0.9.0', date: '05 Jun 2026', type: 'beta', by: 'Thabo M.', notes: ['Count variant added for nav/src badges', 'Sprint 8 hardening pass'] },
+      {
+        v: "1.0.2",
+        date: "19 Jul 2026",
+        type: "patch",
+        by: "Lulamile M.",
+        notes: [
+          "Warning variant corrected to --color-warning-600 (one target mapped 500) — closes Jana’s change request",
+        ],
+      },
+      {
+        v: "1.0.0",
+        date: "25 Jun 2026",
+        type: "stable",
+        by: "Lulamile M.",
+        notes: [
+          "First stable: 5 status variants + dot indicator on all targets",
+        ],
+      },
+      {
+        v: "0.9.0",
+        date: "05 Jun 2026",
+        type: "beta",
+        by: "Thabo M.",
+        notes: [
+          "Count variant added for nav/src badges",
+          "Sprint 8 hardening pass",
+        ],
+      },
     ],
   },
 
   {
-    id: 'card', name: 'Card', tag: 'ds-card', cls: 'ds-card', element: 'div',
-    version: '1.2.0', figmaPath: 'Components / Card', stories: 4,
-    status: { figma: 'ready', tokens: 'ready', build: 'ready', frameworks: 'ready', storybook: 'review' },
-    subs: { figma: '3 variants designed', tokens: 'Tokens exported', build: 'CSS + TS generated', frameworks: '14/14 targets live', storybook: '4 stories · PR #52 open' },
-    desc: 'Content grouping surface with default, elevated and outlined treatments. Children compose via header/body/footer slots.',
+    id: "card",
+    name: "Card",
+    tag: "ds-card",
+    cls: "ds-card",
+    element: "div",
+    version: "1.2.0",
+    figmaPath: "Components / Card",
+    stories: 4,
+    status: {
+      figma: "ready",
+      tokens: "ready",
+      build: "ready",
+      frameworks: "ready",
+      storybook: "review",
+    },
+    subs: {
+      figma: "3 variants designed",
+      tokens: "Tokens exported",
+      build: "CSS + TS generated",
+      frameworks: "14/14 targets live",
+      storybook: "4 stories · PR #52 open",
+    },
+    desc: "Content grouping surface with default, elevated and outlined treatments. Children compose via header/body/footer slots.",
     props: [
-      { n: 'variant', t: "'default' | 'elevated' | 'outlined'", d: "'default'", figma: 'variant' },
+      {
+        n: "variant",
+        t: "'default' | 'elevated' | 'outlined'",
+        d: "'default'",
+        figma: "variant",
+      },
     ],
     spec: [
-      { prop: 'padding', token: 'space/5' },
-      { prop: 'corner radius', token: 'radius/lg' },
-      { prop: 'elevation (elevated)', token: 'shadow/md' },
-      { prop: 'surface', token: 'color/neutral/700' },
+      { prop: "padding", token: "space/5" },
+      { prop: "corner radius", token: "radius/lg" },
+      { prop: "elevation (elevated)", token: "shadow/md" },
+      { prop: "surface", token: "color/neutral/700" },
     ],
-    tokensUsed: ['color/neutral/700', 'color/neutral/800', 'space/5', 'radius/lg', 'shadow/md'],
+    tokensUsed: [
+      "color/neutral/700",
+      "color/neutral/800",
+      "space/5",
+      "radius/lg",
+      "shadow/md",
+    ],
     css: {
-      base: [['background', cssVar('color/neutral/800')], ['border', '1px solid rgba(255,255,255,.07)'], ['border-radius', cssVar('radius/lg')], ['padding', cssVar('space/5')]],
+      base: [
+        ["background", cssVar("color/neutral/800")],
+        ["border", "1px solid rgba(255,255,255,.07)"],
+        ["border-radius", cssVar("radius/lg")],
+        ["padding", cssVar("space/5")],
+      ],
       variants: {
-        elevated: [['background', cssVar('color/neutral/700')], ['box-shadow', cssVar('shadow/md')]],
-        outlined: [['background', 'transparent'], ['border', '1.5px solid rgba(255,255,255,.2)']],
+        elevated: [
+          ["background", cssVar("color/neutral/700")],
+          ["box-shadow", cssVar("shadow/md")],
+        ],
+        outlined: [
+          ["background", "transparent"],
+          ["border", "1.5px solid rgba(255,255,255,.2)"],
+        ],
       },
       modifiers: {},
     },
@@ -340,44 +866,128 @@ const COMPONENTS = [
           <div class="prev-card-footer"><span class="prev-btn prev-btn-primary prev-btn-sm">Open</span></div>
         </div>
       </div>`,
-    a11y: ['Cards are neutral containers — interactive cards use a real link/button child, not a click handler on the card itself.'],
+    a11y: [
+      "Cards are neutral containers — interactive cards use a real link/button child, not a click handler on the card itself.",
+    ],
     usage: {
-      do: ['Elevated for featured / hero content only', 'Keep actions in the footer slot'],
-      dont: ['Don’t nest cards inside cards', 'Don’t mix default and outlined in one list'],
+      do: [
+        "Elevated for featured / hero content only",
+        "Keep actions in the footer slot",
+      ],
+      dont: [
+        "Don’t nest cards inside cards",
+        "Don’t mix default and outlined in one list",
+      ],
     },
     comments: [],
     history: [
-      { v: '1.2.0', date: '15 Jul 2026', type: 'minor', by: 'Lulamile M.', notes: ['Outlined variant added', 'Footer slot normalized across React/Vue/Angular/Svelte'] },
-      { v: '1.1.0', date: '20 Jun 2026', type: 'minor', by: 'Lulamile M.', notes: ['Elevated shadow tokenized (--shadow-md) after tokens v3 transform'] },
-      { v: '1.0.0', date: '28 May 2026', type: 'stable', by: 'Lulamile M.', notes: ['First stable release — default + elevated'] },
+      {
+        v: "1.2.0",
+        date: "15 Jul 2026",
+        type: "minor",
+        by: "Lulamile M.",
+        notes: [
+          "Outlined variant added",
+          "Footer slot normalized across React/Vue/Angular/Svelte",
+        ],
+      },
+      {
+        v: "1.1.0",
+        date: "20 Jun 2026",
+        type: "minor",
+        by: "Lulamile M.",
+        notes: [
+          "Elevated shadow tokenized (--shadow-md) after tokens v3 transform",
+        ],
+      },
+      {
+        v: "1.0.0",
+        date: "28 May 2026",
+        type: "stable",
+        by: "Lulamile M.",
+        notes: ["First stable release — default + elevated"],
+      },
     ],
   },
 
   {
-    id: 'alert', name: 'Alert / Toast', tag: 'ds-alert', cls: 'ds-alert', element: 'div',
-    version: '0.9.0', figmaPath: 'Components / Alert', stories: 0,
-    status: { figma: 'ready', tokens: 'ready', build: 'ready', frameworks: 'review', storybook: 'missing' },
-    subs: { figma: '4 states designed', tokens: 'Tokens exported', build: 'CSS + TS generated', frameworks: '12/14 targets · ionic + rn in PR', storybook: 'Sprint 9' },
-    desc: 'Inline status messaging with success, warning, error and info tones. Toast variant planned on the same token set.',
+    id: "alert",
+    name: "Alert / Toast",
+    tag: "ds-alert",
+    cls: "ds-alert",
+    element: "div",
+    version: "0.9.0",
+    figmaPath: "Components / Alert",
+    stories: 0,
+    status: {
+      figma: "ready",
+      tokens: "ready",
+      build: "ready",
+      frameworks: "review",
+      storybook: "missing",
+    },
+    subs: {
+      figma: "4 states designed",
+      tokens: "Tokens exported",
+      build: "CSS + TS generated",
+      frameworks: "12/14 targets · ionic + rn in PR",
+      storybook: "Sprint 9",
+    },
+    desc: "Inline status messaging with success, warning, error and info tones. Toast variant planned on the same token set.",
     props: [
-      { n: 'variant', t: "'success' | 'warning' | 'error' | 'info'", d: "'info'", figma: 'variant' },
-      { n: 'title', t: 'string', d: '—', figma: 'title' },
-      { n: 'dismissible', t: 'boolean', d: 'false', figma: 'dismissible' },
+      {
+        n: "variant",
+        t: "'success' | 'warning' | 'error' | 'info'",
+        d: "'info'",
+        figma: "variant",
+      },
+      { n: "title", t: "string", d: "—", figma: "title" },
+      { n: "dismissible", t: "boolean", d: "false", figma: "dismissible" },
     ],
     spec: [
-      { prop: 'padding block', token: 'space/3' },
-      { prop: 'padding inline', token: 'space/4' },
-      { prop: 'corner radius', token: 'radius/lg' },
-      { prop: 'icon gap', token: 'space/3' },
+      { prop: "padding block", token: "space/3" },
+      { prop: "padding inline", token: "space/4" },
+      { prop: "corner radius", token: "radius/lg" },
+      { prop: "icon gap", token: "space/3" },
     ],
-    tokensUsed: ['color/success/600', 'color/warning/600', 'color/danger/600', 'color/info/600', 'space/3', 'space/4', 'radius/lg'],
+    tokensUsed: [
+      "color/success/600",
+      "color/warning/600",
+      "color/danger/600",
+      "color/info/600",
+      "space/3",
+      "space/4",
+      "radius/lg",
+    ],
     css: {
-      base: [['display', 'flex'], ['gap', cssVar('space/3')], ['padding', `${cssVar('space/3')} ${cssVar('space/4')}`], ['border-radius', cssVar('radius/lg')], ['font-size', cssVar('typography/size/sm')]],
+      base: [
+        ["display", "flex"],
+        ["gap", cssVar("space/3")],
+        ["padding", `${cssVar("space/3")} ${cssVar("space/4")}`],
+        ["border-radius", cssVar("radius/lg")],
+        ["font-size", cssVar("typography/size/sm")],
+      ],
       variants: {
-        success: [['background', 'rgba(74,222,128,.1)'], ['border', '1px solid rgba(74,222,128,.2)'], ['color', cssVar('color/success/600')]],
-        warning: [['background', 'rgba(251,191,36,.1)'], ['border', '1px solid rgba(251,191,36,.2)'], ['color', cssVar('color/warning/600')]],
-        error:   [['background', 'rgba(248,113,113,.1)'], ['border', '1px solid rgba(248,113,113,.2)'], ['color', cssVar('color/danger/600')]],
-        info:    [['background', 'rgba(96,165,250,.1)'], ['border', '1px solid rgba(96,165,250,.2)'], ['color', cssVar('color/info/600')]],
+        success: [
+          ["background", "rgba(74,222,128,.1)"],
+          ["border", "1px solid rgba(74,222,128,.2)"],
+          ["color", cssVar("color/success/600")],
+        ],
+        warning: [
+          ["background", "rgba(251,191,36,.1)"],
+          ["border", "1px solid rgba(251,191,36,.2)"],
+          ["color", cssVar("color/warning/600")],
+        ],
+        error: [
+          ["background", "rgba(248,113,113,.1)"],
+          ["border", "1px solid rgba(248,113,113,.2)"],
+          ["color", cssVar("color/danger/600")],
+        ],
+        info: [
+          ["background", "rgba(96,165,250,.1)"],
+          ["border", "1px solid rgba(96,165,250,.2)"],
+          ["color", cssVar("color/info/600")],
+        ],
       },
       modifiers: {},
     },
@@ -388,41 +998,99 @@ const COMPONENTS = [
         <div class="prev-alert prev-alert-error"><span>✕</span><div><strong>Failed to save</strong>Please check your connection and try again.</div></div>
         <div class="prev-alert prev-alert-info"><span>ℹ</span><div><strong>Maintenance scheduled</strong>The platform will be offline from 02:00–04:00 SAST.</div></div>
       </div>`,
-    a11y: ['role="alert" for assertive messages; role="status" for passive updates.', 'Never auto-dismiss error messages.'],
+    a11y: [
+      'role="alert" for assertive messages; role="status" for passive updates.',
+      "Never auto-dismiss error messages.",
+    ],
     usage: {
-      do: ['Lead with the outcome in the title', 'One alert per region'],
-      dont: ['Don’t use alerts for promotional content', 'Don’t stack more than two'],
+      do: ["Lead with the outcome in the title", "One alert per region"],
+      dont: [
+        "Don’t use alerts for promotional content",
+        "Don’t stack more than two",
+      ],
     },
     comments: [],
     history: [
-      { v: '0.9.0', date: '12 Jul 2026', type: 'beta', by: 'Lulamile M.', notes: ['All 4 tones spec-complete; 12/14 targets shipped', 'Ionic + React Native adapters open in PR #60'] },
-      { v: '0.8.0', date: '15 Jun 2026', type: 'beta', by: 'Lulamile M.', notes: ['Inline alert design approved', 'Toast variant split into its own request to keep scope tight'] },
+      {
+        v: "0.9.0",
+        date: "12 Jul 2026",
+        type: "beta",
+        by: "Lulamile M.",
+        notes: [
+          "All 4 tones spec-complete; 12/14 targets shipped",
+          "Ionic + React Native adapters open in PR #60",
+        ],
+      },
+      {
+        v: "0.8.0",
+        date: "15 Jun 2026",
+        type: "beta",
+        by: "Lulamile M.",
+        notes: [
+          "Inline alert design approved",
+          "Toast variant split into its own request to keep scope tight",
+        ],
+      },
     ],
   },
 
   {
-    id: 'avatar', name: 'Avatar', tag: 'ds-avatar', cls: 'ds-avatar', element: 'span',
-    version: '0.7.0', figmaPath: 'Components / Avatar', stories: 0,
-    status: { figma: 'ready', tokens: 'ready', build: 'review', frameworks: 'waiting', storybook: 'missing' },
-    subs: { figma: 'sm/md/lg + group', tokens: 'Size tokens exported', build: 'PR #61 open', frameworks: 'Queued after transform', storybook: 'Queued' },
-    desc: 'User identity as image or initials, with an overlapping group treatment.',
+    id: "avatar",
+    name: "Avatar",
+    tag: "ds-avatar",
+    cls: "ds-avatar",
+    element: "span",
+    version: "0.7.0",
+    figmaPath: "Components / Avatar",
+    stories: 0,
+    status: {
+      figma: "ready",
+      tokens: "ready",
+      build: "review",
+      frameworks: "waiting",
+      storybook: "missing",
+    },
+    subs: {
+      figma: "sm/md/lg + group",
+      tokens: "Size tokens exported",
+      build: "PR #61 open",
+      frameworks: "Queued after transform",
+      storybook: "Queued",
+    },
+    desc: "User identity as image or initials, with an overlapping group treatment.",
     props: [
-      { n: 'size', t: "'sm' | 'md' | 'lg'", d: "'md'", figma: 'size' },
-      { n: 'src', t: 'string', d: '—', figma: 'image' },
-      { n: 'initials', t: 'string', d: '—', figma: 'initials' },
+      { n: "size", t: "'sm' | 'md' | 'lg'", d: "'md'", figma: "size" },
+      { n: "src", t: "string", d: "—", figma: "image" },
+      { n: "initials", t: "string", d: "—", figma: "initials" },
     ],
     spec: [
-      { prop: 'corner radius', token: 'radius/full' },
-      { prop: 'size (md)', token: 'space/8' },
-      { prop: 'group ring', token: 'color/neutral/800' },
+      { prop: "corner radius", token: "radius/full" },
+      { prop: "size (md)", token: "space/8" },
+      { prop: "group ring", token: "color/neutral/800" },
     ],
-    tokensUsed: ['radius/full', 'space/8', 'color/neutral/800'],
+    tokensUsed: ["radius/full", "space/8", "color/neutral/800"],
     css: {
-      base: [['width', cssVar('space/8')], ['height', cssVar('space/8')], ['border-radius', cssVar('radius/full')], ['display', 'inline-flex'], ['align-items', 'center'], ['justify-content', 'center'], ['font-weight', cssVar('typography/weight/bold')]],
+      base: [
+        ["width", cssVar("space/8")],
+        ["height", cssVar("space/8")],
+        ["border-radius", cssVar("radius/full")],
+        ["display", "inline-flex"],
+        ["align-items", "center"],
+        ["justify-content", "center"],
+        ["font-weight", cssVar("typography/weight/bold")],
+      ],
       variants: {},
       modifiers: {
-        sm: [['width', cssVar('space/7')], ['height', cssVar('space/7')], ['font-size', cssVar('typography/size/xs')]],
-        lg: [['width', cssVar('space/8')], ['height', cssVar('space/8')], ['font-size', cssVar('typography/size/lg')]],
+        sm: [
+          ["width", cssVar("space/7")],
+          ["height", cssVar("space/7")],
+          ["font-size", cssVar("typography/size/xs")],
+        ],
+        lg: [
+          ["width", cssVar("space/8")],
+          ["height", cssVar("space/8")],
+          ["font-size", cssVar("typography/size/lg")],
+        ],
       },
     },
     preview: `
@@ -439,38 +1107,90 @@ const COMPONENTS = [
           <div class="prev-avatar" style="background:var(--surface-3);color:var(--ink-45);font-size:.7rem">+4</div>
         </div>
       </div>`,
-    a11y: ['Always pass an alt / aria-label with the person’s name.'],
-    usage: { do: ['Fall back to initials while the image loads'], dont: ['Don’t show more than 3 + overflow count in a group'] },
+    a11y: ["Always pass an alt / aria-label with the person’s name."],
+    usage: {
+      do: ["Fall back to initials while the image loads"],
+      dont: ["Don’t show more than 3 + overflow count in a group"],
+    },
     comments: [],
     history: [
-      { v: '0.7.0', date: '18 Jul 2026', type: 'beta', by: 'Lulamile M.', notes: ['Group overflow (+n) spec finalized', 'Size tokens exported; transform PR #61 open'] },
-      { v: '0.6.0', date: '28 Jun 2026', type: 'beta', by: 'Lulamile M.', notes: ['Initials fallback rule approved: always render initials until image loads', 'alt/aria-label required at lint time'] },
+      {
+        v: "0.7.0",
+        date: "18 Jul 2026",
+        type: "beta",
+        by: "Lulamile M.",
+        notes: [
+          "Group overflow (+n) spec finalized",
+          "Size tokens exported; transform PR #61 open",
+        ],
+      },
+      {
+        v: "0.6.0",
+        date: "28 Jun 2026",
+        type: "beta",
+        by: "Lulamile M.",
+        notes: [
+          "Initials fallback rule approved: always render initials until image loads",
+          "alt/aria-label required at lint time",
+        ],
+      },
     ],
   },
 
   /* ── Request-pipeline components (ship live from the Requests view) ── */
   {
-    id: 'data-table', name: 'Data Table', tag: 'ds-table', cls: 'ds-table', element: 'div',
-    version: '—', figmaPath: 'Components / Data Table', stories: 0, requested: true,
-    status: { figma: 'review', tokens: 'ready', build: 'review', frameworks: 'missing', storybook: 'missing' },
-    subs: { figma: 'Design attached ✓', tokens: 'Tokens reserved', build: 'Awaiting approval', frameworks: 'Ships on approval', storybook: 'Auto-created on ship' },
-    desc: 'Sortable, paginated data grid with selection and loading skeletons. Requested by Palesa W. — see Requests.',
+    id: "data-table",
+    name: "Data Table",
+    tag: "ds-table",
+    cls: "ds-table",
+    element: "div",
+    version: "—",
+    figmaPath: "Components / Data Table",
+    stories: 0,
+    requested: true,
+    status: {
+      figma: "review",
+      tokens: "ready",
+      build: "review",
+      frameworks: "missing",
+      storybook: "missing",
+    },
+    subs: {
+      figma: "Design attached ✓",
+      tokens: "Tokens reserved",
+      build: "Awaiting approval",
+      frameworks: "Ships on approval",
+      storybook: "Auto-created on ship",
+    },
+    desc: "Sortable, paginated data grid with selection and loading skeletons. Requested by Palesa W. — see Requests.",
     props: [
-      { n: 'columns', t: 'ColumnDef[]', d: '[]', figma: 'columns' },
-      { n: 'rows', t: 'Row[]', d: '[]', figma: 'rows' },
-      { n: 'sortable', t: 'boolean', d: 'true', figma: 'sortable' },
-      { n: 'paginated', t: 'boolean', d: 'true', figma: 'paginated' },
+      { n: "columns", t: "ColumnDef[]", d: "[]", figma: "columns" },
+      { n: "rows", t: "Row[]", d: "[]", figma: "rows" },
+      { n: "sortable", t: "boolean", d: "true", figma: "sortable" },
+      { n: "paginated", t: "boolean", d: "true", figma: "paginated" },
     ],
     spec: [
-      { prop: 'row padding block', token: 'space/2' },
-      { prop: 'row padding inline', token: 'space/3' },
-      { prop: 'header text', token: 'typography/size/xs' },
-      { prop: 'row hover', token: 'color/neutral/700' },
-      { prop: 'corner radius', token: 'radius/lg' },
+      { prop: "row padding block", token: "space/2" },
+      { prop: "row padding inline", token: "space/3" },
+      { prop: "header text", token: "typography/size/xs" },
+      { prop: "row hover", token: "color/neutral/700" },
+      { prop: "corner radius", token: "radius/lg" },
     ],
-    tokensUsed: ['space/2', 'space/3', 'typography/size/xs', 'color/neutral/700', 'radius/lg'],
+    tokensUsed: [
+      "space/2",
+      "space/3",
+      "typography/size/xs",
+      "color/neutral/700",
+      "radius/lg",
+    ],
     css: {
-      base: [['width', '100%'], ['border-collapse', 'collapse'], ['font-size', cssVar('typography/size/sm')], ['border', '1px solid rgba(255,255,255,.07)'], ['border-radius', cssVar('radius/lg')]],
+      base: [
+        ["width", "100%"],
+        ["border-collapse", "collapse"],
+        ["font-size", cssVar("typography/size/sm")],
+        ["border", "1px solid rgba(255,255,255,.07)"],
+        ["border-radius", cssVar("radius/lg")],
+      ],
       variants: {},
       modifiers: {},
     },
@@ -484,34 +1204,97 @@ const COMPONENTS = [
           <tr><td>Sipho R.</td><td><span class="prev-badge prev-badge-neutral" style="font-size:.66rem">Inactive</span></td><td>QA Engineer</td><td>3d ago</td></tr>
         </tbody>
       </table></div>`,
-    a11y: ['Uses real <code>&lt;table&gt;</code> markup, sort state exposed via aria-sort.', 'Keyboard: arrow-key row navigation.'],
-    usage: { do: ['Show a loading skeleton, never a spinner alone'], dont: ['Don’t sort on the client above 500 rows'] },
+    a11y: [
+      "Uses real <code>&lt;table&gt;</code> markup, sort state exposed via aria-sort.",
+      "Keyboard: arrow-key row navigation.",
+    ],
+    usage: {
+      do: ["Show a loading skeleton, never a spinner alone"],
+      dont: ["Don’t sort on the client above 500 rows"],
+    },
     comments: [],
     history: [
-      { v: '0.9.0', date: '22 Jul 2026', type: 'design', by: 'Lulamile M.', notes: ['Design attached to request: loading skeleton, sort icons, empty state', 'Tokens reserved (row padding, hover surface, header text)'] },
-      { v: '0.1.0', date: '14 Jul 2026', type: 'design', by: 'Palesa W.', notes: ['Requested via the board — 7 upvotes; unblocks the reporting squad'] },
+      {
+        v: "0.9.0",
+        date: "22 Jul 2026",
+        type: "design",
+        by: "Lulamile M.",
+        notes: [
+          "Design attached to request: loading skeleton, sort icons, empty state",
+          "Tokens reserved (row padding, hover surface, header text)",
+        ],
+      },
+      {
+        v: "0.1.0",
+        date: "14 Jul 2026",
+        type: "design",
+        by: "Palesa W.",
+        notes: [
+          "Requested via the board — 7 upvotes; unblocks the reporting squad",
+        ],
+      },
     ],
   },
   {
-    id: 'toast', name: 'Toast / Snackbar', tag: 'ds-toast', cls: 'ds-toast', element: 'div',
-    version: '—', figmaPath: 'Components / Toast', stories: 0, requested: true,
-    status: { figma: 'review', tokens: 'ready', build: 'review', frameworks: 'missing', storybook: 'missing' },
-    subs: { figma: 'Design attached ✓', tokens: 'Tokens reserved', build: 'Awaiting approval', frameworks: 'Ships on approval', storybook: 'Auto-created on ship' },
-    desc: 'Transient confirmation message with optional action. Requested by Sipho R. — see Requests.',
+    id: "toast",
+    name: "Toast / Snackbar",
+    tag: "ds-toast",
+    cls: "ds-toast",
+    element: "div",
+    version: "—",
+    figmaPath: "Components / Toast",
+    stories: 0,
+    requested: true,
+    status: {
+      figma: "review",
+      tokens: "ready",
+      build: "review",
+      frameworks: "missing",
+      storybook: "missing",
+    },
+    subs: {
+      figma: "Design attached ✓",
+      tokens: "Tokens reserved",
+      build: "Awaiting approval",
+      frameworks: "Ships on approval",
+      storybook: "Auto-created on ship",
+    },
+    desc: "Transient confirmation message with optional action. Requested by Sipho R. — see Requests.",
     props: [
-      { n: 'variant', t: "'success' | 'error' | 'info'", d: "'info'", figma: 'variant' },
-      { n: 'message', t: 'string', d: '—', figma: 'message' },
-      { n: 'duration', t: 'number', d: '4000', figma: 'duration' },
+      {
+        n: "variant",
+        t: "'success' | 'error' | 'info'",
+        d: "'info'",
+        figma: "variant",
+      },
+      { n: "message", t: "string", d: "—", figma: "message" },
+      { n: "duration", t: "number", d: "4000", figma: "duration" },
     ],
     spec: [
-      { prop: 'padding', token: 'space/3' },
-      { prop: 'corner radius', token: 'radius/lg' },
-      { prop: 'elevation', token: 'shadow/lg' },
-      { prop: 'enter motion', token: 'motion/duration/base' },
+      { prop: "padding", token: "space/3" },
+      { prop: "corner radius", token: "radius/lg" },
+      { prop: "elevation", token: "shadow/lg" },
+      { prop: "enter motion", token: "motion/duration/base" },
     ],
-    tokensUsed: ['space/3', 'radius/lg', 'shadow/lg', 'motion/duration/base', 'color/success/600'],
+    tokensUsed: [
+      "space/3",
+      "radius/lg",
+      "shadow/lg",
+      "motion/duration/base",
+      "color/success/600",
+    ],
     css: {
-      base: [['padding', cssVar('space/3')], ['border-radius', cssVar('radius/lg')], ['box-shadow', cssVar('shadow/lg')], ['background', cssVar('color/neutral/700')], ['font-size', cssVar('typography/size/sm')], ['animation', `toast-in ${cssVar('motion/duration/base')} ${cssVar('motion/easing/out')}`]],
+      base: [
+        ["padding", cssVar("space/3")],
+        ["border-radius", cssVar("radius/lg")],
+        ["box-shadow", cssVar("shadow/lg")],
+        ["background", cssVar("color/neutral/700")],
+        ["font-size", cssVar("typography/size/sm")],
+        [
+          "animation",
+          `toast-in ${cssVar("motion/duration/base")} ${cssVar("motion/easing/out")}`,
+        ],
+      ],
       variants: {},
       modifiers: {},
     },
@@ -520,85 +1303,258 @@ const COMPONENTS = [
         <div class="prev-alert prev-alert-success"><span>✓</span><div><strong>Saved</strong>Changes synced to all frameworks.</div></div>
         <div class="prev-alert prev-alert-error"><span>✕</span><div><strong>Publish failed</strong>Retry in a few seconds.</div></div>
       </div>`,
-    a11y: ['role="status" + aria-live="polite".', 'Pause auto-dismiss on hover/focus.'],
-    usage: { do: ['Offer an undo action for destructive confirms'], dont: ['Never toast errors that block the user'] },
+    a11y: [
+      'role="status" + aria-live="polite".',
+      "Pause auto-dismiss on hover/focus.",
+    ],
+    usage: {
+      do: ["Offer an undo action for destructive confirms"],
+      dont: ["Never toast errors that block the user"],
+    },
     comments: [],
     history: [
-      { v: '0.2.0', date: '17 Jul 2026', type: 'design', by: 'Lulamile M.', notes: ['Elevation (shadow/lg) + entrance motion (motion/duration/base) tokens finalized', 'Auto-dismiss pauses on hover/focus per a11y rule'] },
-      { v: '0.1.0', date: '15 Jul 2026', type: 'design', by: 'Sipho R.', notes: ['Requested via the board — QA flagged inconsistent save confirmations across the app'] },
+      {
+        v: "0.2.0",
+        date: "17 Jul 2026",
+        type: "design",
+        by: "Lulamile M.",
+        notes: [
+          "Elevation (shadow/lg) + entrance motion (motion/duration/base) tokens finalized",
+          "Auto-dismiss pauses on hover/focus per a11y rule",
+        ],
+      },
+      {
+        v: "0.1.0",
+        date: "15 Jul 2026",
+        type: "design",
+        by: "Sipho R.",
+        notes: [
+          "Requested via the board — QA flagged inconsistent save confirmations across the app",
+        ],
+      },
     ],
   },
-];
+]
 
 /* Roadmap placeholders (no design attached yet) */
 const ROADMAP = [
-  { id: 'tabs', name: 'Tabs', tag: 'ds-tabs', note: 'Sprint 10 — horizontal, vertical and pill variants' },
-  { id: 'tooltip', name: 'Tooltip', tag: 'ds-tooltip', note: 'Sprint 10 — anchored to the data-table release' },
-];
+  {
+    id: "tabs",
+    name: "Tabs",
+    tag: "ds-tabs",
+    note: "Sprint 10 — horizontal, vertical and pill variants",
+  },
+  {
+    id: "tooltip",
+    name: "Tooltip",
+    tag: "ds-tooltip",
+    note: "Sprint 10 — anchored to the data-table release",
+  },
+]
 
 /* ── 5 · COMPONENT REQUESTS (designer ↔ dev conversation) ────── */
 const REQUEST_SEED = [
   {
-    id: 'req-table', compId: 'data-table', title: 'Data Table',
-    by: 'Palesa W.', byRole: 'dev', time: '1w ago', status: 'in-design', votes: 7, designAttached: true,
-    desc: 'Reporting dashboard needs a real data table — sortable columns, row selection and pagination. Today every squad ships bespoke <table> markup with inline styles that match nothing in the system.',
+    id: "req-table",
+    compId: "data-table",
+    title: "Data Table",
+    by: "Palesa W.",
+    byRole: "dev",
+    time: "1w ago",
+    status: "in-design",
+    votes: 7,
+    designAttached: true,
+    desc: "Reporting dashboard needs a real data table — sortable columns, row selection and pagination. Today every squad ships bespoke <table> markup with inline styles that match nothing in the system.",
     thread: [
-      { a: 'Palesa W.', ini: 'PW', role: 'dev', col: 'var(--blue)', bg: 'var(--blue-dim)', time: '1w ago', text: 'Requesting a Data Table with highest priority. The reports squad is blocked — three teams have built three different tables already this quarter.' },
-      { a: 'Lulamile M.', ini: 'LM', role: 'designer', col: 'var(--figma)', bg: 'var(--figma-dim)', time: '6d ago', text: 'Picked up. Designing in Figma this week — every cell padding and header style will reference tokens, so it ships to all frameworks at once.' },
-      { a: 'Thabo M.', ini: 'TM', role: 'dev', col: 'var(--stdict)', bg: 'var(--stdict-dim)', time: '5d ago', text: '+1 — please include a loading skeleton spec. That’s where all three bespoke tables drifted.' },
-      { a: 'Lulamile M.', ini: 'LM', role: 'designer', col: 'var(--figma)', bg: 'var(--figma-dim)', time: '2d ago', text: 'Design attached ✓ — skeleton, sort icons and empty state included. Ready for review; approve to ship to all 14 targets.' },
+      {
+        a: "Palesa W.",
+        ini: "PW",
+        role: "dev",
+        col: "var(--blue)",
+        bg: "var(--blue-dim)",
+        time: "1w ago",
+        text: "Requesting a Data Table with highest priority. The reports squad is blocked — three teams have built three different tables already this quarter.",
+      },
+      {
+        a: "Lulamile M.",
+        ini: "LM",
+        role: "designer",
+        col: "var(--figma)",
+        bg: "var(--figma-dim)",
+        time: "6d ago",
+        text: "Picked up. Designing in Figma this week — every cell padding and header style will reference tokens, so it ships to all frameworks at once.",
+      },
+      {
+        a: "Thabo M.",
+        ini: "TM",
+        role: "dev",
+        col: "var(--stdict)",
+        bg: "var(--stdict-dim)",
+        time: "5d ago",
+        text: "+1 — please include a loading skeleton spec. That’s where all three bespoke tables drifted.",
+      },
+      {
+        a: "Lulamile M.",
+        ini: "LM",
+        role: "designer",
+        col: "var(--figma)",
+        bg: "var(--figma-dim)",
+        time: "2d ago",
+        text: "Design attached ✓ — skeleton, sort icons and empty state included. Ready for review; approve to ship to all 14 targets.",
+      },
     ],
   },
   {
-    id: 'req-toast', compId: 'toast', title: 'Toast / Snackbar',
-    by: 'Sipho R.', byRole: 'dev', time: '5d ago', status: 'in-design', votes: 4, designAttached: true,
-    desc: 'We have Alert for inline messages but nothing transient. QA keeps flagging inconsistent “saved” confirmations across the app.',
+    id: "req-toast",
+    compId: "toast",
+    title: "Toast / Snackbar",
+    by: "Sipho R.",
+    byRole: "dev",
+    time: "5d ago",
+    status: "in-design",
+    votes: 4,
+    designAttached: true,
+    desc: "We have Alert for inline messages but nothing transient. QA keeps flagging inconsistent “saved” confirmations across the app.",
     thread: [
-      { a: 'Sipho R.', ini: 'SR', role: 'dev', col: 'var(--blue)', bg: 'var(--blue-dim)', time: '5d ago', text: 'Can we get a toast? Needs success + error tones and an optional action button (undo).' },
-      { a: 'Lulamile M.', ini: 'LM', role: 'designer', col: 'var(--figma)', bg: 'var(--figma-dim)', time: '3d ago', text: 'On it. Will reuse the Alert token set so colors can’t drift, with elevation shadow/lg and motion/duration/base for the entrance.' },
+      {
+        a: "Sipho R.",
+        ini: "SR",
+        role: "dev",
+        col: "var(--blue)",
+        bg: "var(--blue-dim)",
+        time: "5d ago",
+        text: "Can we get a toast? Needs success + error tones and an optional action button (undo).",
+      },
+      {
+        a: "Lulamile M.",
+        ini: "LM",
+        role: "designer",
+        col: "var(--figma)",
+        bg: "var(--figma-dim)",
+        time: "3d ago",
+        text: "On it. Will reuse the Alert token set so colors can’t drift, with elevation shadow/lg and motion/duration/base for the entrance.",
+      },
     ],
   },
   {
-    id: 'req-datepicker', compId: null, title: 'Date Picker',
-    by: 'Nandi K.', byRole: 'dev', time: '3d ago', status: 'requested', votes: 2, designAttached: false,
-    desc: 'Needed for the bookings flow — single date and range modes, min/max limits, keyboard navigation.',
+    id: "req-datepicker",
+    compId: null,
+    title: "Date Picker",
+    by: "Nandi K.",
+    byRole: "dev",
+    time: "3d ago",
+    status: "requested",
+    votes: 2,
+    designAttached: false,
+    desc: "Needed for the bookings flow — single date and range modes, min/max limits, keyboard navigation.",
     thread: [
-      { a: 'Nandi K.', ini: 'NK', role: 'dev', col: 'var(--amber)', bg: 'var(--amber-dim)', time: '3d ago', text: 'Bookings needs a proper date picker. Currently importing a third-party one that ignores all our tokens.' },
+      {
+        a: "Nandi K.",
+        ini: "NK",
+        role: "dev",
+        col: "var(--amber)",
+        bg: "var(--amber-dim)",
+        time: "3d ago",
+        text: "Bookings needs a proper date picker. Currently importing a third-party one that ignores all our tokens.",
+      },
     ],
   },
-];
+]
 
 /* ── 6 · DEMO MODE SCENES ────────────────────────────────────── */
 const DEMO_SCENES = [
-  { view: 'overview',    sel: '',              title: 'Welcome to DesignOps', tag: 'Intro',        dur: 9500, audio: 'demo/audio/scene-1.mp3',
-    text: 'The single source of truth that keeps design and development perfectly aligned. One design in Figma — shipped to every framework your teams use.' },
-  { view: 'tokens',      sel: '.token-table',  title: 'Tokens, one rule',     tag: 'Tokens',       dur: 9500, audio: 'demo/audio/scene-2.mp3',
-    text: 'Design tokens flow from Figma Variables into a versioned JSON source of truth, then transform automatically into CSS, Sass, TypeScript and Tailwind. Names never change.' },
-  { view: 'components',  sel: '#comp-button',  title: 'Components everywhere', tag: 'Components',  dur: 9500, audio: 'demo/audio/scene-3.mp3',
-    text: 'Every component is specified once with tokens, then generated for React, Vue, Angular, Svelte — pixel-identical across fourteen targets.' },
-  { view: 'components',  sel: '#comp-button .pipeline-tabs', title: 'Preview · Inspect · Code', tag: 'Inspect', dur: 9500, audio: 'demo/audio/scene-4.mp3',
-    text: 'Developers preview, inspect exact values and copy working code for their stack. Spacing, color, radius, typography — all token-referenced, zero guesswork.' },
-  { view: 'frameworks',  sel: '.fw-grid',      title: 'Ship once, consume anywhere', tag: 'Ship',  dur: 9500, audio: 'demo/audio/scene-5.mp3',
-    text: 'Teams install the packages, pull the CSS, or copy native code straight from the dashboard. The easiest gateway: one npx command scaffolds everything.' },
-  { view: 'requests',    sel: '.req-layout',   title: 'Ask inside the system', tag: 'Requests',    dur: 9500, audio: 'demo/audio/scene-6.mp3',
-    text: 'Need something new? Request it in-app. The designer answers in the thread, attaches the Figma design, and approval ships it to every framework automatically.' },
-  { view: 'storybook',   sel: '.sb-story-grid', title: 'Living documentation', tag: 'Storybook',   dur: 9500, audio: 'demo/audio/scene-7.mp3',
-    text: 'Approved components sync to Storybook as living documentation, keeping design and code in lock-step forever.' },
-  { view: 'guide',       sel: '',              title: 'Design once. Build everywhere.', tag: 'Close', dur: 10000, audio: 'demo/audio/scene-8.mp3',
-    text: 'That’s DesignOps by Lulamile Mkhungela. Explore the guide to integrate it into your workflow today — packages, CLI, CDN, or API. Your call.' },
-];
+  {
+    view: "overview",
+    sel: "",
+    title: "Welcome to DesignOps",
+    tag: "Intro",
+    dur: 9500,
+    audio: "demo/audio/scene-1.mp3",
+    text: "The single source of truth that keeps design and development perfectly aligned. One design in Figma — shipped to every framework your teams use.",
+  },
+  {
+    view: "tokens",
+    sel: ".token-table",
+    title: "Tokens, one rule",
+    tag: "Tokens",
+    dur: 9500,
+    audio: "demo/audio/scene-2.mp3",
+    text: "Design tokens flow from Figma Variables into a versioned JSON source of truth, then transform automatically into CSS, Sass, TypeScript and Tailwind. Names never change.",
+  },
+  {
+    view: "components",
+    sel: "#comp-button",
+    title: "Components everywhere",
+    tag: "Components",
+    dur: 9500,
+    audio: "demo/audio/scene-3.mp3",
+    text: "Every component is specified once with tokens, then generated for React, Vue, Angular, Svelte — pixel-identical across fourteen targets.",
+  },
+  {
+    view: "components",
+    sel: "#comp-button .pipeline-tabs",
+    title: "Preview · Inspect · Code",
+    tag: "Inspect",
+    dur: 9500,
+    audio: "demo/audio/scene-4.mp3",
+    text: "Developers preview, inspect exact values and copy working code for their stack. Spacing, color, radius, typography — all token-referenced, zero guesswork.",
+  },
+  {
+    view: "frameworks",
+    sel: ".fw-grid",
+    title: "Ship once, consume anywhere",
+    tag: "Ship",
+    dur: 9500,
+    audio: "demo/audio/scene-5.mp3",
+    text: "Teams install the packages, pull the CSS, or copy native code straight from the dashboard. The easiest gateway: one npx command scaffolds everything.",
+  },
+  {
+    view: "requests",
+    sel: ".req-layout",
+    title: "Ask inside the system",
+    tag: "Requests",
+    dur: 9500,
+    audio: "demo/audio/scene-6.mp3",
+    text: "Need something new? Request it in-app. The designer answers in the thread, attaches the Figma design, and approval ships it to every framework automatically.",
+  },
+  {
+    view: "storybook",
+    sel: ".sb-story-grid",
+    title: "Living documentation",
+    tag: "Storybook",
+    dur: 9500,
+    audio: "demo/audio/scene-7.mp3",
+    text: "Approved components sync to Storybook as living documentation, keeping design and code in lock-step forever.",
+  },
+  {
+    view: "guide",
+    sel: "",
+    title: "Design once. Build everywhere.",
+    tag: "Close",
+    dur: 10000,
+    audio: "demo/audio/scene-8.mp3",
+    text: "That’s DesignOps by Lulamile Mkhungela. Explore the guide to integrate it into your workflow today — packages, CLI, CDN, or API. Your call.",
+  },
+]
 
 /* ── 7 · GUIDE (in-app documentation) ────────────────────────── */
 const GUIDE = [
-  { id: 'what', label: 'What is DesignOps', html: `
+  {
+    id: "what",
+    label: "What is DesignOps",
+    html: `
     <p>DesignOps is the operating layer between design and engineering. It exists because teams drift: a designer specs <code>16px</code>, a developer writes <code>15px</code>; a framework doesn’t support a style, so someone improvises. Multiply by 80 components and five stacks and the product no longer looks designed.</p>
     <p>This system removes the negotiation: <strong>tokens and components are defined once in Figma and shipped, mechanically, to every framework</strong>. Nobody re-types a value. If a framework can’t express a design directly (no CSS variables in React Native, for example), the pipeline resolves the tokens to that target’s native format instead of asking a developer to guess.</p>
     <ul>
       <li><strong>Designers</strong> work in Figma with variables and component properties named to match code.</li>
       <li><strong>Developers</strong> install packages, copy generated snippets, and file requests — they never translate design by hand.</li>
       <li><strong>The pipeline</strong> (export → transform → multi-target build → Storybook) is automated and versioned.</li>
-    </ul>` },
-  { id: 'pipeline', label: 'The 5-stage pipeline', html: `
+    </ul>`,
+  },
+  {
+    id: "pipeline",
+    label: "The 5-stage pipeline",
+    html: `
     <p>Every component travels the same five gates. Nothing advances until the current gate is green.</p>
     <h4>01 · Figma Variables</h4>
     <p>Components are built with auto-layout and variables. Component property names equal the eventual code prop names — that’s the contract. Every annotation references a token (<code>space/4</code>, never <code>16px</code>).</p>
@@ -609,8 +1565,12 @@ const GUIDE = [
     <h4>04 · Framework build</h4>
     <p>Each target adapter consumes the transformed tokens: styled packages for React, Vue, Angular, Svelte; config adapters for MUI and Tailwind; CSS variable mapping for Ionic; a values-only bundle for React Native. The Code tab in any component shows the exact output.</p>
     <h4>05 · Storybook</h4>
-    <p>Story paths mirror Figma paths (<code>Components / Button</code>). Controls mirror props. A component is “stable” only when all five stages are green.</p>` },
-  { id: 'naming', label: 'The naming contract', html: `
+    <p>Story paths mirror Figma paths (<code>Components / Button</code>). Controls mirror props. A component is “stable” only when all five stages are green.</p>`,
+  },
+  {
+    id: "naming",
+    label: "The naming contract",
+    html: `
     <p>Names are the system. If names drift, everything downstream drifts. So there is exactly one rule and it is enforced by tooling, not by memory:</p>
     <p><code>color/primary/900</code> (Figma) → <code>"color.primary.900"</code> (JSON) → <code>--color-primary-900</code> (CSS) → <code>colorPrimary900</code> (TS) → <code>primary-900</code> (Tailwind).</p>
     <ul>
@@ -618,8 +1578,12 @@ const GUIDE = [
       <li>Storybook paths mirror Figma component paths exactly.</li>
       <li>Names are lower-kebab in CSS, camelCase in TS — derived, never re-chosen.</li>
       <li>Renames are breaking changes: they ship in a major version with a codemod.</li>
-    </ul>` },
-  { id: 'requests', label: 'Requesting a component', html: `
+    </ul>`,
+  },
+  {
+    id: "requests",
+    label: "Requesting a component",
+    html: `
     <p>When a dev needs something that doesn’t exist, they don’t build a bespoke one — they ask, inside the system, where the conversation is attached to the artifact:</p>
     <ul>
       <li><strong>1 · Request</strong> — open Requests, describe the need and the framework context. It lands on the board as <em>requested</em>.</li>
@@ -627,8 +1591,12 @@ const GUIDE = [
       <li><strong>3 · Approve &amp; ship</strong> — on approval the pipeline runs: tokens reserved, code generated for all targets, story scaffolded. Status becomes <em>shipped</em> and the component appears in Components and in every framework card.</li>
       <li><strong>4 · Consume</strong> — devs bump the package version (or copy the snippet) and use it. Try it: approve the Data Table in the Requests view and watch it appear.</li>
     </ul>
-    <p>Everything persists in your browser via <code>localStorage</code> in this demo; in a real deployment the same events flow through the API and webhooks.</p>` },
-  { id: 'gateway', label: 'Integrating your app (the gateway)', html: `
+    <p>Everything persists in your browser via <code>localStorage</code> in this demo; in a real deployment the same events flow through the API and webhooks.</p>`,
+  },
+  {
+    id: "gateway",
+    label: "Integrating your app (the gateway)",
+    html: `
     <p><strong>Do developers need this dashboard open all day? No.</strong> The dashboard is the governance and review surface. Day-to-day consumption happens inside the dev’s own tools:</p>
     <ul>
       <li><strong>Packages (recommended)</strong> — <code>npm i @designops/tokens @designops/react</code> (or vue, angular, svelte, mui…). Versioned, tree-shakeable, CI-published. Design arrives as a dependency update.</li>
@@ -637,117 +1605,161 @@ const GUIDE = [
       <li><strong>In-tool addons</strong> — Storybook addon (token docs panel), VS Code extension (var autocomplete + hover preview), Figma plugin (sync).</li>
       <li><strong>API + webhooks</strong> — <code>GET /v1/tokens?target=react</code>, plus ship events to Slack/Teams for custom tooling.</li>
     </ul>
-    <p>Recommendation: adopt <strong>packages + CLI</strong> for apps, keep this dashboard for design review, requests and sign-off. The two sync over the API, so neither side waits on the other.</p>` },
-  { id: 'connections', label: 'Live connections', html: `
+    <p>Recommendation: adopt <strong>packages + CLI</strong> for apps, keep this dashboard for design review, requests and sign-off. The two sync over the API, so neither side waits on the other.</p>`,
+  },
+  {
+    id: "connections",
+    label: "Live connections",
+    html: `
     <p>Three panels read <strong>real data</strong> — manage them under <strong>Integrations → Live connections</strong>. Everything degrades to seed content offline, and secrets stay in your browser (<code>localStorage</code>).</p>
     <ul>
       <li><strong>GitHub (no setup)</strong> — Overview activity shows the latest commits on the configured repo (default <code>LulamileMkhungela/design-ops</code>), cached 5 minutes. The request board's <em>File as GitHub issue</em> button opens a prefilled issue.</li>
       <li><strong>Figma (token + file key)</strong> — connect a file and every Components card shows whether it matches a real Figma component; the banner reports the match rate and sync time. Create a read-only token at Figma → Settings → Security — the Lula-Fig-Studio file key ships prefilled, so only the token is needed.</li>
       <li><strong>Storybook (published URL)</strong> — set the URL of a published Storybook and story cards deep-link to their real <code>?path=/story/…</code> pages.</li>
-    </ul>` },
-  { id: 'governance', label: 'Governance & versioning', html: `
+    </ul>`,
+  },
+  {
+    id: "governance",
+    label: "Governance & versioning",
+    html: `
     <ul>
       <li><strong>Semver everywhere.</strong> Tokens and each framework adapter version independently; the manifest hash (see <code>dist/manifest.json</code>) lets apps fail fast on mismatch.</li>
       <li><strong>Change requests live on components</strong> — comments, requests and approvals are part of the artifact, like this page demonstrates.</li>
       <li><strong>Breaking visual changes</strong> go through the request flow with a migration codemod.</li>
       <li><strong>Definition of “stable”</strong>: all five stages green + design sign-off comparing Storybook against Figma.</li>
       <li><strong>Accessibility is a gate</strong>: axe checks run per story; contrast is verified at token level.</li>
-    </ul>` },
-  { id: 'faq', label: 'FAQ', html: `
+    </ul>`,
+  },
+  {
+    id: "faq",
+    label: "FAQ",
+    html: `
     <p><strong>A framework can’t support a design — what happens?</strong> The pipeline adapts, the developer doesn’t. Example: React Native has no CSS variables, so tokens resolve to literal values in a generated StyleSheet module. If a design is truly impossible on a target, it’s flagged at the framework stage before any code ships — never discovered in production.</p>
     <p><strong>Can we adopt gradually?</strong> Yes. Start with the CSS variables (one link), then adopt adapters per component. Class-only output (<code>.ds-btn</code>) exists for exactly this.</p>
     <p><strong>Who owns a token?</strong> The design system owner (Lulamile) owns token definitions; consuming teams own usage. Token changes are PRs to <code>tokens/tokens.json</code>.</p>
-    <p><strong>Does it work with brand themes?</strong> Tokens compile per theme; ship <code>tokens.dark.css</code> / <code>tokens.light.css</code> and switch at runtime — components never change.</p>` },
-  { id: 'glossary', label: 'Glossary', html: `
+    <p><strong>Does it work with brand themes?</strong> Tokens compile per theme; ship <code>tokens.dark.css</code> / <code>tokens.light.css</code> and switch at runtime — components never change.</p>`,
+  },
+  {
+    id: "glossary",
+    label: "Glossary",
+    html: `
     <ul>
       <li><strong>Design token</strong> — the smallest design decision (color, space, radius…) stored as data.</li>
       <li><strong>Transform</strong> — mechanical compilation of tokens into a target format.</li>
       <li><strong>Adapter</strong> — the framework-specific package that maps tokens to idiomatic code.</li>
       <li><strong>Drift</strong> — any difference between the Figma spec and shipped code. Target: zero.</li>
       <li><strong>Ship</strong> — promote a component through all five stages into every target.</li>
-    </ul>` },
-];
+    </ul>`,
+  },
+]
 
 /* Session people (used by role switch in Requests + comment composer) */
 const PEOPLE = [
-  { name: 'Thabo M. (Engineer — all targets)', ini: 'TM', role: 'dev', col: 'var(--stdict)', bg: 'var(--stdict-dim)' },
-  { name: 'Lulamile M. (Design system owner)', ini: 'LM', role: 'designer', col: 'var(--figma)', bg: 'var(--figma-dim)' },
-];
+  {
+    name: "Thabo M. (Engineer — all targets)",
+    ini: "TM",
+    role: "dev",
+    col: "var(--stdict)",
+    bg: "var(--stdict-dim)",
+  },
+  {
+    name: "Lulamile M. (Design system owner)",
+    ini: "LM",
+    role: "designer",
+    col: "var(--figma)",
+    bg: "var(--figma-dim)",
+  },
+]
 
 /* ── 8 · LINT (@designops/lint — verification gate) ───────────────
    `message` texts are verbatim diagnostics from the real lint build;
    refresh with `pnpm lint:capture` (tools/lint-capture.mjs) and paste.
    Presets run live in the Lint view playground via POST /api/lint. */
 const CONNECTIONS_DEFAULTS = {
-  githubRepo: 'LulamileMkhungela/design-ops',
-  githubCommits: null,   // live commits fetched on the last overview visit
+  githubRepo: "LulamileMkhungela/design-ops",
+  githubCommits: null, // live commits fetched on the last overview visit
   githubCheckedAt: null, // ISO timestamp of that fetch
-  figmaToken: '',        // personal access token (read-only) — browser only
-  figmaFileKey: 'z28iI0zJV1u1cL1wQ4HMrx', // Lula-Fig-Studio — only the token is left to paste
-  figma: null,           // { name, lastModified, components:[names], checkedAt }
-  storybookUrl: '',      // published Storybook base URL for deep links
-};
+  figmaToken: "", // personal access token (read-only) — browser only
+  figmaFileKey: "z28iI0zJV1u1cL1wQ4HMrx", // Lula-Fig-Studio — only the token is left to paste
+  figma: null, // { name, lastModified, components:[names], checkedAt }
+  storybookUrl: "", // published Storybook base URL for deep links
+}
 
 /* Fallback feed for Overview when GitHub is unreachable (offline,
    rate-limited, or file://). Same [dot, text, time] shape the live
    commit mapper returns, minus the link. */
 const ACTIVITY_SEED = [
-  ['var(--green)', 'Button v2.1.0 shipped to all 14 targets', '2d ago'],
-  ['var(--figma)', 'Data Table design attached to request', '2d ago'],
-  ['var(--token)', 'tokens v3.0.0 — 41 tokens rebuilt to dist/', '4d ago'],
-  ['var(--storybook)', 'Card stories PR #52 opened', '5d ago'],
-  ['var(--amber)', 'Badge warning token corrected → warning-600', '1w ago'],
-];
+  ["var(--green)", "Button v2.1.0 shipped to all 14 targets", "2d ago"],
+  ["var(--figma)", "Data Table design attached to request", "2d ago"],
+  ["var(--token)", "tokens v3.0.0 — 41 tokens rebuilt to dist/", "4d ago"],
+  ["var(--storybook)", "Card stories PR #52 opened", "5d ago"],
+  ["var(--amber)", "Badge warning token corrected → warning-600", "1w ago"],
+]
 
 const LINT_RULES = [
   {
-    id: 'designops/no-restyle', short: 'no-restyle',
-    blurb: 'Restyling a component with className. The component owns its look; pages own layout.',
+    id: "designops/no-restyle",
+    short: "no-restyle",
+    blurb:
+      "Restyling a component with className. The component owns its look; pages own layout.",
     bad: '<Button className="p-4">Submit</Button>',
-    message: '"p-4" is not allowed on <Button>: <Button> owns its spacing. Use a size (default, xs, sm, lg, icon, icon-xs, icon-sm, icon-lg), or margin here or gap on the parent for space around it. Add a size in components/ui/button.tsx only if the design explicitly calls for one.',
+    message:
+      '"p-4" is not allowed on <Button>: <Button> owns its spacing. Use a size (default, xs, sm, lg, icon, icon-xs, icon-sm, icon-lg), or margin here or gap on the parent for space around it. Add a size in components/ui/button.tsx only if the design explicitly calls for one.',
     fix: '<Button size="lg" className="mt-4">Submit</Button>',
   },
   {
-    id: 'designops/no-raw-colors', short: 'no-raw-colors',
-    blurb: 'Raw palette colors such as bg-pink-500. Theme colors only.',
+    id: "designops/no-raw-colors",
+    short: "no-raw-colors",
+    blurb: "Raw palette colors such as bg-pink-500. Theme colors only.",
     bad: '<div className="bg-pink-500">…</div>',
-    message: '"bg-pink-500" uses the raw Tailwind palette and no declared theme color is close to it. Use one of: accent, background, border, card, destructive, foreground, input, muted, popover, primary, ring, secondary (+6 more), or declare --color-<name> in app/globals.css for a new color.',
+    message:
+      '"bg-pink-500" uses the raw Tailwind palette and no declared theme color is close to it. Use one of: accent, background, border, card, destructive, foreground, input, muted, popover, primary, ring, secondary (+6 more), or declare --color-<name> in app/globals.css for a new color.',
     fix: '<div className="bg-primary">…</div>',
   },
   {
-    id: 'designops/no-arbitrary-values', short: 'no-arbitrary-values',
-    blurb: 'Arbitrary values such as p-[13px]. Stay on the theme scale.',
+    id: "designops/no-arbitrary-values",
+    short: "no-arbitrary-values",
+    blurb: "Arbitrary values such as p-[13px]. Stay on the theme scale.",
     bad: '<div className="p-[13px]">…</div>',
-    message: '"p-[13px]" hardcodes an off-token value. Use "p-3.25" instead (same value, on the scale).',
+    message:
+      '"p-[13px]" hardcodes an off-token value. Use "p-3.25" instead (same value, on the scale).',
     fix: '<div className="p-3.25">…</div>',
   },
   {
-    id: 'designops/no-inline-styles', short: 'no-inline-styles',
-    blurb: 'Inline styles and <style> elements. Style through classes.',
+    id: "designops/no-inline-styles",
+    short: "no-inline-styles",
+    blurb: "Inline styles and <style> elements. Style through classes.",
     bad: '<div style={{ color: "red" }}>…</div>',
-    message: 'Inline style sets color. Style through classes; use CSS custom properties for dynamic values.',
+    message:
+      "Inline style sets color. Style through classes; use CSS custom properties for dynamic values.",
     fix: '<div className="text-destructive">…</div>',
   },
   {
-    id: 'designops/require-static-classes', short: 'require-static-classes',
-    blurb: 'Component classes the linter cannot read. Dynamic classNames stay unchecked.',
-    bad: '<Button className={`mt-${n}`}>…</Button>',
-    message: 'Dynamically built className on <Button> cannot be checked. Use static class strings.',
+    id: "designops/require-static-classes",
+    short: "require-static-classes",
+    blurb:
+      "Component classes the linter cannot read. Dynamic classNames stay unchecked.",
+    bad: "<Button className={`mt-${n}`}>…</Button>",
+    message:
+      "Dynamically built className on <Button> cannot be checked. Use static class strings.",
     fix: '<Button className={n ? "mt-4" : "mt-2"}>…</Button>',
   },
   {
-    id: 'designops/no-unknown-classes', short: 'no-unknown-classes',
-    blurb: 'Classes Tailwind cannot generate, such as rounded-huge.',
+    id: "designops/no-unknown-classes",
+    short: "no-unknown-classes",
+    blurb: "Classes Tailwind cannot generate, such as rounded-huge.",
     bad: '<div className="rounded-huge">…</div>',
-    message: '"rounded-huge" is not a class this project\'s Tailwind knows, so no CSS is generated for it. Fix the spelling, or declare it with @utility in app/globals.css.',
+    message:
+      '"rounded-huge" is not a class this project\'s Tailwind knows, so no CSS is generated for it. Fix the spelling, or declare it with @utility in app/globals.css.',
     fix: '<div className="rounded-3xl">…</div>',
   },
-];
+]
 
 /* Playground presets — each is a complete TSX module for the demo system. */
 const LINT_PRESETS = [
-  { name: 'All six', code:
-`import { Button } from "@/components/ui/button"
+  {
+    name: "All six",
+    code: `import { Button } from "@/components/ui/button"
 
 export function Demo({ color }: { color: string }) {
   return (
@@ -763,27 +1775,41 @@ export function Demo({ color }: { color: string }) {
       </Button>
     </main>
   )
-}` },
-  { name: 'Restyle', code:
-`import { Button } from "@/components/ui/button"
+}`,
+  },
+  {
+    name: "Restyle",
+    code: `import { Button } from "@/components/ui/button"
 
-export const A = () => <Button className="p-4">Submit</Button>` },
-  { name: 'Raw color', code:
-`export const A = () => <div className="bg-pink-500">Raw color</div>` },
-  { name: 'Arbitrary', code:
-`export const A = () => <div className="p-[13px]">Arbitrary</div>` },
-  { name: 'Inline style', code:
-`export const A = () => <div style={{ color: "red" }}>Inline</div>` },
-  { name: 'Dynamic', code:
-`import { Button } from "@/components/ui/button"
+export const A = () => <Button className="p-4">Submit</Button>`,
+  },
+  {
+    name: "Raw color",
+    code: `export const A = () => <div className="bg-pink-500">Raw color</div>`,
+  },
+  {
+    name: "Arbitrary",
+    code: `export const A = () => <div className="p-[13px]">Arbitrary</div>`,
+  },
+  {
+    name: "Inline style",
+    code: `export const A = () => <div style={{ color: "red" }}>Inline</div>`,
+  },
+  {
+    name: "Dynamic",
+    code: `import { Button } from "@/components/ui/button"
 
 export const A = ({ n }: { n: string }) => (
   <Button className={\`mt-\${n}\`}>Dynamic</Button>
-)` },
-  { name: 'Unknown', code:
-`export const A = () => <div className="rounded-huge">Unknown</div>` },
-  { name: 'Clean ✓', code:
-`import { Button } from "@/components/ui/button"
+)`,
+  },
+  {
+    name: "Unknown",
+    code: `export const A = () => <div className="rounded-huge">Unknown</div>`,
+  },
+  {
+    name: "Clean ✓",
+    code: `import { Button } from "@/components/ui/button"
 
 export function Save() {
   return (
@@ -794,15 +1820,17 @@ export function Save() {
       </Button>
     </main>
   )
-}` },
-];
+}`,
+  },
+]
 
 /* Copy-paste setup per linter × framework (also in the README). */
 const LINT_SETUPS = {
   eslint: {
-    label: 'eslint.config.mjs',
-    react: { label: 'eslint.config.mjs · React', code:
-`// npm install -D @designops/lint eslint @typescript-eslint/parser
+    label: "eslint.config.mjs",
+    react: {
+      label: "eslint.config.mjs · React",
+      code: `// npm install -D @designops/lint eslint @typescript-eslint/parser
 import { plugin as designops } from "@designops/lint"
 import tsParser from "@typescript-eslint/parser"
 import { defineConfig } from "eslint/config"
@@ -829,9 +1857,11 @@ export default defineConfig([
     rules: { "designops/no-restyle": "off" },
   },
 ])
-// npx eslint .` },
-    vue: { label: 'eslint.config.mjs · Vue', code:
-`// npm install -D @designops/lint eslint @typescript-eslint/parser vue-eslint-parser
+// npx eslint .`,
+    },
+    vue: {
+      label: "eslint.config.mjs · Vue",
+      code: `// npm install -D @designops/lint eslint @typescript-eslint/parser vue-eslint-parser
 import { plugin as designops } from "@designops/lint"
 import tsParser from "@typescript-eslint/parser"
 import { defineConfig } from "eslint/config"
@@ -852,9 +1882,11 @@ export default defineConfig([
     },
   },
 ])
-// npx eslint .` },
-    svelte: { label: 'eslint.config.mjs · Svelte', code:
-`// npm install -D @designops/lint eslint @typescript-eslint/parser svelte-eslint-parser
+// npx eslint .`,
+    },
+    svelte: {
+      label: "eslint.config.mjs · Svelte",
+      code: `// npm install -D @designops/lint eslint @typescript-eslint/parser svelte-eslint-parser
 import { plugin as designops } from "@designops/lint"
 import tsParser from "@typescript-eslint/parser"
 import { defineConfig } from "eslint/config"
@@ -875,12 +1907,14 @@ export default defineConfig([
     },
   },
 ])
-// npx eslint .` },
+// npx eslint .`,
+    },
   },
   oxlint: {
-    label: '.oxlintrc.json',
-    react: { label: '.oxlintrc.json · React', code:
-`// npm install -D @designops/lint oxlint
+    label: ".oxlintrc.json",
+    react: {
+      label: ".oxlintrc.json · React",
+      code: `// npm install -D @designops/lint oxlint
 {
   "jsPlugins": ["@designops/lint"],
   "rules": {
@@ -895,9 +1929,11 @@ export default defineConfig([
     { "files": ["components/ui/**"], "rules": { "designops/no-restyle": "off" } }
   ]
 }
-// npx oxlint` },
-    vue: { label: '.oxlintrc.json · Vue (script blocks; templates need ESLint)', code:
-`// npm install -D @designops/lint oxlint
+// npx oxlint`,
+    },
+    vue: {
+      label: ".oxlintrc.json · Vue (script blocks; templates need ESLint)",
+      code: `// npm install -D @designops/lint oxlint
 {
   "jsPlugins": ["@designops/lint"],
   "rules": {
@@ -909,9 +1945,11 @@ export default defineConfig([
     "designops/no-unknown-classes": "error"
   }
 }
-// npx oxlint` },
-    svelte: { label: '.oxlintrc.json · Svelte (script blocks; markup needs ESLint)', code:
-`// npm install -D @designops/lint oxlint
+// npx oxlint`,
+    },
+    svelte: {
+      label: ".oxlintrc.json · Svelte (script blocks; markup needs ESLint)",
+      code: `// npm install -D @designops/lint oxlint
 {
   "jsPlugins": ["@designops/lint"],
   "rules": {
@@ -923,13 +1961,13 @@ export default defineConfig([
     "designops/no-unknown-classes": "error"
   }
 }
-// npx oxlint` },
+// npx oxlint`,
+    },
   },
-};
+}
 
 /* Programmable config: contracts, custom messages, shared settings. */
-const LINT_CONFIG =
-`// Per-component contracts: each part of the system gets its own rules.
+const LINT_CONFIG = `// Per-component contracts: each part of the system gets its own rules.
 "designops/no-restyle": ["error", {
   allow: ["layout"],
   // Custom messages, with {{placeholders}} filled from your system.
@@ -951,4 +1989,1138 @@ const LINT_CONFIG =
     "componentImports": ["^@acme/ui(/|$)"],
     "note": "See DESIGN.md for approved exceptions."
   }
-}`;
+}`
+
+/* ── 15 · ADVISORY LAYER ──────────────────────────────────────
+   The vendored design-intelligence catalogue (packages/advisory),
+   described for the dashboard. Counts are read from the catalogue
+   itself by tools/capture-advisory.mjs, then frozen here so the
+   dashboard stays zero-build and offline. */
+const ADVISORY = {
+  upstream: "nextlevelbuilder/ui-ux-pro-max-skill",
+  commit: "1a2c459",
+  counts: [
+    { n: 79, label: "searchable UI styles" },
+    { n: 192, label: "product palettes" },
+    { n: 74, label: "font pairings" },
+    { n: 119, label: "UX guidelines" },
+    { n: 105, label: "curated icons" },
+    { n: 25, label: "chart types" },
+    { n: 22, label: "technology stacks" },
+    { n: 17, label: "GSAP motion presets" },
+  ],
+  /* Where an advisory field lands in tokens/tokens.json. `how` is rendered
+     as a badge: advisory | derived | inherited. */
+  mapping: [
+    { to: "color.primary.900", from: "colors.primary", how: "advisory" },
+    {
+      to: "color.primary.800",
+      from: "colors.primary",
+      how: "derived",
+      note: "hover: OKLab L ±0.06",
+    },
+    {
+      to: "color.primary.50",
+      from: "colors.primary",
+      how: "derived",
+      note: "wash: mix 88% to white",
+    },
+    { to: "color.neutral.900", from: "colors.background", how: "advisory" },
+    { to: "color.neutral.800", from: "colors.card", how: "advisory" },
+    { to: "color.neutral.700", from: "colors.secondary", how: "advisory" },
+    { to: "color.neutral.600", from: "colors.muted", how: "advisory" },
+    { to: "color.ink.default", from: "colors.foreground", how: "advisory" },
+    { to: "color.ink.muted", from: "colors.muted_foreground", how: "advisory" },
+    {
+      to: "color.ink.subtle",
+      from: "colors.foreground",
+      how: "derived",
+      note: "ink over surface, 55%",
+    },
+    { to: "color.danger.600", from: "colors.destructive", how: "advisory" },
+    {
+      to: "typography.family.heading",
+      from: "typography.heading",
+      how: "advisory",
+    },
+    { to: "typography.family.body", from: "typography.body", how: "advisory" },
+    {
+      to: "space.1 … space.7",
+      from: "spacing_scale",
+      how: "advisory",
+      note: "density dial",
+    },
+    {
+      to: "success · warning · info · radius · shadow · motion",
+      from: "tokens/tokens.json",
+      how: "inherited",
+    },
+  ],
+  /* Queries the bridge is known to answer well. */
+  queries: [
+    {
+      q: "dark fintech dashboard",
+      mode: "propose",
+      note: "full direction → token proposal",
+    },
+    {
+      q: "saas pricing page",
+      mode: "propose",
+      note: "full direction → token proposal",
+    },
+    {
+      q: "form validation errors",
+      mode: "search",
+      domain: "ux",
+      note: "targeted UX concern",
+    },
+    {
+      q: "touch target size",
+      mode: "search",
+      domain: "ux",
+      note: "accessibility outcome",
+    },
+    {
+      q: "empty state data table",
+      mode: "search",
+      domain: "product",
+      note: "product pattern",
+    },
+    {
+      q: "server components",
+      mode: "search",
+      stack: "nextjs",
+      note: "stack guidelines",
+    },
+  ],
+  /* The two projects are joined, but not as peers. */
+  charter: [
+    {
+      rule: "The advisory is advisory",
+      body: "It proposes. <code>tokens/tokens.json</code> disposes. <code>propose</code> writes to <code>tokens/proposals/</code> and never to the source of truth.",
+    },
+    {
+      rule: "The linter is authoritative",
+      body: "A <code>@designops/lint</code> failure is a real finding. Fix it or justify it; never quieten a rule to make a build pass.",
+    },
+    {
+      rule: "DesignOps owns the checks",
+      body: "The catalogue hands over palettes it has never measured, so the bridge measures them — WCAG contrast on every pair the system renders.",
+    },
+    {
+      rule: "Extend, do not restyle",
+      body: "A design that needs something new gets a new variant, not a <code>className</code> override at the call site.",
+    },
+  ],
+  commands: [
+    {
+      cmd: 'node tools/advisory.mjs propose "dark fintech dashboard" --write',
+      note: "design direction → reviewed token proposal",
+    },
+    {
+      cmd: 'node tools/advisory.mjs search "form validation errors" --domain ux',
+      note: "one targeted concern",
+    },
+    {
+      cmd: 'node tools/advisory.mjs search "server components" --stack nextjs',
+      note: "stack conventions",
+    },
+    {
+      cmd: "node tools/advisory.mjs check",
+      note: "verify the vendored catalogue (data contracts + 116 tests)",
+    },
+  ],
+}
+
+/* ── 16 · DEMO GALLERY ────────────────────────────────────────
+   Real websites generated from advisory proposals and verified with
+   @designops/lint. The manifest is written by tools/demo-build.mjs and
+   fetched at runtime, so regenerating demos updates the gallery with no
+   rebuild. DEMO_FALLBACK keeps the view meaningful when it is missing. */
+const DEMO_FALLBACK = {
+  generated: null,
+  categories: [
+    "AI/Chatbot",
+    "Beauty/Spa",
+    "Creative",
+    "Developer Tools",
+    "E-commerce",
+    "Education",
+    "Entertainment",
+    "Events",
+    "Fintech/Crypto",
+    "Fitness",
+    "Food & Restaurant",
+    "Gaming",
+    "Healthcare",
+    "Legal",
+    "NFT/Web3",
+    "Other",
+    "Pet Services",
+    "Real Estate",
+    "SaaS",
+    "Travel",
+  ],
+  demos: [
+    {
+      slug: "datapulse",
+      category: "SaaS",
+      mode: "Light",
+      brand: "DataPulse",
+      tagline: "Real-time analytics",
+      style: "glassmorphism",
+      typography: "Plus Jakarta Sans",
+      colors: {
+        background: "#F8FAFC",
+        surface: "#FFFFFF",
+        accent: "#2563EB",
+        ink: "#1E293B",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "flowdeck",
+      category: "SaaS",
+      mode: "Light",
+      brand: "Flowdeck",
+      tagline: "Workflow automation",
+      style: "data-dense-dashboard",
+      typography: "Fira Code + Fira Sans",
+      colors: {
+        background: "#F8FAFC",
+        surface: "#FFFFFF",
+        accent: "#1E40AF",
+        ink: "#1E3A8A",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "lumen-academy",
+      category: "Education",
+      mode: "Light",
+      brand: "Lumen Academy",
+      tagline: "Learn at your pace",
+      style: "claymorphism",
+      typography: "Baloo 2 + Comic Neue",
+      colors: {
+        background: "#EEF2FF",
+        surface: "#FFFFFF",
+        accent: "#4F46E5",
+        ink: "#1E1B4B",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "skillbridge",
+      category: "Education",
+      mode: "Light",
+      brand: "Skillbridge",
+      tagline: "Bootcamp, reimagined",
+      style: "swiss-modernism-2-0",
+      typography: "Libre Bodoni + Public Sans",
+      colors: {
+        background: "#FAFAFA",
+        surface: "#FFFFFF",
+        accent: "#18181B",
+        ink: "#09090B",
+      },
+      contrast: {
+        pass: 7,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "pawsome-care",
+      category: "Pet Services",
+      mode: "Light",
+      brand: "Pawsome Care",
+      tagline: "Gentle, expert care",
+      style: "claymorphism",
+      typography: "Varela Round + Nunito Sans",
+      colors: {
+        background: "#F0FDFA",
+        surface: "#FFFFFF",
+        accent: "#0D9488",
+        ink: "#134E4A",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "the-groom-room",
+      category: "Pet Services",
+      mode: "Light",
+      brand: "The Groom Room",
+      tagline: "Calm, unhurried grooming",
+      style: "claymorphism",
+      typography: "Varela Round + Nunito Sans",
+      colors: {
+        background: "#F0FDFA",
+        surface: "#FFFFFF",
+        accent: "#0D9488",
+        ink: "#134E4A",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "cortex-desk",
+      category: "AI/Chatbot",
+      mode: "Light",
+      brand: "Cortex Desk",
+      tagline: "Support that answers",
+      style: "ai-native-ui",
+      typography: "Space Grotesk + DM Sans",
+      colors: {
+        background: "#FAF5FF",
+        surface: "#FFFFFF",
+        accent: "#7C3AED",
+        ink: "#1E1B4B",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "promptly",
+      category: "AI/Chatbot",
+      mode: "Light",
+      brand: "Promptly",
+      tagline: "Your writing copilot",
+      style: "ai-native-ui",
+      typography: "Space Grotesk + DM Sans",
+      colors: {
+        background: "#FAF5FF",
+        surface: "#FFFFFF",
+        accent: "#7C3AED",
+        ink: "#1E1B4B",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "maison-lume",
+      category: "E-commerce",
+      mode: "Light",
+      brand: "Maison Lume",
+      tagline: "Considered objects",
+      style: "liquid-glass",
+      typography: "Cormorant + Montserrat",
+      colors: {
+        background: "#FAFAF9",
+        surface: "#FFFFFF",
+        accent: "#1C1917",
+        ink: "#0C0A09",
+      },
+      contrast: {
+        pass: 7,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "thread-co",
+      category: "E-commerce",
+      mode: "Light",
+      brand: "Thread & Co",
+      tagline: "Made to measure",
+      style: "motion-driven",
+      typography: "Abril Fatface + Merriweather",
+      colors: {
+        background: "#FEF2F2",
+        surface: "#FFFFFF",
+        accent: "#7C2D12",
+        ink: "#450A0A",
+      },
+      contrast: {
+        pass: 7,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "ledgerline",
+      category: "Fintech/Crypto",
+      mode: "Dark",
+      brand: "Ledgerline",
+      tagline: "Built for finance teams",
+      style: "minimalism-and-swiss-style",
+      typography: "IBM Plex Sans",
+      colors: {
+        background: "#0F172A",
+        surface: "#222735",
+        accent: "#F59E0B",
+        ink: "#F8FAFC",
+      },
+      contrast: {
+        pass: 7,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "satoshi-vault",
+      category: "Fintech/Crypto",
+      mode: "Dark",
+      brand: "Satoshi Vault",
+      tagline: "Self-custody, simplified",
+      style: "minimalism-and-swiss-style",
+      typography: "Orbitron + JetBrains Mono",
+      colors: {
+        background: "#0F172A",
+        surface: "#222735",
+        accent: "#F59E0B",
+        ink: "#F8FAFC",
+      },
+      contrast: {
+        pass: 7,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "meridian-health",
+      category: "Healthcare",
+      mode: "Light",
+      brand: "Meridian Health",
+      tagline: "Care that keeps up",
+      style: "neumorphism",
+      typography: "Atkinson Hyperlegible",
+      colors: {
+        background: "#ECFEFF",
+        surface: "#FFFFFF",
+        accent: "#0891B2",
+        ink: "#164E63",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "mindful",
+      category: "Healthcare",
+      mode: "Light",
+      brand: "Mindful",
+      tagline: "Therapy, without the waitlist",
+      style: "neumorphism",
+      typography: "Atkinson Hyperlegible",
+      colors: {
+        background: "#ECFEFF",
+        surface: "#FFFFFF",
+        accent: "#0891B2",
+        ink: "#164E63",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "studio-aperture",
+      category: "Creative",
+      mode: "Light",
+      brand: "Studio Aperture",
+      tagline: "Photography with intent",
+      style: "vibrant-and-block-based",
+      typography: "Inter + Playfair Display",
+      colors: {
+        background: "#FDF2F8",
+        surface: "#FFFFFF",
+        accent: "#EC4899",
+        ink: "#831843",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "pigment",
+      category: "Creative",
+      mode: "Light",
+      brand: "Pigment",
+      tagline: "Brand and digital",
+      style: "minimalism-and-swiss-style",
+      typography: "Inter + Playfair Display",
+      colors: {
+        background: "#F8FAFC",
+        surface: "#FFFFFF",
+        accent: "#2563EB",
+        ink: "#1E293B",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "havenly-estates",
+      category: "Real Estate",
+      mode: "Light",
+      brand: "Havenly Estates",
+      tagline: "Homes, not listings",
+      style: "glassmorphism",
+      typography: "Cinzel + Josefin Sans",
+      colors: {
+        background: "#F0FDFA",
+        surface: "#FFFFFF",
+        accent: "#0F766E",
+        ink: "#134E4A",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "northkey",
+      category: "Real Estate",
+      mode: "Dark",
+      brand: "Northkey",
+      tagline: "Rentals, sorted",
+      style: "spatial-ui-visionos",
+      typography: "Inter",
+      colors: {
+        background: "#888888",
+        surface: "#999999",
+        accent: "#FFFFFF",
+        ink: "#000000",
+      },
+      contrast: {
+        pass: 5,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "pixelforge",
+      category: "Gaming",
+      mode: "Dark",
+      brand: "Pixelforge",
+      tagline: "Games with a spine",
+      style: "pixel-art",
+      typography: "Press Start 2P + VT323",
+      colors: {
+        background: "#0F172A",
+        surface: "#192134",
+        accent: "#DC2626",
+        ink: "#FFFFFF",
+      },
+      contrast: {
+        pass: 7,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "arena-rank",
+      category: "Gaming",
+      mode: "Dark",
+      brand: "Arena Rank",
+      tagline: "Competitive coaching",
+      style: "hud-sci-fi-fui",
+      typography: "Share Tech Mono + Fira Code",
+      colors: {
+        background: "#0B0B10",
+        surface: "#1E1E23",
+        accent: "#F8FAFC",
+        ink: "#F8FAFC",
+      },
+      contrast: {
+        pass: 7,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "ember-oak",
+      category: "Food & Restaurant",
+      mode: "Light",
+      brand: "Ember & Oak",
+      tagline: "Fire-cooked, seasonal",
+      style: "motion-driven",
+      typography: "Abril Fatface + Merriweather",
+      colors: {
+        background: "#FEF2F2",
+        surface: "#FFFFFF",
+        accent: "#7C2D12",
+        ink: "#450A0A",
+      },
+      contrast: {
+        pass: 7,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "pantry",
+      category: "Food & Restaurant",
+      mode: "Light",
+      brand: "Pantry",
+      tagline: "Cook real food, faster",
+      style: "vibrant-and-block-based",
+      typography: "Playfair Display SC + Karla",
+      colors: {
+        background: "#FEF2F2",
+        surface: "#FFFFFF",
+        accent: "#DC2626",
+        ink: "#450A0A",
+      },
+      contrast: {
+        pass: 7,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "ironwood",
+      category: "Fitness",
+      mode: "Dark",
+      brand: "Ironwood",
+      tagline: "Strength, coached properly",
+      style: "vibrant-and-block-based",
+      typography: "Barlow Condensed + Barlow",
+      colors: {
+        background: "#1F2937",
+        surface: "#313742",
+        accent: "#F97316",
+        ink: "#F8FAFC",
+      },
+      contrast: {
+        pass: 7,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "cadence",
+      category: "Fitness",
+      mode: "Dark",
+      brand: "Cadence",
+      tagline: "Running, planned",
+      style: "vibrant-and-block-based",
+      typography: "Barlow Condensed + Barlow",
+      colors: {
+        background: "#1F2937",
+        surface: "#313742",
+        accent: "#F97316",
+        ink: "#F8FAFC",
+      },
+      contrast: {
+        pass: 7,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "wanderlane",
+      category: "Travel",
+      mode: "Light",
+      brand: "Wanderlane",
+      tagline: "Trips that fit you",
+      style: "minimalism-and-swiss-style",
+      typography: "Outfit + Work Sans",
+      colors: {
+        background: "#F8FAFC",
+        surface: "#FFFFFF",
+        accent: "#2563EB",
+        ink: "#1E293B",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "aviary",
+      category: "Travel",
+      mode: "Light",
+      brand: "Aviary",
+      tagline: "Flights, honest about cost",
+      style: "organic-biophilic",
+      typography: "Fira Code + Fira Sans",
+      colors: {
+        background: "#ECFDF5",
+        surface: "#FFFFFF",
+        accent: "#059669",
+        ink: "#064E3B",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "prism-mint",
+      category: "NFT/Web3",
+      mode: "Dark",
+      brand: "Prism Mint",
+      tagline: "Creators first",
+      style: "cyberpunk-ui",
+      typography: "Orbitron + Exo 2",
+      colors: {
+        background: "#0F0F23",
+        surface: "#1E1D35",
+        accent: "#8B5CF6",
+        ink: "#F8FAFC",
+      },
+      contrast: {
+        pass: 7,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "chainproof",
+      category: "NFT/Web3",
+      mode: "Dark",
+      brand: "Chainproof",
+      tagline: "Audit before you deploy",
+      style: "cyberpunk-ui",
+      typography: "Orbitron + Exo 2",
+      colors: {
+        background: "#0F0F23",
+        surface: "#1E1D35",
+        accent: "#8B5CF6",
+        ink: "#F8FAFC",
+      },
+      contrast: {
+        pass: 7,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "serene-spa",
+      category: "Beauty/Spa",
+      mode: "Light",
+      brand: "Serene Spa",
+      tagline: "Quiet, properly",
+      style: "soft-ui-evolution",
+      typography: "Playfair Display + Inter",
+      colors: {
+        background: "#FDF2F8",
+        surface: "#FFFFFF",
+        accent: "#EC4899",
+        ink: "#831843",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "glow-lab",
+      category: "Beauty/Spa",
+      mode: "Light",
+      brand: "Glow Lab",
+      tagline: "Skincare that says what it does",
+      style: "soft-ui-evolution",
+      typography: "Playfair Display + Inter",
+      colors: {
+        background: "#FDF2F8",
+        surface: "#FFFFFF",
+        accent: "#EC4899",
+        ink: "#831843",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "shipyard",
+      category: "Developer Tools",
+      mode: "Dark",
+      brand: "Shipyard",
+      tagline: "CI that does not fight you",
+      style: "dark-mode-oled",
+      typography: "JetBrains Mono + IBM Plex Sans",
+      colors: {
+        background: "#0F172A",
+        surface: "#1B2336",
+        accent: "#1E293B",
+        ink: "#F8FAFC",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "tracepoint",
+      category: "Developer Tools",
+      mode: "Dark",
+      brand: "Tracepoint",
+      tagline: "See what production sees",
+      style: "hud-sci-fi-fui",
+      typography: "Share Tech Mono + Fira Code",
+      colors: {
+        background: "#0B0B10",
+        surface: "#1E1E23",
+        accent: "#F8FAFC",
+        ink: "#F8FAFC",
+      },
+      contrast: {
+        pass: 7,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "cineville",
+      category: "Entertainment",
+      mode: "Light",
+      brand: "Cineville",
+      tagline: "Films worth leaving the house for",
+      style: "minimalism-and-swiss-style",
+      typography: "Outfit + Work Sans",
+      colors: {
+        background: "#F8FAFC",
+        surface: "#FFFFFF",
+        accent: "#2563EB",
+        ink: "#1E293B",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "soundwave",
+      category: "Entertainment",
+      mode: "Light",
+      brand: "Soundwave",
+      tagline: "Music, paid fairly",
+      style: "minimalism-and-swiss-style",
+      typography: "Outfit + Work Sans",
+      colors: {
+        background: "#F8FAFC",
+        surface: "#FFFFFF",
+        accent: "#2563EB",
+        ink: "#1E293B",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "blackwell-legal",
+      category: "Legal",
+      mode: "Light",
+      brand: "Blackwell Legal",
+      tagline: "Plain-speaking solicitors",
+      style: "swiss-modernism-2-0",
+      typography: "EB Garamond + Lato",
+      colors: {
+        background: "#F8FAFC",
+        surface: "#FFFFFF",
+        accent: "#475569",
+        ink: "#1E293B",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "clausewise",
+      category: "Legal",
+      mode: "Light",
+      brand: "Clausewise",
+      tagline: "Contracts, reviewed in minutes",
+      style: "organic-biophilic",
+      typography: "Fira Code + Fira Sans",
+      colors: {
+        background: "#ECFDF5",
+        surface: "#FFFFFF",
+        accent: "#059669",
+        ink: "#064E3B",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "gatherly",
+      category: "Events",
+      mode: "Light",
+      brand: "Gatherly",
+      tagline: "Events people attend",
+      style: "minimalism-and-swiss-style",
+      typography: "Outfit + Work Sans",
+      colors: {
+        background: "#FFF7ED",
+        surface: "#FFFFFF",
+        accent: "#EA580C",
+        ink: "#0F172A",
+      },
+      contrast: {
+        pass: 7,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "stagewright",
+      category: "Events",
+      mode: "Light",
+      brand: "Stagewright",
+      tagline: "Production, end to end",
+      style: "minimalism-and-swiss-style",
+      typography: "Outfit + Work Sans",
+      colors: {
+        background: "#FFF7ED",
+        surface: "#FFFFFF",
+        accent: "#EA580C",
+        ink: "#0F172A",
+      },
+      contrast: {
+        pass: 7,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "civic-trust",
+      category: "Other",
+      mode: "Light",
+      brand: "Civic Trust",
+      tagline: "Community, funded",
+      style: "minimalism-and-swiss-style",
+      typography: "Inter",
+      colors: {
+        background: "#F8FAFC",
+        surface: "#FFFFFF",
+        accent: "#2563EB",
+        ink: "#1E293B",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+    {
+      slug: "greenpath",
+      category: "Other",
+      mode: "Light",
+      brand: "Greenpath",
+      tagline: "Sustainability, measured",
+      style: "minimalism-and-swiss-style",
+      typography: "Atkinson Hyperlegible",
+      colors: {
+        background: "#F8FAFC",
+        surface: "#FFFFFF",
+        accent: "#2563EB",
+        ink: "#1E293B",
+      },
+      contrast: {
+        pass: 6,
+        total: 7,
+      },
+      tokens: 44,
+      lint: {
+        findings: 0,
+        rules: [],
+      },
+    },
+  ],
+}

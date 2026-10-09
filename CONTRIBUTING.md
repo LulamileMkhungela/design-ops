@@ -34,7 +34,36 @@ npm start           # Dashboard at http://localhost:4173, with the lint playgrou
 npm run verify      # Fail if dist/ token artifacts are stale
 npm run build:tokens # Rebuild dist/ from tokens/tokens.json
 pnpm lint:capture   # Refresh the verbatim diagnostics in assets/data.js
+
+# The advisory catalogue (packages/advisory)
+npm run advisory:check        # data contracts + the catalogue's own unit tests
+pnpm test:advisory            # the bridge: colour maths, mapping, contrast
+npm run advisory -- propose "dark fintech dashboard" --write
 ```
+
+### The advisory layer
+
+`packages/advisory` is a **vendored** copy of the design-intelligence
+catalogue from
+[`nextlevelbuilder/ui-ux-pro-max-skill`](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)
+(MIT). The vendored source is kept byte-identical to upstream; only the
+directory layout differs. [`packages/advisory/VENDOR.md`](./packages/advisory/VENDOR.md)
+records the upstream commit, what was taken, what was deliberately left out,
+and how to refresh it.
+
+Three rules for working on it:
+
+1. **Do not edit the vendored Python.** If a patch is genuinely needed, make
+   it and record the reason in `VENDOR.md`.
+2. **Do not let it write to `tokens/tokens.json`.** `propose` writes to
+   `tokens/proposals/`; a human promotes from there.
+3. **The linter outranks it.** When the catalogue and `@designops/lint`
+   disagree, the linter is right.
+
+`tools/advisory.mjs` is the seam. It maps advisory fields onto DesignOps
+token paths, derives the values the catalogue does not carry (hover, wash,
+subtle ink), inherits the ones it has no opinion about, and measures WCAG
+contrast on the result. `tools/advisory.test.mjs` covers all four behaviours.
 
 See [Evals](./docs/evals.md) for methodology, results, and commands.
 

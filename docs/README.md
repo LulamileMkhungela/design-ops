@@ -27,6 +27,13 @@ See [shared options](./rules.md) for allowances, contracts, messages, and class 
 - [no-unknown-classes](./rules/no-unknown-classes.md): catch classes that produce no CSS.
 - [require-static-classes](./rules/require-static-classes.md): keep class values readable by the linter.
 
+## The advisory layer
+
+- [Advisory catalogue](../packages/advisory/README.md): what it answers, and what it must not write to.
+- [Provenance](../packages/advisory/VENDOR.md): upstream commit, exclusions, refresh procedure.
+- [Bridge mapping](../tools/advisory.mjs): advisory field → token path, in the tool's header comment.
+- The [agent skill](../skills/design-ops/SKILL.md): advise → tokenize → build → verify.
+
 ## Reference
 
 - [Settings](../README.md#settings): component imports, helpers, and monorepos.
