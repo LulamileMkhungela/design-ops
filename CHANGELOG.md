@@ -68,6 +68,13 @@ comes before verification: _what should this look like?_
 - Gallery previews enlarged (0.185 → 0.22 scale, 168px → 200px tall) and
   each card gained a "Components ↗" link that opens the demo at
   `#components`.
+- **Demo previews now fit their card.** The preview renders the page at a
+  virtual 1400x900 and scales it down, but the scale was hard-coded to
+  0.22 — a fixed 308px image inside a card that is ~540px wide at two
+  columns, so it either left dead space or clipped on narrow cards.
+  `fitDemoShots()` in assets/app.js measures each card and sets the scale
+  so the page fits the width exactly, with the height following the
+  aspect ratio. Re-fits on resize and after the filters change the grid.
 - **`--font-mono`** — the advisory proposes a heading/body pairing and no
   tabular face, so the generator adds one (JetBrains Mono). Declared in the
   theme, counted in the 44 tokens, requested from Google Fonts.

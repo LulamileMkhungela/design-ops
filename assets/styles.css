@@ -3491,11 +3491,17 @@ a.req-item:hover {
 .dm-card:hover {
   border-color: var(--border-mid);
 }
+/* The preview renders the page at a virtual 1400x900 and scales it down.
+   The scale below is only a fallback: fitDemoShots() in assets/app.js
+   measures each card and sets a scale that makes the whole page fit the
+   card width exactly — no clipping on narrow cards, no dead space on
+   wide ones. */
 .dm-shot {
   position: relative;
   height: 200px;
   border-bottom: 1px solid var(--border);
   overflow: hidden;
+  background: var(--bg);
 }
 .dm-shot iframe {
   width: 1400px;
@@ -3529,23 +3535,6 @@ a.req-item:hover {
 .dm-links a:hover {
   border-color: var(--token);
   color: var(--token);
-}
-.dm-open {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(13, 13, 11, 0.55);
-  color: var(--ink);
-  font-size: 0.82rem;
-  font-weight: 600;
-  opacity: 0;
-  transition: opacity 0.15s;
-  text-decoration: none;
-}
-.dm-shot:hover .dm-open {
-  opacity: 1;
 }
 .dm-body {
   padding: 14px 16px 16px;

@@ -149,6 +149,41 @@ const main = async () => {
     "demo view renders"
   )
 
+  // The preview must fit its card. jsdom reports clientWidth 0, so stub a
+  // card width and re-run the fit; a 1400px virtual page in a 540px card
+  // has to end up at scale 0.3857…, not the fixed 0.22 the CSS ships.
+  const CARD_W = 540
+  const VIRTUAL_W = 1400
+  const VIRTUAL_H = 900
+  Object.defineProperty(window.HTMLElement.prototype, "clientWidth", {
+    configurable: true,
+    get() {
+      return this.classList && this.classList.contains("dm-shot") ? CARD_W : 0
+    },
+  })
+  window.dispatchEvent(new window.Event("resize"))
+  await new Promise((r) => setTimeout(r, 60))
+
+  const shot = $(".dm-shot")
+  const frame = shot && shot.querySelector("iframe")
+  const wantScale = CARD_W / VIRTUAL_W
+  ok(
+    !!frame && frame.style.transform === `scale(${wantScale})`,
+    "demo preview scales to fit the card width"
+  )
+  ok(
+    !!shot && shot.style.height === `${Math.round(VIRTUAL_H * wantScale)}px`,
+    "demo preview height follows the scaled aspect ratio"
+  )
+  ok(
+    !!frame &&
+      Math.abs(
+        parseFloat(frame.style.transform.slice(6)) * VIRTUAL_W - CARD_W
+      ) < 0.5,
+    "scaled preview width equals the card width (no clipping, no dead space)"
+  )
+  delete window.HTMLElement.prototype.clientWidth
+
   // components: expand button card
   window.location.hash = "#/components"
   window.dispatchEvent(new window.Event("hashchange"))

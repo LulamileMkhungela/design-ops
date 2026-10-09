@@ -2653,6 +2653,38 @@ function demoVisible() {
   )
 }
 
+/**
+ * Previews render the page at a virtual 1400x900 and scale it down. A
+ * fixed scale either clips the page on a narrow card or leaves dead
+ * space on a wide one, so measure the card and fit it exactly.
+ */
+const DEMO_VIRTUAL_W = 1400
+const DEMO_VIRTUAL_H = 900
+
+function fitDemoShots() {
+  document.querySelectorAll(".dm-shot").forEach((shot) => {
+    const frame = shot.querySelector("iframe")
+    if (!frame) return
+    const w = shot.clientWidth
+    // jsdom and detached nodes report 0; leave the CSS fallback in place.
+    if (!w) return
+    const scale = w / DEMO_VIRTUAL_W
+    frame.style.transform = `scale(${scale})`
+    shot.style.height = `${Math.round(DEMO_VIRTUAL_H * scale)}px`
+  })
+}
+
+let demoFitRaf = 0
+if (typeof window !== "undefined") {
+  window.addEventListener("resize", () => {
+    if (typeof cancelAnimationFrame === "function")
+      cancelAnimationFrame(demoFitRaf)
+    if (typeof requestAnimationFrame === "function")
+      demoFitRaf = requestAnimationFrame(fitDemoShots)
+    else fitDemoShots()
+  })
+}
+
 function demoGrid() {
   const shown = demoVisible()
   return shown.length
@@ -2675,6 +2707,7 @@ function demoApplyFilter(kind, value) {
   if (grid) grid.innerHTML = demoGrid()
   const count = document.querySelector(".dm-count")
   if (count) count.innerHTML = demoCountLine()
+  fitDemoShots()
 }
 
 document.addEventListener("click", (e) => {
@@ -2692,6 +2725,7 @@ function demosLoad() {
       if (d && d.demos && d.demos.length) {
         demosManifest = d
         render()
+        fitDemoShots()
       }
       return demosData()
     })
@@ -2867,6 +2901,7 @@ function renderDemos() {
     "</div>"
 
   demosLoad()
+  fitDemoShots()
 }
 
 /* ── 13 · router ────────────────────────────────────────────── */
