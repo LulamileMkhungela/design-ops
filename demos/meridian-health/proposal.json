@@ -1,0 +1,672 @@
+{
+  "slug": "healthcare-accessible-and-ethical-undefined",
+  "query": "Healthcare accessible-and-ethical undefined",
+  "source": {
+    "tool": "@designops/advisory (vendored from nextlevelbuilder/ui-ux-pro-max-skill@1a2c459)",
+    "style": "neumorphism",
+    "styleName": "Neumorphism",
+    "product": "Healthcare App",
+    "typographyPairing": "Accessibility First",
+    "colorMode": null,
+    "exactMatch": true,
+    "severity": "HIGH"
+  },
+  "next": [
+    "Re-run with --write to materialise the proposal into tokens/proposals/"
+  ],
+  "files": [],
+  "contrast": [
+    {
+      "foreground": "color.ink.default",
+      "background": "color.neutral.900",
+      "ratio": 8.76,
+      "required": 4.5,
+      "pass": true,
+      "note": "body text on the app background"
+    },
+    {
+      "foreground": "color.ink.muted",
+      "background": "color.neutral.900",
+      "ratio": 7.28,
+      "required": 4.5,
+      "pass": true,
+      "note": "secondary text on the app background"
+    },
+    {
+      "foreground": "color.ink.subtle",
+      "background": "color.neutral.900",
+      "ratio": 2.35,
+      "required": 3,
+      "pass": false,
+      "note": "hints and placeholders (large/UI text)"
+    },
+    {
+      "foreground": "color.ink.default",
+      "background": "color.neutral.800",
+      "ratio": 9.11,
+      "required": 4.5,
+      "pass": true,
+      "note": "body text on a raised card"
+    },
+    {
+      "foreground": "colors.on_primary",
+      "background": "color.primary.900",
+      "ratio": 5.7,
+      "required": 4.5,
+      "pass": true,
+      "note": "label on a primary button (advisory colors.on_primary)"
+    },
+    {
+      "foreground": "color.danger.600",
+      "background": "color.neutral.900",
+      "ratio": 4.64,
+      "required": 3,
+      "pass": true,
+      "note": "error text and borders on the background"
+    },
+    {
+      "foreground": "color.primary.900",
+      "background": "color.neutral.900",
+      "ratio": 3.54,
+      "required": 3,
+      "pass": true,
+      "note": "accent against the background (UI text)"
+    }
+  ],
+  "mapping": [
+    {
+      "token": "color.primary.900",
+      "from": "colors.primary",
+      "value": "#0891B2",
+      "source": "advisory"
+    },
+    {
+      "token": "color.primary.800",
+      "from": "colors.primary",
+      "value": "#007F9F",
+      "source": "derived",
+      "note": "derived: OKLab L −0.06"
+    },
+    {
+      "token": "color.primary.50",
+      "from": "colors.primary",
+      "value": "#E6F2F6",
+      "source": "derived",
+      "note": "derived: mix 88% toward white"
+    },
+    {
+      "token": "color.neutral.900",
+      "from": "colors.background",
+      "value": "#ECFEFF",
+      "source": "advisory"
+    },
+    {
+      "token": "color.neutral.800",
+      "from": "colors.card",
+      "value": "#FFFFFF",
+      "source": "advisory"
+    },
+    {
+      "token": "color.neutral.700",
+      "from": "colors.secondary",
+      "value": "#22D3EE",
+      "source": "advisory"
+    },
+    {
+      "token": "color.neutral.600",
+      "from": "colors.muted",
+      "value": "#E8F1F6",
+      "source": "advisory"
+    },
+    {
+      "token": "color.ink.default",
+      "from": "colors.foreground",
+      "value": "#164E63",
+      "source": "advisory"
+    },
+    {
+      "token": "color.ink.muted",
+      "from": "colors.muted_foreground",
+      "value": "#475569",
+      "source": "advisory"
+    },
+    {
+      "token": "color.danger.600",
+      "from": "colors.destructive",
+      "value": "#DC2626",
+      "source": "advisory"
+    },
+    {
+      "token": "color.ink.subtle",
+      "from": "colors.foreground",
+      "value": "#8AABB6",
+      "source": "derived",
+      "note": "derived: mix 55% toward background"
+    },
+    {
+      "token": "color.success.600",
+      "from": "tokens/tokens.json",
+      "value": "#4ade80",
+      "source": "inherited",
+      "note": "the catalogue has no success/warning/info palette — kept from the current system"
+    },
+    {
+      "token": "color.warning.600",
+      "from": "tokens/tokens.json",
+      "value": "#fbbf24",
+      "source": "inherited",
+      "note": "the catalogue has no success/warning/info palette — kept from the current system"
+    },
+    {
+      "token": "color.info.600",
+      "from": "tokens/tokens.json",
+      "value": "#60a5fa",
+      "source": "inherited",
+      "note": "the catalogue has no success/warning/info palette — kept from the current system"
+    },
+    {
+      "token": "space.1",
+      "from": "tokens/tokens.json",
+      "value": "4px",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "space.2",
+      "from": "tokens/tokens.json",
+      "value": "8px",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "space.3",
+      "from": "tokens/tokens.json",
+      "value": "12px",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "space.4",
+      "from": "tokens/tokens.json",
+      "value": "16px",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "space.5",
+      "from": "tokens/tokens.json",
+      "value": "20px",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "space.6",
+      "from": "tokens/tokens.json",
+      "value": "24px",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "space.7",
+      "from": "tokens/tokens.json",
+      "value": "32px",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "space.8",
+      "from": "tokens/tokens.json",
+      "value": "40px",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "typography.family.heading",
+      "from": "typography.heading",
+      "value": "Atkinson Hyperlegible",
+      "source": "advisory"
+    },
+    {
+      "token": "typography.family.body",
+      "from": "typography.body",
+      "value": "Atkinson Hyperlegible",
+      "source": "advisory"
+    },
+    {
+      "token": "typography.size.xs",
+      "from": "tokens/tokens.json",
+      "value": "0.75rem",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "typography.size.sm",
+      "from": "tokens/tokens.json",
+      "value": "0.875rem",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "typography.size.base",
+      "from": "tokens/tokens.json",
+      "value": "1rem",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "typography.size.lg",
+      "from": "tokens/tokens.json",
+      "value": "1.125rem",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "typography.size.xl",
+      "from": "tokens/tokens.json",
+      "value": "1.5rem",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "typography.weight.regular",
+      "from": "tokens/tokens.json",
+      "value": "400",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "typography.weight.medium",
+      "from": "tokens/tokens.json",
+      "value": "600",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "typography.weight.bold",
+      "from": "tokens/tokens.json",
+      "value": "700",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "radius.sm",
+      "from": "tokens/tokens.json",
+      "value": "4px",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "radius.md",
+      "from": "tokens/tokens.json",
+      "value": "8px",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "radius.lg",
+      "from": "tokens/tokens.json",
+      "value": "12px",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "radius.xl",
+      "from": "tokens/tokens.json",
+      "value": "16px",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "radius.full",
+      "from": "tokens/tokens.json",
+      "value": "9999px",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "shadow.sm",
+      "from": "tokens/tokens.json",
+      "value": "0 1px 4px rgba(0,0,0,.2)",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "shadow.md",
+      "from": "tokens/tokens.json",
+      "value": "0 4px 16px rgba(0,0,0,.3)",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "shadow.lg",
+      "from": "tokens/tokens.json",
+      "value": "0 8px 32px rgba(0,0,0,.4)",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "motion.duration.fast",
+      "from": "tokens/tokens.json",
+      "value": "150ms",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "motion.duration.base",
+      "from": "tokens/tokens.json",
+      "value": "220ms",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    },
+    {
+      "token": "motion.easing.out",
+      "from": "tokens/tokens.json",
+      "value": "cubic-bezier(.22,1,.36,1)",
+      "source": "inherited",
+      "note": "unchanged from the current system"
+    }
+  ],
+  "guidance": {
+    "typography": {
+      "heading": "Atkinson Hyperlegible",
+      "body": "Atkinson Hyperlegible",
+      "mood": "accessible, readable, inclusive, WCAG, dyslexia-friendly, clear",
+      "bestFor": "Accessibility-critical sites, government, healthcare, inclusive design",
+      "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap",
+      "cssImport": "@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap');"
+    },
+    "effects": "Soft box-shadow (multiple: -5px -5px 15px, 5px 5px 15px), smooth press (150ms), inner subtle shadow",
+    "antiPatterns": [
+      "Bright neon colors + Motion-heavy animations + AI purple/pink gradients"
+    ],
+    "constraints": [
+      "wcag-aaa-compliance"
+    ],
+    "decisionRules": {
+      "must_have": [
+        "constraint:wcag-aaa-compliance"
+      ],
+      "if_medication": [
+        "constraint:red-alert-colors"
+      ]
+    },
+    "severity": "HIGH",
+    "dials": {
+      "variance": null,
+      "variance_label": null,
+      "motion": null,
+      "motion_label": null,
+      "density": null,
+      "density_label": null
+    },
+    "motion": {},
+    "unmappedAdvisoryFields": [
+      {
+        "field": "colors.on_primary",
+        "value": "#000000",
+        "home": "the foreground of a primary button — `--color-primary-foreground` in your Tailwind v4 @theme block"
+      },
+      {
+        "field": "colors.on_secondary",
+        "value": "#0F172A",
+        "home": "`--color-secondary-foreground` in your Tailwind v4 @theme block"
+      },
+      {
+        "field": "colors.on_accent",
+        "value": "#000000",
+        "home": "`--color-accent-foreground` in your Tailwind v4 @theme block"
+      },
+      {
+        "field": "colors.on_destructive",
+        "value": "#FFFFFF",
+        "home": "`--color-destructive-foreground` in your Tailwind v4 @theme block"
+      },
+      {
+        "field": "colors.card_foreground",
+        "value": "#164E63",
+        "home": "same as ink.default on a card; add `--color-card-foreground` if you theme cards separately"
+      },
+      {
+        "field": "colors.ring",
+        "value": "#0891B2",
+        "home": "`--color-ring` in your Tailwind v4 @theme block; focus visibility is a lint concern, not a token"
+      },
+      {
+        "field": "colors.accent",
+        "value": "#059669",
+        "home": "`--color-accent` in your Tailwind v4 @theme block; DesignOps keeps one brand accent (color.primary.900)"
+      }
+    ]
+  },
+  "tokens": {
+    "color": {
+      "primary": {
+        "50": {
+          "$value": "#E6F2F6",
+          "$type": "color",
+          "$description": "Primary 50 — subtle tint, hover washes (derived in OKLab from the advisory primary)"
+        },
+        "800": {
+          "$value": "#007F9F",
+          "$type": "color",
+          "$description": "Primary 800 — hover state of 900 (derived in OKLab from the advisory primary)"
+        },
+        "900": {
+          "$value": "#0891B2",
+          "$type": "color",
+          "$description": "Primary 900 — brand accent (advisory: colors.primary for style neumorphism)"
+        }
+      },
+      "neutral": {
+        "600": {
+          "$value": "#E8F1F6",
+          "$type": "color",
+          "$description": "surface hover (advisory: colors.muted for style neumorphism)"
+        },
+        "700": {
+          "$value": "#22D3EE",
+          "$type": "color",
+          "$description": "surface (advisory: colors.secondary for style neumorphism)"
+        },
+        "800": {
+          "$value": "#FFFFFF",
+          "$type": "color",
+          "$description": "raised background (advisory: colors.card for style neumorphism)"
+        },
+        "900": {
+          "$value": "#ECFEFF",
+          "$type": "color",
+          "$description": "app background (advisory: colors.background for style neumorphism)"
+        }
+      },
+      "ink": {
+        "default": {
+          "$value": "#164E63",
+          "$type": "color",
+          "$description": "default ink (advisory: colors.foreground for style neumorphism)"
+        },
+        "muted": {
+          "$value": "#475569",
+          "$type": "color",
+          "$description": "secondary ink (advisory: colors.muted_foreground for style neumorphism)"
+        },
+        "subtle": {
+          "$value": "#8AABB6",
+          "$type": "color",
+          "$description": "Subtle ink — hints, placeholders (derived: ink over surface, 55%)"
+        }
+      },
+      "danger": {
+        "600": {
+          "$value": "#DC2626",
+          "$type": "color",
+          "$description": "destructive actions, errors (advisory: colors.destructive for style neumorphism)"
+        }
+      },
+      "success": {
+        "600": {
+          "$value": "#4ade80",
+          "$type": "color",
+          "$description": "Positive confirmations"
+        }
+      },
+      "warning": {
+        "600": {
+          "$value": "#fbbf24",
+          "$type": "color",
+          "$description": "Caution, pending states"
+        }
+      },
+      "info": {
+        "600": {
+          "$value": "#60a5fa",
+          "$type": "color",
+          "$description": "Neutral information"
+        }
+      }
+    },
+    "space": {
+      "1": {
+        "$value": "4px",
+        "$type": "dimension"
+      },
+      "2": {
+        "$value": "8px",
+        "$type": "dimension"
+      },
+      "3": {
+        "$value": "12px",
+        "$type": "dimension"
+      },
+      "4": {
+        "$value": "16px",
+        "$type": "dimension"
+      },
+      "5": {
+        "$value": "20px",
+        "$type": "dimension"
+      },
+      "6": {
+        "$value": "24px",
+        "$type": "dimension"
+      },
+      "7": {
+        "$value": "32px",
+        "$type": "dimension"
+      },
+      "8": {
+        "$value": "40px",
+        "$type": "dimension"
+      }
+    },
+    "typography": {
+      "family": {
+        "heading": {
+          "$value": "Atkinson Hyperlegible",
+          "$type": "fontFamily",
+          "$description": "Heading font (advisory: typography.heading — accessible, readable, inclusive, WCAG, dyslexia-friendly, clear)"
+        },
+        "body": {
+          "$value": "Atkinson Hyperlegible",
+          "$type": "fontFamily",
+          "$description": "Body font (advisory: typography.body — Accessibility-critical sites, government, healthcare, inclusive design)"
+        },
+        "mono": {
+          "$value": "\"JetBrains Mono\", ui-monospace, SFMono-Regular, monospace",
+          "$type": "fontFamily",
+          "$description": "Monospace face for tabular data — added by the generator, the advisory proposes no mono pairing"
+        }
+      },
+      "size": {
+        "xs": {
+          "$value": "0.75rem",
+          "$type": "dimension"
+        },
+        "sm": {
+          "$value": "0.875rem",
+          "$type": "dimension"
+        },
+        "base": {
+          "$value": "1rem",
+          "$type": "dimension"
+        },
+        "lg": {
+          "$value": "1.125rem",
+          "$type": "dimension"
+        },
+        "xl": {
+          "$value": "1.5rem",
+          "$type": "dimension"
+        }
+      },
+      "weight": {
+        "regular": {
+          "$value": "400",
+          "$type": "fontWeight"
+        },
+        "medium": {
+          "$value": "600",
+          "$type": "fontWeight"
+        },
+        "bold": {
+          "$value": "700",
+          "$type": "fontWeight"
+        }
+      }
+    },
+    "radius": {
+      "sm": {
+        "$value": "4px",
+        "$type": "dimension"
+      },
+      "md": {
+        "$value": "8px",
+        "$type": "dimension"
+      },
+      "lg": {
+        "$value": "12px",
+        "$type": "dimension"
+      },
+      "xl": {
+        "$value": "16px",
+        "$type": "dimension"
+      },
+      "full": {
+        "$value": "9999px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "sm": {
+        "$value": "0 1px 4px rgba(0,0,0,.2)",
+        "$type": "shadow"
+      },
+      "md": {
+        "$value": "0 4px 16px rgba(0,0,0,.3)",
+        "$type": "shadow"
+      },
+      "lg": {
+        "$value": "0 8px 32px rgba(0,0,0,.4)",
+        "$type": "shadow"
+      }
+    },
+    "motion": {
+      "duration": {
+        "fast": {
+          "$value": "150ms",
+          "$type": "duration"
+        },
+        "base": {
+          "$value": "220ms",
+          "$type": "duration"
+        }
+      },
+      "easing": {
+        "out": {
+          "$value": "cubic-bezier(.22,1,.36,1)",
+          "$type": "cubicBezier"
+        }
+      }
+    }
+  }
+}
